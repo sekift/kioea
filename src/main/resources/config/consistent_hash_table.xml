@@ -1,0 +1,16 @@
+<dbconfig>
+	<info>
+		<items>
+			<item>
+				<no>0</no>
+				<table>info_000</table>
+				<mod>0</mod>
+			</item>
+			<item>
+				<no>55555</no>
+				<table>info_001</table>
+				<mod>0</mod>
+			</item>
+		</items>
+	</info>
+</dbconfig>
