@@ -24,7 +24,7 @@
 		<sleepycat.je.version>18.3.12</sleepycat.je.version>
 		<jackson.version>1.9.13</jackson.version>
 		<bcprov.version>1.46</bcprov.version>
-		<dom4j.version>2.1.1</dom4j.version>
+		<dom4j.version>2.1.3</dom4j.version>
 		<csv.version>2.4.0</csv.version>
 		<chardet.version>1.0</chardet.version>
 		<ftp.version>1.5.3</ftp.version>
