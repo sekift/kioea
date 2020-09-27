@@ -33,8 +33,6 @@ public class GetDetailURLTest {
 
 	/**
 	 * Test method for
-	 * {@link com.sekift.urlutil.GetDetailFromPage#getRegex(java.lang.String, java.lang.String)}
-	 * .
 	 */
 	@Test
 	public void testGetAll() {

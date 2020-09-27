@@ -9,6 +9,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<maven.test.skip>true</maven.test.skip>
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<commons.io.version>2.6</commons.io.version>
@@ -20,7 +21,7 @@
 		<commons.httpclient.version>3.0.1</commons.httpclient.version>
 		<httpclient.version>4.5.10</httpclient.version>
 		<httpcore.version>4.4.12</httpcore.version>
-		<htmlparser.version>1.5</htmlparser.version>
+		<htmlparser.version>2.1</htmlparser.version>
 		<sleepycat.je.version>18.3.12</sleepycat.je.version>
 		<jackson.version>1.9.13</jackson.version>
 		<bcprov.version>1.46</bcprov.version>
@@ -41,6 +42,7 @@
 		<jsqlparser.version>0.8.0</jsqlparser.version>
 		<mysql.version>5.1.48</mysql.version>
 		<ansj_seg.version>5.1.6</ansj_seg.version>
+		<junit.version>4.13</junit.version>
 	</properties>
 
 	<dependencies>
@@ -83,7 +85,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>htmlparser</groupId>
+			<groupId>org.htmlparser</groupId>
 			<artifactId>htmlparser</artifactId>
 			<version>${htmlparser.version}</version>
 		</dependency>
@@ -296,10 +298,30 @@
 			<artifactId>ansj_seg</artifactId>
 			<version>${ansj_seg.version}</version>
 		</dependency>
-
-
-
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- 编码和编译和JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

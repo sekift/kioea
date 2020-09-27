@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import com.kioea.www.regexutil.RegexUtil;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -16,7 +17,6 @@ import org.slf4j.LoggerFactory;
 
 import com.kioea.www.async.SleepUtil;
 import com.kioea.www.dateutil.DateUtil;
-import com.kioea.www.regexutil.RegexUtil;
 import com.kioea.www.stringutil.StringUtil;
 import com.kioea.www.urlutil.HtmlUtil;
 import com.kioea.www.urlutil.SendMessageTool;

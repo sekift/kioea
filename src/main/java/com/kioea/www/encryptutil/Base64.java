@@ -18,6 +18,9 @@ package com.kioea.www.encryptutil;
  * See COPYING.TXT for details.
  */
 
+import com.kioea.www.fileutil.FileHelper;
+import com.kioea.www.stringutil.StringHelper;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -32,9 +35,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.kioea.www.fileutil.FileHelper;
-import com.kioea.www.stringutil.StringHelper;
 
 /**
  * Implements Base64 encoding and decoding as defined by RFC 2045: "Multipurpose Internet

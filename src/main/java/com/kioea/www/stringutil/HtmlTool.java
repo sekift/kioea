@@ -1,9 +1,9 @@
-﻿package com.kioea.www.stringutil;
+package com.kioea.www.stringutil;
 
 /**
  * 此类中收集Java编程中WEB开发常用到的一些工具。
  * 为避免生成此类的实例，构造方法被申明为private类型的。
- * @author 
+ * @author
  */
 import java.io.IOException;
 import java.io.StringReader;
@@ -20,7 +20,7 @@ public class HtmlTool {
     }
 
     /**
-      <pre>
+     <pre>
      * 例：
      * String strVal="This is a dog";
      * String strResult=CTools.replace(strVal,"dog","cat");
@@ -31,7 +31,7 @@ public class HtmlTool {
      * @param strOld 要查找的字符串
      * @param strNew 要替换的字符串
      * @return 替换后的字符串
-      <pre>
+    <pre>
      */
     public static final String replace(String strSrc, String strOld,
                                        String strNew) {
@@ -39,10 +39,10 @@ public class HtmlTool {
             return "";
 
         int i = 0;
-        
+
         if (strOld.equals(strNew)) //避免新旧字符一样产生死循环
-        	return strSrc;
-        
+            return strSrc;
+
         if ((i = strSrc.indexOf(strOld, i)) >= 0) {
             char[] arr_cSrc = strSrc.toCharArray();
             char[] arr_cNew = strNew.toCharArray();
@@ -229,29 +229,29 @@ public class HtmlTool {
         }
     }
     public static String ISO2UTF8(String strVal) {
-       try {
-           if (strVal == null) {
-               return "";
-           } else {
-               strVal = new String(strVal.getBytes("ISO-8859-1"), "UTF-8");
-               return strVal;
-           }
-       } catch (Exception exp) {
-           return "";
-       }
-   }
-   public static String UTF82ISO(String strVal) {
-       try {
-           if (strVal == null) {
-               return "";
-           } else {
-               strVal = new String(strVal.getBytes("UTF-8"), "ISO-8859-1");
-               return strVal;
-           }
-       } catch (Exception exp) {
-           return "";
-       }
-   }
+        try {
+            if (strVal == null) {
+                return "";
+            } else {
+                strVal = new String(strVal.getBytes("ISO-8859-1"), "UTF-8");
+                return strVal;
+            }
+        } catch (Exception exp) {
+            return "";
+        }
+    }
+    public static String UTF82ISO(String strVal) {
+        try {
+            if (strVal == null) {
+                return "";
+            } else {
+                strVal = new String(strVal.getBytes("UTF-8"), "ISO-8859-1");
+                return strVal;
+            }
+        } catch (Exception exp) {
+            return "";
+        }
+    }
 
 
 
@@ -270,8 +270,6 @@ public class HtmlTool {
      *主要应用于老牛的信息发布
      *@param str 要进行处理的字符串
      *@return 转换后的字符串
-     *@see fs_com.utils.CTools#toChinese
-     *@see fs_com.utils.CTools#null2Blank
      */
     public static String toChineseAndHtmlEncode(String str, int quotes) {
         return htmlEncode(toChinese(str), quotes);
@@ -458,9 +456,9 @@ public class HtmlTool {
      */
     public final static String MD5(String s) {
         char hexDigits[] = {
-                           '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                           'a', 'b', 'c', 'd',
-                           'e', 'f'};
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'a', 'b', 'c', 'd',
+                'e', 'f'};
         try {
             byte[] strTemp = s.getBytes();
             MessageDigest mdTemp = MessageDigest.getInstance("MD5");
@@ -506,7 +504,7 @@ public class HtmlTool {
 
     }
     /**
-     * 
+     *
      * @param inStr
      * @return
      */
