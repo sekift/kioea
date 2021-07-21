@@ -15,7 +15,7 @@ import org.apache.commons.io.LineIterator;
  * @version:
  */
 public class Analysis {
-	private static List<String> travelList = new ArrayList<String>(400000);
+	private static List<String> travelList = new ArrayList<>(400000);
 	static File inputFile = new File("C:\\xxx.txt");
 
 	static {

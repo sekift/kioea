@@ -19,8 +19,9 @@ public class OtsuBinaryFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
+		}
 		// 图像灰度化
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
@@ -112,7 +113,7 @@ public class OtsuBinaryFilter extends AbstractBufferedImageOp {
 		return dest;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			// 读入图像

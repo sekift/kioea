@@ -17,7 +17,7 @@ import com.google.zxing.common.BitMatrix;
  */
 public class QREncoder {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		String contents = "http://bbs.bubbt.com";
 		Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
 		hints.put(EncodeHintType.CHARACTER_SET, "GBK");

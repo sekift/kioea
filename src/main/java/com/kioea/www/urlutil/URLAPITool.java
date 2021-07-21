@@ -86,7 +86,7 @@ public class URLAPITool {
 	
 	
 	@SuppressWarnings("unchecked")
-	public static void main(String args[]){
+	public static void main(String[] args){
 		int[] mobile={1700,1701,1702,1705,1707,1708,1709};
 		URLAPITool uat=new URLAPITool();
 		String mobileP=null;

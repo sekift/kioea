@@ -33,8 +33,9 @@ public class Kilim {
 
     private static String[] processArgs(String[] args) {
         String[] ret = new String[args.length-1];
-        if (ret.length > 0) 
+        if (ret.length > 0) {
             System.arraycopy(args, 1, ret, 0, ret.length);
+        }
         return ret;
     }
 }

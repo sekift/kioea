@@ -23,7 +23,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 public class Zookeeper_Delete_API_Sync_Usage implements Watcher {
 	private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		ZooKeeper zookeeper = new ZooKeeper("localhost:2181", 5000, new Zookeeper_Delete_API_Sync_Usage());
 
 		String path1 = zookeeper.create("/zk-test-test-", "test".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);

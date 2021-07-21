@@ -30,8 +30,9 @@ public class WordCount {
 			if (map.containsKey(word)) {
 				int count = map.get(word);
 				map.put(word, count + 1);
-			} else
+			} else {
 				map.put(word, 1);
+			}
 		}
 		return map;
 	}
@@ -93,8 +94,8 @@ public class WordCount {
 	/**
 	 * 构造统计后的数据
 	 * 
-	 * @param code
-	 * @param message
+	 * @param countKey
+	 * @param countValue
 	 * @param map
 	 * @return
 	 */

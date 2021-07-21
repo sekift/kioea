@@ -275,7 +275,7 @@ public class SqlUtil {
 		return result;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		String str = "中国\\\\'''";
 		System.out.println(sqlValue(str));
 

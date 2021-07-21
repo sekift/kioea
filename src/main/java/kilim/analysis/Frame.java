@@ -5,10 +5,10 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.D_DOUBLE;
-import static kilim.Constants.D_FLOAT;
-import static kilim.Constants.D_LONG;
-import static kilim.Constants.D_OBJECT;
+import static kilim.Constant.D_DOUBLE;
+import static kilim.Constant.D_FLOAT;
+import static kilim.Constant.D_LONG;
+import static kilim.Constant.D_OBJECT;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 import static org.objectweb.asm.Opcodes.ACC_SYNCHRONIZED;
 import static org.objectweb.asm.Opcodes.ALOAD;
@@ -68,10 +68,14 @@ public class Frame {
             for (int i = 0; i < slen; i++) {
                 Value va = st[i];
                 Value vb = ist[i];
-                if (va == vb || va.equals(vb)) continue;
+                if (va == vb || va.equals(vb)) {
+                    continue;
+                }
                 Value newval = va.merge(vb);
                 if (newval != va) {
-                    if (nst == null) nst = dupArray(st);
+                    if (nst == null) {
+                        nst = dupArray(st);
+                    }
                     nst[i] = newval;
                 }
             }
@@ -81,13 +85,19 @@ public class Frame {
         Value[] ilo = inframe.locals; 
         Value[] nlo = null; // new locals array. allocated if needed
         for (int i = 0; i < lo.length; i++) {
-            if (!usage.isLiveIn(i)) continue;
+            if (!usage.isLiveIn(i)) {
+                continue;
+            }
             Value va = lo[i];
             Value vb = ilo[i];
-            if (va == vb || va.equals(vb)) continue;
+            if (va == vb || va.equals(vb)) {
+                continue;
+            }
             Value newval = va.merge(vb);
             if (newval != va) {
-                if (nlo == null) nlo = dupArray(lo);
+                if (nlo == null) {
+                    nlo = dupArray(lo);
+                }
                 nlo[i] = newval;
             }
         }
@@ -95,8 +105,12 @@ public class Frame {
             return this;
         } else {
             // One or both of locals and stacks have new values
-            if (nst == null) nst = dupArray(stack);
-            if (nlo == null) nlo = dupArray(locals);
+            if (nst == null) {
+                nst = dupArray(stack);
+            }
+            if (nlo == null) {
+                nlo = dupArray(locals);
+            }
             return new Frame(nlo, nst, slen, numMonitorsActive);
         }
     }
@@ -139,7 +153,9 @@ public class Frame {
     }
     
     private boolean checkType(String desc) {
-        if (desc.equals("Ljava/lang/Object;") && desc != D_OBJECT) return false;
+        if ("Ljava/lang/Object;".equals(desc) && desc != D_OBJECT) {
+            return false;
+        }
         switch(desc.charAt(0)) {
             case 'L': case 'B': case 'C': case 'D': case 'F': case 'I':
             case 'J': case 'S': case 'Z': case 'N': case '[': case 'A': 
@@ -250,10 +266,14 @@ public class Frame {
     public boolean equals(Object other) {
         Frame that = (Frame)other;
         for (int i = 0; i < locals.length; i++) {
-            if (!locals[i].equals(that.locals[i])) return false;
+            if (!locals[i].equals(that.locals[i])) {
+                return false;
+            }
         }
         for (int i = 0; i < stacklen; i++) {
-            if (!stack[i].equals(that.stack[i])) return false;
+            if (!stack[i].equals(that.stack[i])) {
+                return false;
+            }
         }
         return true;
     }
@@ -261,8 +281,12 @@ public class Frame {
     @Override
     public int hashCode() {
         int hash = 0;
-        for (int i = 0; i < this.locals.length;i++) hash ^= this.locals[i].hashCode();
-        for (int i = 0; i < this.stacklen;i++) hash ^= this.locals[i].hashCode();
+        for (int i = 0; i < this.locals.length;i++) {
+            hash ^= this.locals[i].hashCode();
+        }
+        for (int i = 0; i < this.stacklen;i++) {
+            hash ^= this.locals[i].hashCode();
+        }
         return hash;
     }
     

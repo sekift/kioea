@@ -16,7 +16,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 public class Zookeeper_Constructor_Usage_SID_PASSWD implements Watcher{
 	private static CountDownLatch connectedSemaphore=new CountDownLatch(1);
 	
-	public static void main(String args[])throws Exception {
+	public static void main(String[] args)throws Exception {
 		ZooKeeper zookeeper = new ZooKeeper(
 				"localhost:2181",5000,new Zookeeper_Constructor_Usage_SID_PASSWD()
 		); 

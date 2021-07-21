@@ -18,6 +18,7 @@ public class ExitMsg {
         result = res;
     }
     
+    @Override
     public String toString() {
         return "exit(" + task.id + "), result = " + result;
     }

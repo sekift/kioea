@@ -317,7 +317,7 @@ public class CompressEncrypt {
        return cd;
     }
     
-    public static void main(String args[]){
+    public static void main(String[] args){
     	String en = CompressEncrypt.encrypthexstring("bubbt@tlist_cookies_des", "");
     	System.out.println(en);
     	System.out.println(CompressEncrypt.decrypthexstring("bubbt@tlist_cookies_des", "XXXXX"));

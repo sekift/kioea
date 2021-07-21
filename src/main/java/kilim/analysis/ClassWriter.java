@@ -16,6 +16,7 @@ public class ClassWriter extends org.objectweb.asm.ClassWriter {
 		this.detector = detector;
 	}
 
+	@Override
 	protected String getCommonSuperClass(final String type1, final String type2) {
 		try {
 			return detector.commonSuperType(type1, type2);

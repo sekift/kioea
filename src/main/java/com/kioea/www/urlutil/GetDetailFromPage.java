@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.kioea.www.CloseUtil;
-import com.kioea.www.Constants;
+import com.kioea.www.Constant;
 
 /**
  * 提供获取页面邮箱、号码或网址的类
@@ -27,21 +27,21 @@ public class GetDetailFromPage {
 	 * 获取邮箱
 	 */
 	public static List<String> getEmailFromPage(String urlName) {
-		return getDetailFromPage(urlName, Constants.regex_ID.EMAIL);
+		return getDetailFromPage(urlName, Constant.regex_ID.EMAIL);
 	}
 
 	/**
 	 * 获取手机
 	 */
 	public static List<String> getPhoneFromPage(String urlName) {
-		return getDetailFromPage(urlName, Constants.regex_ID.PHONE);
+		return getDetailFromPage(urlName, Constant.regex_ID.PHONE);
 	}
 
 	/**
 	 * 获取网页
 	 */
 	public static List<String> getUrlFromPage(String urlName) {
-		return getDetailFromPage(urlName, Constants.regex_ID.URL);
+		return getDetailFromPage(urlName, Constant.regex_ID.URL);
 	}
 
 	/**

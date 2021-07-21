@@ -232,7 +232,7 @@ public class URLConnectUtil {
 
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(isConnect("http://www.baidu.com"));
 		getResponseReason("http://www.google.cn");
 	}

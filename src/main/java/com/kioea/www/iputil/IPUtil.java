@@ -48,7 +48,7 @@ public class IPUtil {
 		// 对数组进行循环
 		try {
 			for (int i = 0; i < ipArray.length; i++) {
-				if (ipArray[i] == null || ipArray[i].trim().equals("")) {
+				if (ipArray[i] == null || "".equals(ipArray[i].trim())) {
 					ipArray[i] = "0";
 				}
 				if (new Integer(ipArray[i].toString()).intValue() < 0) {
@@ -204,7 +204,7 @@ public class IPUtil {
     				if (!(ip.startsWith("10.") || ip.startsWith("192.168") || ip.startsWith("172.16.")
                             || ip.startsWith("19.2.168") || ip.startsWith("19.2.169") || ip.startsWith("19.2.170")
                             || ip.startsWith("19.2.171") || ip.startsWith("19.2.172") || ip.startsWith("19.2.173")
-                            || ip.startsWith("19.2.174") || "".equals(ip) || ip.equalsIgnoreCase("unknown"))) {
+                            || ip.startsWith("19.2.174") || "".equals(ip) || "unknown".equalsIgnoreCase(ip))) {
                         return ip.trim();
                     }
     				break;
@@ -213,14 +213,14 @@ public class IPUtil {
                     if (!(ip.startsWith("192.168") || ip.startsWith("172.16.") || ip.startsWith("19.2.168")
                             || ip.startsWith("19.2.169") || ip.startsWith("19.2.170") || ip.startsWith("19.2.171")
                             || ip.startsWith("19.2.172") || ip.startsWith("19.2.173") || ip.startsWith("19.2.174")
-                            || "".equals(ip) || ip.equalsIgnoreCase("unknown"))) {
+                            || "".equals(ip) || "unknown".equalsIgnoreCase(ip))) {
                         return ip.trim();
                     }
                     break;
     			case 2:
     				//nearest client ip
-    				if(!(ip.startsWith("10.") || ip.startsWith("192.168") || ip.startsWith("172.16.") || "".equals(ip) || ip
-                            .equalsIgnoreCase("unknown"))){
+    				if(!(ip.startsWith("10.") || ip.startsWith("192.168") || ip.startsWith("172.16.") || "".equals(ip) || "unknown"
+                            .equalsIgnoreCase(ip))){
     					return ip.trim();
     				}
     				break;
@@ -251,8 +251,9 @@ public class IPUtil {
      */
     public static int getUserPort(HttpServletRequest request) {
         String portStr = request.getHeader("Ty_Remote_Port");
-        if (StringUtil.isNullOrBlank(portStr))
-            return request.getRemotePort();
+        if (StringUtil.isNullOrBlank(portStr)) {
+			return request.getRemotePort();
+		}
         try {
             return Integer.parseInt(portStr);
         } catch (NumberFormatException e) {

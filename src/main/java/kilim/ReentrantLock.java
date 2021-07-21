@@ -11,6 +11,7 @@ public class ReentrantLock extends java.util.concurrent.locks.ReentrantLock {
         super(fair);
     }
 
+    @Override
     public Thread getOwner() {
         return super.getOwner();
     }

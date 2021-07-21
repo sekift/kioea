@@ -5,7 +5,7 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.THROWABLE_CLASS;
+import static kilim.Constant.THROWABLE_CLASS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,12 +46,17 @@ public class Handler implements Comparable<Handler> {
         catchBB = aCatchBB;
     }
     
+    @Override
     public int compareTo(Handler h) {
         int c = this.type.compareTo(h.type);
-        if (c != 0) return c;
+        if (c != 0) {
+            return c;
+        }
         
         c = this.catchBB.compareTo(h.catchBB);
-        if (c != 0) return c;
+        if (c != 0) {
+            return c;
+        }
 
         return from < h.from ? -1 : (from == h.from) ? 0 : 1;
     }

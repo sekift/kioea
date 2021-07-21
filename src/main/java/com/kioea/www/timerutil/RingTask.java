@@ -31,11 +31,12 @@ public class RingTask extends TimerTask {
 		this.delay = delay;
 	}
 
-	public void run() {
+	@Override
+    public void run() {
 		System.out.println("我是打铃程序!" + "我第一次打铃延迟了" + delay + "秒！");
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Timer timer = new Timer();
 		timer.schedule(new RingTask(3, 3), 3000, 3000);
 	}

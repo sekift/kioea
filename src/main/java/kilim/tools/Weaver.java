@@ -57,8 +57,9 @@ public class Weaver {
         for (String name : parseArgs(args)) {
             try {
                 if (name.endsWith(".class")) {
-                    if (exclude(name))
+                    if (exclude(name)) {
                         continue;
+                    }
                     currentName = name;
                     weaveFile(name, new BufferedInputStream(new FileInputStream(name)), detector);
                 } else if (name.endsWith(".jar")) {
@@ -67,8 +68,9 @@ public class Weaver {
                         if (currentName.endsWith(".class")) {
                             currentName = currentName.substring(0, currentName.length() - 6)
                                     .replace('/', '.');
-                            if (exclude(currentName))
+                            if (exclude(currentName)) {
                                 continue;
+                            }
                             weaveFile(currentName, fe.getInputStream(), detector);
                         }
                     }
@@ -76,8 +78,9 @@ public class Weaver {
                     for (FileLister.Entry fe : new FileLister(name)) {
                         currentName = fe.getFileName();
                         if (currentName.endsWith(".class")) {
-                            if (exclude(currentName))
+                            if (exclude(currentName)) {
                                 continue;
+                            }
                             weaveFile(currentName, fe.getInputStream(), detector);
                         }
                     }
@@ -174,8 +177,9 @@ public class Weaver {
         className = outputDir + File.separatorChar + className + ".class";
         if (ci.className.startsWith("kilim.S_")) {
             // Check if we already have that file
-            if (new File(className).exists())
+            if (new File(className).exists()) {
                 return;
+            }
         }
         FileOutputStream fos = new FileOutputStream(className);
         fos.write(ci.bytes);
@@ -207,20 +211,21 @@ public class Weaver {
     }
 
     static ArrayList<String> parseArgs(String[] args) throws IOException {
-        if (args.length == 0)
+        if (args.length == 0) {
             help();
+        }
 
         ArrayList<String> ret = new ArrayList<String>(args.length);
         String regex = null;
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
-            if (arg.equals("-d")) {
+            if ("-d".equals(arg)) {
                 outputDir = args[++i];
-            } else if (arg.equals("-q")) {
+            } else if ("-q".equals(arg)) {
                 verbose = false;
-            } else if (arg.equals("-h")) {
+            } else if ("-h".equals(arg)) {
                 help();
-            } else if (arg.equals("-x")) {
+            } else if ("-x".equals(arg)) {
                 regex = args[++i];
                 excludePattern = Pattern.compile(regex);
             } else {

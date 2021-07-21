@@ -69,8 +69,9 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 	public BufferedImage filter(BufferedImage src, BufferedImage dest) {
 		width = src.getWidth();
 		height = src.getHeight();
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
+		}
 		// 图像灰度化
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
@@ -90,7 +91,7 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 		}
 
 		// 计算高斯卷积核
-		float kernel[][] = new float[gaussianKernelWidth][gaussianKernelWidth];
+        float[][] kernel = new float[gaussianKernelWidth][gaussianKernelWidth];
 		for (int x = 0; x < gaussianKernelWidth; x++) {
 			for (int y = 0; y < gaussianKernelWidth; y++) {
 				kernel[x][y] = gaussian(x, y, gaussianKernelRadius);
@@ -208,8 +209,9 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 		float min = 255;
 		float max = 0;
 		for (int i = 0; i < magnitudes.length; i++) {
-			if (magnitudes[i] == 0)
+			if (magnitudes[i] == 0) {
 				continue;
+			}
 			min = Math.min(min, magnitudes[i]);
 			max = Math.max(max, magnitudes[i]);
 		}
@@ -256,10 +258,12 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 	}
 
 	private float getPixel(float[] input, int width, int height, int col, int row) {
-		if (col < 0 || col >= width)
+		if (col < 0 || col >= width) {
 			col = 0;
-		if (row < 0 || row >= height)
+		}
+		if (row < 0 || row >= height) {
 			row = 0;
+		}
 		int index = row * width + col;
 		return input[index];
 	}
@@ -269,10 +273,12 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 	}
 
 	private int getPixel(int[] inPixels, int width, int height, int col, int row) {
-		if (col < 0 || col >= width)
+		if (col < 0 || col >= width) {
 			col = 0;
-		if (row < 0 || row >= height)
+		}
+		if (row < 0 || row >= height) {
 			row = 0;
+		}
 		int index = row * width + col;
 		return inPixels[index];
 	}
@@ -285,7 +291,7 @@ public class CannyEdgeFilter extends AbstractBufferedImageOp {
 		return (float) Math.exp(-(xDistance + yDistance) / sigma22) / sigma22PI;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			// 读入图像

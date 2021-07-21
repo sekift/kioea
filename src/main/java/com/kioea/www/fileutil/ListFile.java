@@ -33,7 +33,8 @@ public class ListFile {
 			this.suffix = surfix;
 		}
 
-		public boolean accept(File dir, String name) {
+		@Override
+        public boolean accept(File dir, String name) {
 			if (new File(dir, name).isFile()) {
 				return name.endsWith(suffix);
 			} else {

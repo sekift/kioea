@@ -14,7 +14,7 @@ import org.apache.commons.io.FileUtils;
  */
 public class ClassScaner {
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		try {
 			System.out.println(FileUtils.readLines(new File("D:\\workspace\\Demo\\bin\\Adapter\\CloneTest.class"),"utf-8"));
 		} catch (IOException e) {

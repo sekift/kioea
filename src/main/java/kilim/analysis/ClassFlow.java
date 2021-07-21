@@ -82,13 +82,14 @@ public class ClassFlow extends ClassNode {
             cr.accept(this, /*flags*/ClassReader.SKIP_FRAMES);
             for (Object o : this.fields) {
                 FieldNode fn = (FieldNode) o;
-                if (fn.name.equals(Constants.WOVEN_FIELD)) {
+                if (fn.name.equals(Constant.WOVEN_FIELD)) {
                     isWoven = true;
                     break;
                 }
             }
-            if (isWoven && !forceAnalysis) 
-                return new ArrayList<MethodFlow>(); // This is a hack. 
+            if (isWoven && !forceAnalysis) {
+                return new ArrayList<MethodFlow>(); // This is a hack.
+            }
 
 
             cr = null; // We don't need this any more.
@@ -100,12 +101,14 @@ public class ClassFlow extends ClassNode {
                     MethodFlow mf = (MethodFlow) o;
                     if (mf.isBridge()) {
                         MethodFlow mmf = getOrigWithSameSig(mf);
-                        if (mmf != null)
+                        if (mmf != null) {
                             mf.setPausable(mmf.isPausable());
+                        }
                     }
                     mf.verifyPausables();
-                    if (mf.isPausable())
+                    if (mf.isPausable()) {
                         isPausable = true;
+                    }
                     if ((mf.isPausable() || forceAnalysis) && (!mf.isAbstract())) {
                         mf.analyze();
                     }
@@ -128,13 +131,15 @@ public class ClassFlow extends ClassNode {
     private MethodFlow getOrigWithSameSig(MethodFlow bridgeMethod) {
         for (Object o : methods) {
             MethodFlow mf = (MethodFlow) o;
-            if (mf == bridgeMethod)
+            if (mf == bridgeMethod) {
                 continue;
+            }
             if (mf.name.equals(bridgeMethod.name)) {
                 String mfArgs = mf.desc.substring(0, mf.desc.indexOf(')'));
                 String bmArgs = bridgeMethod.desc.substring(0, bridgeMethod.desc.indexOf(')'));
-                if (mfArgs.equals(bmArgs))
+                if (mfArgs.equals(bmArgs)) {
                     return mf;
+                }
             }
         }
         return null;

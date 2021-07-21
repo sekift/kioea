@@ -47,8 +47,9 @@ public class RuntimeClassMirrors implements Mirrors {
 
     @Override
     public ClassMirror mirror(Class<?> clazz) {
-        if (clazz == null)
+        if (clazz == null) {
             return null;
+        }
         return make(clazz);
     }
 
@@ -99,10 +100,12 @@ class RuntimeMethodMirror implements MethodMirror {
         this.method = method;
     }
 
+    @Override
     public String getName() {
         return method.getName();
     }
 
+    @Override
     public String[] getExceptionTypes() {
         String[] ret = new String[method.getExceptionTypes().length];
         int i = 0;
@@ -112,10 +115,12 @@ class RuntimeMethodMirror implements MethodMirror {
         return ret;
     }
 
+    @Override
     public String getMethodDescriptor() {
         return Type.getMethodDescriptor(method);
     }
 
+    @Override
     public boolean isBridge() {
         return method.isBridge();
     }

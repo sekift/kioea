@@ -81,7 +81,7 @@ public class JsonResult {
 	private void parseResult() {
 
 		// 判断是否为空
-		if (result == null || result.trim().equals("")) {
+		if (result == null || "".equals(result.trim())) {
 			return;
 		}
 

@@ -37,7 +37,7 @@ public class HttpRequest extends HttpMsg {
     /**
      * Keys present in the HTTP header
      */
-    public String keys[];
+    public String[] keys;
 
     // range variables encode the offset and length within the header. The strings corresponding
     // to these variables are created lazily.
@@ -91,13 +91,15 @@ public class HttpRequest extends HttpMsg {
     public KeyValues getQueryComponents() {
         String q = getQuery();
         int len = q.length();
-        if (q == null || len == 0)
+        if (q == null || len == 0) {
             return new KeyValues(0);
+        }
 
         int numPairs = 0;
         for (int i = 0; i < len; i++) {
-            if (q.charAt(i) == '=')
+            if (q.charAt(i) == '=') {
                 numPairs++;
+            }
         }
         KeyValues components = new KeyValues(numPairs);
 
@@ -109,8 +111,9 @@ public class HttpRequest extends HttpMsg {
                                       // the last component
                     : q.charAt(i);
 
-            if (c == '+' || c == '%')
+            if (c == '+' || c == '%') {
                 url_encoded = true;
+            }
             if (c == '=' || c == '&') {
                 String comp = q.substring(beg, i);
                 if (url_encoded) {
@@ -136,6 +139,7 @@ public class HttpRequest extends HttpMsg {
         return extractRange(uriFragmentRange);
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(500);
         sb.append("method: ").append(method).append('\n').append("version: ").append(version()).append('\n').append(
@@ -273,8 +277,9 @@ public class HttpRequest extends HttpMsg {
             int n = readLine(endpoint); // read chunk size text into buffer
             int beg = iread;
             int size = parseChunkSize(buffer, iread - n, iread); // Parse size in hex, ignore extension
-            if (size == 0)
+            if (size == 0) {
                 break;
+            }
             // If the chunk has not already been read in, do so
             fill(endpoint, iread, size+2 /*chunksize + CRLF*/);
             // record chunk start and end

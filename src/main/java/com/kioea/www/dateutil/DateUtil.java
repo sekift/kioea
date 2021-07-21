@@ -70,11 +70,11 @@ public class DateUtil {
 	   {
 	      Calendar cal = Calendar.getInstance();
 	      cal.setTime(date);
-	      if(datepart.equals("yy")) {
+	      if("yy".equals(datepart)) {
 	         cal.add(Calendar.YEAR, number);
-	      } else if(datepart.equals("MM")) {
+	      } else if("MM".equals(datepart)) {
 	         cal.add(Calendar.MONTH, number);
-	      } else if(datepart.equals("dd")) {
+	      } else if("dd".equals(datepart)) {
 	         cal.add(Calendar.DATE, number);
 	      } else {
 	         throw new IllegalArgumentException("DateUtil.addDate()方法非法参数值：" +
@@ -145,7 +145,7 @@ public class DateUtil {
 	    */
 	   public static Date convertStrToDate(String dateStr, String dateFormat)
 	   {
-	      if(dateStr == null || dateStr.equals("")) {
+	      if(dateStr == null || "".equals(dateStr)) {
 	         return null;
 	      }
 	      SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
@@ -165,7 +165,7 @@ public class DateUtil {
 	    */
 	   public static Date convertStrToDate(String dateStr, String dateFormat,Locale locale)
 	   {
-	      if(dateStr == null || dateStr.equals("")) {
+	      if(dateStr == null || "".equals(dateStr)) {
 	         return null;
 	      }
 	      SimpleDateFormat sdf = new SimpleDateFormat(dateFormat,locale);
@@ -255,7 +255,7 @@ public class DateUtil {
 	    */
 	   public static double dateDiff(String datepart, Date startdate, Date enddate)
 	   {
-	      if(datepart == null || datepart.equals("")) {
+	      if(datepart == null || "".equals(datepart)) {
 	         throw new IllegalArgumentException("DateUtil.dateDiff()方法非法参数值：" +
 	                                            datepart);
 	      }
@@ -263,11 +263,11 @@ public class DateUtil {
 	      double days = (double)(enddate.getTime() - startdate.getTime()) /
 	          (60 * 60 * 24 * 1000);
 
-	      if(datepart.equals("yy")) {
+	      if("yy".equals(datepart)) {
 	         days = days / 365;
-	      } else if(datepart.equals("MM")) {
+	      } else if("MM".equals(datepart)) {
 	         days = days / 30;
-	      } else if(datepart.equals("dd")) {
+	      } else if("dd".equals(datepart)) {
 	         return days;
 	      } else {
 	         throw new IllegalArgumentException("DateUtil.dateDiff()方法非法参数值：" +

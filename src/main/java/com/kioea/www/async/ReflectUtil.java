@@ -541,14 +541,14 @@ public class ReflectUtil {
 		return castMap(Map.class.cast(mapObject), keyClazz, valueClazz);
 	}
 	public static <K, V> Map<K, V> castMap(Map<?, ?> map, Class<K> keyClazz, Class<V> valueClazz){
-		Map<K, V> newMap = new HashMap<K, V>();
+		Map<K, V> newMap = new HashMap<K, V>(8);
 		for(Map.Entry<?, ?> entry : map.entrySet()){
 			newMap.put(keyClazz.cast(entry.getKey()), valueClazz.cast(entry.getValue()));
 		}
 		return newMap;
 	}
 
-	public static void main(String args[])throws Exception{
+	public static void main(String[] args)throws Exception{
 //		Class clazz = Class.forName("com.hxrainbow.util.ReflectUtil");
 //		Method[] ms1 = clazz.getMethods(); //获得所有的公有方法,包括从父类或者超类继承的方法
 //		for(int i=0;i<ms1.length;i++){

@@ -41,8 +41,9 @@ public class RotateFilter extends AbstractBufferedImageOp {
 
 	@Override
     public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
-		if (dstCM == null)
+		if (dstCM == null) {
 			dstCM = src.getColorModel();
+		}
 		return new BufferedImage(dstCM, dstCM.createCompatibleWritableRaster(outw, outh), dstCM.isAlphaPremultiplied(),
 				null);
 	}
@@ -114,8 +115,9 @@ public class RotateFilter extends AbstractBufferedImageOp {
 			}
 		}
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
+		}
 		setRGB(dest, 0, 0, outw, outh, outPixels);
 		return dest;
 	}
@@ -177,7 +179,7 @@ public class RotateFilter extends AbstractBufferedImageOp {
 		return new int[] { tr, tg, tb };
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			// 读入图像

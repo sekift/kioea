@@ -48,20 +48,23 @@ public class WorkerThread extends Thread {
     protected Task getNextTask(WorkerThread workerThread) throws ShutdownException {
         Task t = null;
         while (true) {
-            if (scheduler.isShutdown())
+            if (scheduler.isShutdown()) {
                 throw new ShutdownException();
+            }
 
             t = getNextTask();
-            if (t != null)
+            if (t != null) {
                 break;
+            }
 
             // try loading from scheduler
             scheduler.loadNextTask(this);
             synchronized (this) { // ///////////////////////////////////////
                 // Wait if still no task to execute.
                 t = tasks.get();
-                if (t != null)
+                if (t != null) {
                     break;
+                }
 
                 scheduler.addWaitingThread(this);
                 try {

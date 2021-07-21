@@ -51,7 +51,9 @@ public class DumpClass extends ClassVisitor implements Opcodes {
                 while (e.hasMoreElements()) {
                     ZipEntry en = (ZipEntry) e.nextElement();
                     String n = en.getName();
-                    if (!n.endsWith(".class")) continue;
+                    if (!n.endsWith(".class")) {
+                        continue;
+                    }
                     n = n.substring(0, n.length() - 6).replace('/','.');
                     new DumpClass(n);
                 }
@@ -82,15 +84,17 @@ public class DumpClass extends ClassVisitor implements Opcodes {
         cr.accept(this, /*flags*/ClassReader.EXPAND_FRAMES);
     }
 
-    public void visit(int version, int access, String name, String signature, 
-            String superName, String[] interfaces) 
+    @Override
+    public void visit(int version, int access, String name, String signature,
+                      String superName, String[] interfaces)
     {
         p(".class "); 
         p(Modifier.toString(access));
         p(" ");
         pn(name);
-        if (superName != null) 
+        if (superName != null) {
             pn(".super " + superName);
+        }
         
         if (interfaces != null) {
             for (int i = 0; i < interfaces.length; i++) {
@@ -100,16 +104,20 @@ public class DumpClass extends ClassVisitor implements Opcodes {
         }
     }
 
+    @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
         pn(".annotation " + (visible ? "visible " : "") + desc);
         pn(".end annotation");
         return new DummyAnnotationVisitor();
     }
 
+    @Override
     public void visitAttribute(Attribute attr) {}
 
+    @Override
     public void visitEnd() {}
 
+    @Override
     public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
         p(".field ");
         p(Modifier.toString(access));
@@ -130,9 +138,11 @@ public class DumpClass extends ClassVisitor implements Opcodes {
         return null;
     }
 
+    @Override
     public void visitInnerClass(String name, String outerName, String innerName, int access) {
     }
 
+    @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         pn("");
         pn("; -------------------------------------------------------------");
@@ -152,9 +162,11 @@ public class DumpClass extends ClassVisitor implements Opcodes {
         return new DumpMethodVisitor();
     }
 
+    @Override
     public void visitOuterClass(String owner, String name, String desc) {
     }
 
+    @Override
     public void visitSource(String source, String debug) {}
 }
 
@@ -163,23 +175,28 @@ class DummyAnnotationVisitor extends AnnotationVisitor {
         super(Opcodes.ASM4);
         // TODO Auto-generated constructor stub
     }
+    @Override
     public void visit(String name, Object value) {
 //        System.out.println("visit: name = " + name + ", value = "  + value);
     }
+    @Override
     public AnnotationVisitor visitAnnotation(String name, String desc) {
 //        System.out.println("visitAnnotation: name = " + name + ", desc = " + desc);
         return this;
     }
 
+    @Override
     public AnnotationVisitor visitArray(String name) {
 //        System.out.println("visitArray: name = " + name);
         return this;
     }
 
+    @Override
     public void visitEnd() {
 //        System.out.println("visitEnd");
     }
 
+    @Override
     public void visitEnum(String name, String desc, String value) {
 //        System.out.println("visitEnum: " + name + ", desc = "  + desc + ", value = " + value);
     }
@@ -234,10 +251,12 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         }
     }
 
+    @Override
     public void visitFieldInsn(int opcode, String owner, String name, String desc) {
         ppn(os[opcode] + " " + owner + "/" + name + " " + desc);
     }
 
+    @Override
     public void visitFrame(int type, int nLocal, Object[] local, int nStack, Object[] stack) {
         pn("; Frame " + type);
         
@@ -273,14 +292,17 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         return "??UNKNOWN??" + o.getClass() + ":" + o;
     }
 
+    @Override
     public void visitIincInsn(int var, int increment) {
         ppn("iinc " + var + " " + increment);
     }
 
+    @Override
     public void visitInsn(int opcode) {
         ppn(os[opcode]);
     }
 
+    @Override
     public void visitIntInsn(int opcode, int operand) {
         if (opcode == NEWARRAY) {
             String t = "UNDEFINED";
@@ -300,30 +322,36 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         }
     }
 
+    @Override
     public void visitJumpInsn(int opcode, Label label) {
         ppn(os[opcode] + " " + lab(label));
     }
 
+    @Override
     public void visitLabel(Label label) {
         dedent(2);
         pn(lab(label) + ":");
         indent(2);
     }
 
+    @Override
     public void visitLdcInsn(Object cst) {
         String op = (cst instanceof Double) || (cst instanceof Long) ? "ldc2_w " : "ldc ";
         String type = (cst instanceof String) ? "\"" + esc((String)cst) + "\"" : cst.toString();
         ppn(op  + type);
     }
 
+    @Override
     public void visitLineNumber(int line, Label start) {
         pn(".line " + line);
     }
 
+    @Override
     public void visitLocalVariable(String name, String desc, String signature, Label start, Label end, int index) {
         pn(".var " + index + " is "+  name + " " + desc + " from " + lab(start) + " to " + lab(end));
     }
 
+    @Override
     public void visitLookupSwitchInsn(Label dflt, int[] keys, Label[] labels) {
         ppn("lookupswitch");
         indent(4);
@@ -334,6 +362,7 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         dedent(4);
     }
 
+    @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         String str = os[opcode] + " " + owner + "/" + name + desc;
         if (opcode == INVOKEINTERFACE) {
@@ -343,10 +372,12 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         }
     }
 
+    @Override
     public void visitMultiANewArrayInsn(String desc, int dims) {
         ppn("multinewarray " + desc + " " + dims) ;
     }
 
+    @Override
     public void visitTableSwitchInsn(int min, int max, Label dflt, Label... labels) {
         ppn("tableswitch  " + min);
         indent(4);
@@ -357,15 +388,18 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         dedent(4);
     }
 
+    @Override
     public void visitTryCatchBlock(Label start, Label end, Label handler, String type) {
         pn(".catch " + type + " from " + lab(start) + " to " + lab(end) + 
                 " using " + lab(handler));
     }
 
+    @Override
     public void visitTypeInsn(int opcode, String desc) {
         ppn(os[opcode] + " " +desc);
     }
 
+    @Override
     public void visitVarInsn(int opcode, int var) {
         ppn(os[opcode] + " " + var);
     }
@@ -380,26 +414,33 @@ class DumpMethodVisitor extends MethodVisitor implements Opcodes {
         }
         return ret;
     }
+    @Override
     public AnnotationVisitor visitAnnotationDefault() {
         return new DummyAnnotationVisitor();
     }
+    @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
         pn(".annotation " + (visible ? "visible " : "") + desc);
         pn(".end annotation");
         return new DummyAnnotationVisitor();
     }
+    @Override
     public AnnotationVisitor visitParameterAnnotation(int parameter, String desc, boolean visible) {
         return new DummyAnnotationVisitor();
     }
+    @Override
     public void visitAttribute(Attribute attr) {
     }
+    @Override
     public void visitCode() {
         indent(4);
     }
+    @Override
     public void visitMaxs(int maxStack, int maxLocals) {
         pn(".limit stack " + maxStack);
         pn(".limit locals " + maxLocals);
     }
+    @Override
     public void visitEnd() {
         resetIndentation();
         pn(".end method");

@@ -27,10 +27,11 @@ public class Utils {
 		return ret;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		byte[] a = getIpByteArrayFromString(args[0]);
-		for (int i = 0; i < a.length; i++)
+		for (int i = 0; i < a.length; i++) {
 			System.out.println(a[i]);
+		}
 		System.out.println(getIpStringFromBytes(a));
 	}
 

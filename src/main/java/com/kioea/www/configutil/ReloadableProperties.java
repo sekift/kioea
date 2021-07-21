@@ -167,7 +167,8 @@ public abstract class ReloadableProperties {
 		// 定义重新加载的任务.
 		Runnable task = new Runnable() {
 
-			public void run() { 
+			@Override
+            public void run() {
 				// logger.debug("定时扫描[{}]配置文件调度执行.", ReloadableProperties.this.src);
 				try {  
 					long lmt = targetSrc.lastModified(); 

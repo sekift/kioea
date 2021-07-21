@@ -66,8 +66,9 @@ public class QRCodeGeneratorUtil {
             Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            if(noMargin)
-            	hints.put(EncodeHintType.MARGIN, 0);
+            if(noMargin) {
+				hints.put(EncodeHintType.MARGIN, 0);
+			}
             BitMatrix bitMatrix = new QRCodeWriter().encode(url, BarcodeFormat.QR_CODE, width, height, hints);
             int[] pixels = new int[width * height];
             for (int y = 0; y < height; y++) {
@@ -96,8 +97,9 @@ public class QRCodeGeneratorUtil {
     * @exception IOException 
     */
     public static BufferedImage logoMatrix(BufferedImage matrixImage){
-    	if(matrixImage == null)
-    		return null;
+    	if(matrixImage == null) {
+			return null;
+		}
     	
     	try {
 	    	//读取二维码图片，并构建绘图对象

@@ -60,7 +60,7 @@ public class PropertiesFileRead {
 
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		readPropFileByGetResourceAsStream();
 		readPropFileByInputStream();
 	}

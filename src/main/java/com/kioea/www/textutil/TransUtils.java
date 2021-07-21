@@ -104,7 +104,7 @@ public class TransUtils {
 		return entity.getAccess_token();
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		TransUtils mtu = new TransUtils("sekift-microsoft-azure", "br2uPvmKwSHroLntOB3zkTS0cuKysjzzKGkamaSUOeY=");
 		long startTime = System.currentTimeMillis();
 		try {

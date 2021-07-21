@@ -33,8 +33,9 @@ public class WeavingClassLoader extends KilimClassLoader {
         fileContainers = new ArrayList<FileLister>(classPaths.length);
         for (String name : classPaths) {
             name = name.trim();
-            if (name.equals(""))
+            if ("".equals(name)) {
                 continue;
+            }
             try {
                 fileContainers.add(new FileLister(name));
             } catch (IOException ioe) {
@@ -56,13 +57,16 @@ public class WeavingClassLoader extends KilimClassLoader {
             try {
                 String classFileName = name.replace('.', File.separatorChar) + ".class"; 
                 FileLister.Entry fe = container.open(classFileName);
-                if (fe == null) continue;
+                if (fe == null) {
+                    continue;
+                }
                 byte[] code = readFully(fe);
                 List<ClassInfo> cis = weaver.weave(new ClassInfo(name, code));
 
                 for (ClassInfo ci : cis) {
-                    if (findLoadedClass(ci.className) != null)
+                    if (findLoadedClass(ci.className) != null) {
                         continue;
+                    }
                     Class<?> c = super.defineClass(ci.className, ci.bytes, 0, ci.bytes.length);
                     if (ci.className.equals(name)) {
                         ret = c;

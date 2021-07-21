@@ -21,8 +21,9 @@ public class BinarizateFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
+		}
 		//src = super.filter(src, dest);
 
 		int[] inPixels = new int[width * height];

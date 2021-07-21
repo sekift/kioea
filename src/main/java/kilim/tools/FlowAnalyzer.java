@@ -130,13 +130,17 @@ public class FlowAnalyzer {
             if (u.isLiveIn(i)) {
                 numLive++;
                 Value v = f.getLocal(i);
-                if (!set.contains(v)) set.add(v);
+                if (!set.contains(v)) {
+                    set.add(v);
+                }
             }
         }
         nStack = f.getStackLen() - nStack;
         for (int i = 0; i < nStack; i++) {
             Value v = f.getStack(i);
-            if (!set.contains(v)) set.add(v);
+            if (!set.contains(v)) {
+                set.add(v);
+            }
         }
         char[] sig = new char[set.size()];
         // create canonical sig. Convert types to one of 'O', 'I', 'F', 'L', 'D' and
@@ -180,7 +184,9 @@ public class FlowAnalyzer {
     
     private static int getNumArgs(MethodInsnNode m) {
         int ret = TypeDesc.getNumArgumentTypes(m.desc);
-        if (m.getOpcode() != INVOKESTATIC) ret++; 
+        if (m.getOpcode() != INVOKESTATIC) {
+            ret++;
+        }
         return ret;
     }
     
@@ -190,7 +196,9 @@ public class FlowAnalyzer {
             while (e.hasMoreElements()) {
                 ZipEntry en = (ZipEntry) e.nextElement();
                 String n = en.getName();
-                if (!n.endsWith(".class")) continue;
+                if (!n.endsWith(".class")) {
+                    continue;
+                }
                 n = n.substring(0, n.length() - 6).replace('/','.');
                 analyzeClass(n, detector);
             }

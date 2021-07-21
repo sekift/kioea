@@ -102,7 +102,7 @@ public class GetCountrys {
 		return null;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(getCountryName("中国"));
 	}
 }

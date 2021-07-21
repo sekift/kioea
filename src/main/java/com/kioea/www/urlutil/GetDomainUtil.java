@@ -18,15 +18,18 @@ public class GetDomainUtil {
 	 * @return
 	 */
 	public static String getDomainName(String urlString) {
-		if (urlString == null)
+		if (urlString == null) {
 			return "";
+		}
 
 		String url = urlString;
-		if (url.indexOf("http://") > -1)
+		if (url.indexOf("http://") > -1) {
 			url = url.replace("http://", "");
+		}
 
-		if (url.indexOf("https://") > -1)
+		if (url.indexOf("https://") > -1) {
 			url = url.replace("https://", "");
+		}
 
 		int j = url.indexOf("/");
 		if (j > -1) {
@@ -63,7 +66,7 @@ public class GetDomainUtil {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(getDomainName("http://www.baidu.com"));
 		System.out.println(getDomainName("http://www.baidu.com:8080/fef/fefe/"));
 		System.out.println(getDomainName("http://www.baidu.com?fefe=fefe&aew=123"));

@@ -19,7 +19,8 @@ public class FutureData implements Data {
 		notifyAll();
 	}
 
-	public synchronized String getResult() {
+	@Override
+    public synchronized String getResult() {
 		while (!isReady) {
 			try {
 				wait();

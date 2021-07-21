@@ -23,7 +23,7 @@ public class TransformEncode {
 			try {
 				if (str.equals(new String(str.getBytes(array[i]), array[i]))) {
 					String s = array[i];
-					if (s.equals("Shift_JIS")) {
+					if ("Shift_JIS".equals(s)) {
 						return "unknow";
 					}
 					return s;
@@ -410,18 +410,20 @@ public class TransformEncode {
 					}
 					outBuffer.append((char) value);
 				} else {
-					if (aChar == 't')
+					if (aChar == 't') {
 						aChar = '\t';
-					else if (aChar == 'r')
+					} else if (aChar == 'r') {
 						aChar = '\r';
-					else if (aChar == 'n')
+					} else if (aChar == 'n') {
 						aChar = '\n';
-					else if (aChar == 'f')
+					} else if (aChar == 'f') {
 						aChar = '\f';
+					}
 					outBuffer.append(aChar);
 				}
-			} else
+			} else {
 				outBuffer.append(aChar);
+			}
 		}
 		return outBuffer.toString();
 	}

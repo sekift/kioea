@@ -55,7 +55,9 @@ public class FileLister implements Iterable<FileLister.Entry> {
         FileContainer container = null;
         if (containerRef != null) {
            container = containerRef.get();
-           if (container != null) return container;
+           if (container != null) {
+               return container;
+           }
         }
         
         if (name.endsWith(".jar")) {
@@ -76,6 +78,7 @@ public class FileLister implements Iterable<FileLister.Entry> {
         return new JarIterator(new JarFile(jarFile));
     }
 
+    @Override
     public Iterator<FileLister.Entry> iterator() {
         try {
             return getContainer();
@@ -124,10 +127,12 @@ class DirIterator extends FileContainer {
         stack.push(f);
     }
 
+    @Override
     public boolean hasNext() {
         return !stack.isEmpty();
     }
 
+    @Override
     public FileLister.Entry next() {
         File ret = stack.pop();
         if (ret.isDirectory()) {
@@ -151,6 +156,7 @@ class DirIterator extends FileContainer {
         return new DirEntry(ret);
     }
 
+    @Override
     public void remove() {
         throw new RuntimeException("FileLister does not remove files");
     }
@@ -195,14 +201,17 @@ class JarIterator extends FileContainer {
         jarEnum = f.entries();
     }
     
+    @Override
     public boolean hasNext() {
         return jarEnum.hasMoreElements();
     }
 
+    @Override
     public FileLister.Entry next() {
         return new JEntry(jarEnum.nextElement());
     }
 
+    @Override
     public void remove() {
         throw new RuntimeException("FileLister does not remove files");
     }

@@ -197,7 +197,7 @@ public class RegexUtil {
         }
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         String str = "third_weixin_touch Mozilla/5.0 (iPhone; CPU iPhone OS 12_1_2 like Mac OS X) AppleWebKit/605.1.15 " +
                 "(KHTML, like Gecko) Mobile/16C101 MicroMessenger/7.0.3(0x17000321) NetType Language/zh_CN";
         String pattern = "NetType\\/(([\\w]+)?)";

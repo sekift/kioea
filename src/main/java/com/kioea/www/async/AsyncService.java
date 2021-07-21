@@ -16,7 +16,7 @@ public class AsyncService {
 		pool = Executors.newFixedThreadPool(nThreads);
 	}
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		AsyncService service = new AsyncService(5);
 		Future<String> rFuture = service.asyncMethod(String.class, new String("111"), "toString");
 		service.asyncMethod(null, new String("11"), "toString");
@@ -82,6 +82,7 @@ class DefaultCallable<V> implements Callable<V> {
 		this.params = params;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public V call() throws Exception {
 		Object oo = ReflectUtil.execMethod(obj, methodName, params);
@@ -104,6 +105,7 @@ class DefaultRunnable implements Runnable {
 		this.params = params;
 	}
 
+	@Override
 	public void run() {
 		try {
 			ReflectUtil.execMethod(obj, methodName, params);

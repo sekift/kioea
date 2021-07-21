@@ -6,7 +6,7 @@ package com.kioea.www;
  * @author:sekift
  * @time:2014-7-8 下午03:38:14
  */
-public class Constants {
+public class Constant {
 	/**
 	 * 匹配
 	 * 

@@ -35,6 +35,7 @@ public class CircuitBreakerInvocationHandler implements InvocationHandler{
         return Proxy.newProxyInstance(this.target.getClass().getClassLoader(), this.target.getClass().getInterfaces(), this);
     }
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         GuardByCircuitBreaker breakerAnno = method.getAnnotation(GuardByCircuitBreaker.class);
         if(breakerAnno == null){

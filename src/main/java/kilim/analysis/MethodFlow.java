@@ -5,8 +5,8 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.NOT_PAUSABLE_CLASS;
-import static kilim.Constants.PAUSABLE_CLASS;
+import static kilim.Constant.NOT_PAUSABLE_CLASS;
+import static kilim.Constant.PAUSABLE_CLASS;
 import static kilim.analysis.BasicBlock.COALESCED;
 import static kilim.analysis.BasicBlock.ENQUEUED;
 import static kilim.analysis.BasicBlock.INLINE_CHECKED;
@@ -149,7 +149,9 @@ public class MethodFlow extends MethodNode {
     
     public void analyze() throws KilimException {
         buildBasicBlocks();
-        if (basicBlocks.size() == 0) return;
+        if (basicBlocks.size() == 0) {
+            return;
+        }
         consolidateBasicBlocks();
         assignCatchHandlers();
         inlineSubroutines();
@@ -161,7 +163,9 @@ public class MethodFlow extends MethodNode {
     public void verifyPausables() throws KilimException {
         // If we are looking at a woven file, we don't need to verify
         // anything
-        if (classFlow.isWoven || suppressPausableCheck) return;
+        if (classFlow.isWoven || suppressPausableCheck) {
+            return;
+        }
         
         if (!hasPausableAnnotation && !pausableMethods.isEmpty()) {
             String msg;
@@ -251,7 +255,9 @@ public class MethodFlow extends MethodNode {
         while (true) {
             ArrayList<BasicBlock> newBBs = null;
             for (BasicBlock bb: basicBlocks) {
-                if (bb.hasFlag(INLINE_CHECKED)) continue;
+                if (bb.hasFlag(INLINE_CHECKED)) {
+                    continue;
+                }
                 bb.setFlag(INLINE_CHECKED);
                 if (bb.lastInstruction() == JSR) {
                     newBBs = bb.inline();
@@ -304,7 +310,9 @@ public class MethodFlow extends MethodNode {
         ArrayList<TryCatchBlockNode> tcbs = (ArrayList<TryCatchBlockNode>) tryCatchBlocks;
         /// aargh. I'd love to create an array of Handler objects, but generics
         // doesn't care for it.
-        if (tcbs.size() == 0) return;
+        if (tcbs.size() == 0) {
+            return;
+        }
         ArrayList<Handler> handlers= new ArrayList<Handler>(tcbs.size());
         
         for (int i = 0; i < tcbs.size(); i++) {
@@ -475,7 +483,9 @@ public class MethodFlow extends MethodNode {
 
     public int getNumArgs() {
         int ret = TypeDesc.getNumArgumentTypes(desc);
-        if (!isStatic()) ret++;
+        if (!isStatic()) {
+            ret++;
+        }
         return ret;
     }
     

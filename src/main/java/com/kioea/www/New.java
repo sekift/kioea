@@ -17,7 +17,7 @@ import java.util.Set;
 public class New {
 
 	public static <K,V> Map<K,V> map(){
-		return new HashMap<K,V>();
+		return new HashMap<K,V>(8);
 	}
 	
 	public static <T> List<T> list(){

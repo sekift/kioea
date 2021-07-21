@@ -21,7 +21,7 @@ public class CreateClientExamples {
 				.connectionTimeoutMs(connectionTimeoutMs).sessionTimeoutMs(sessionTimeoutMs).build();
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		String path = "/zk-book/nodecache";
 		CuratorFramework client = createWithOptions("localhost:2181", new ExponentialBackoffRetry(1000, 3), 5000, 3000);
 		client.start();

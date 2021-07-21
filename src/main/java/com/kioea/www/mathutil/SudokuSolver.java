@@ -54,21 +54,22 @@ class SudokuSolver {
 	// 宏end
 	private final int m = 729;
 	private final int n = 324;
-	private boolean mymap[][] = new boolean[maxr][maxc];
-	private int num[] = new int[maxc];
-	// 每个节点需要的信息
-	private int up[] = new int[maxn];
-	private int down[] = new int[maxn];
-	private int left[] = new int[maxn];
-	private int right[] = new int[maxn];
-	private int column[] = new int[maxn];
-	private int row[] = new int[maxn];
-	private int ans[] = new int[maxn];
+    private boolean[][] mymap = new boolean[maxr][maxc];
+    private int[] num = new int[maxc];
+    // 每个节点需要的信息
+    private int[] up = new int[maxn];
+    private int[] down = new int[maxn];
+    private int[] left = new int[maxn];
+    private int[] right = new int[maxn];
+    private int[] column = new int[maxn];
+    private int[] row = new int[maxn];
+    private int[] ans = new int[maxn];
 	public char[] str = new char[maxl];
 
 	private void init() {
-		for (int i = 1; i <= n; ++i)
+		for (int i = 1; i <= n; ++i) {
 			num[i] = 9;
+		}
 		return;
 	}
 
@@ -91,7 +92,7 @@ class SudokuSolver {
 	private void genNode() {
 		int id = 1;
 		boolean tmp = false;
-		int lineUp[] = new int[maxc];
+        int[] lineUp = new int[maxc];
 		for (int j = 0; j < n; ++j) {
 			lineUp[j] = id;
 			column[id] = j + 1;
@@ -178,8 +179,9 @@ class SudokuSolver {
 		int minCur = c;
 		while (true) {
 			c = right[c];
-			if (c == head)
+			if (c == head) {
 				break;
+			}
 			if (num[c] < minN) {
 				minN = num[c];
 				minCur = c;
@@ -190,12 +192,15 @@ class SudokuSolver {
 		remove(c);
 		for (int i = down[c]; i != c; i = down[i]) {
 			ans[k] = row[i];
-			for (int j = right[i]; j != i; j = right[j])
+			for (int j = right[i]; j != i; j = right[j]) {
 				remove(column[j]);
-			if (dance(k + 1))
+			}
+			if (dance(k + 1)) {
 				return true;
-			for (int j = left[i]; j != i; j = left[j])
+			}
+			for (int j = left[i]; j != i; j = left[j]) {
 				resume(column[j]);
+			}
 		}
 		resume(c);
 		return false;
@@ -238,10 +243,12 @@ class SudokuSolver {
 	}
 
 	public SudokuSolver(char[] a) {
-		if (a.length < 81)
+		if (a.length < 81) {
 			printHelp();
-		for (int i = 0; i < 81; ++i)
+		}
+		for (int i = 0; i < 81; ++i) {
 			str[i] = a[i];
+		}
 	}
 
 	public char[] getAns() {

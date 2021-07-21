@@ -18,6 +18,7 @@ class NopInsn extends AbstractInsnNode {
         super(NOP);
     }
 
+    @Override
     public int getType() {
         return 0;
     }

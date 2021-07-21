@@ -17,7 +17,7 @@ public class AssertUtil {
 		return (map != null) && (!map.isEmpty());
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		
 	}
 

@@ -148,7 +148,8 @@ public final class NodeLocators {
 		/**
 		 * 定位节点
 		 */
-		public T locate(String key, int strategyCode) { 
+		@Override
+        public T locate(String key, int strategyCode) {
 			long h = ha.hash(key);
 			return locate(h, strategyCode);
 		}
@@ -157,24 +158,29 @@ public final class NodeLocators {
 		 * 定位节点
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#locate(long, int)
 		 */
-		public T locate(long hashCode, int strategyCode) {
+		@Override
+        public T locate(long hashCode, int strategyCode) {
 			long iden = Math.abs(hashCode) % nodes.size(); 
 			return nodes.get(Long.valueOf(iden));
 		}
 
-		public void setHashAlgorithm(HashAlgorithm hashStrategy) { 
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hashStrategy) {
 			this.ha = hashStrategy;
 		}
 
-		public void setNodes(Map<Long, T> ns) { 
+		@Override
+        public void setNodes(Map<Long, T> ns) {
 			this.nodes = new TreeMap<Long, T>(ns);
 		}
 
-		public Map<Long, T> getNodes() { 
+		@Override
+        public Map<Long, T> getNodes() {
 			return nodes;
 		}
 
-		public HashAlgorithm getHashAlgorithm() { 
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return ha;
 		}
 
@@ -212,7 +218,8 @@ public final class NodeLocators {
 		 * 定位节点
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#locate(java.lang.String, int)
 		 */
-		public T locate(String key, int strategyCode) {
+		@Override
+        public T locate(String key, int strategyCode) {
 			long h = ha.hash(key);
 			return locate(h, strategyCode);
 		}
@@ -221,7 +228,8 @@ public final class NodeLocators {
 		 * 定位节点
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#locate(long, int)
 		 */
-		public T locate(long hashCode, int strategyCode) {
+		@Override
+        public T locate(long hashCode, int strategyCode) {
 			long h = toConsistentHash(hashCode);
 			Long k = Long.valueOf(h);
 			SortedMap<Long, T> tails = nodes.tailMap(k);
@@ -232,11 +240,13 @@ public final class NodeLocators {
 			} 
 		}
 
-		public Map<Long, T> getNodes() { 
+		@Override
+        public Map<Long, T> getNodes() {
 			return nodes;
 		}
 
-		public HashAlgorithm getHashAlgorithm() { 
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return ha;
 		}
 		
@@ -253,7 +263,8 @@ public final class NodeLocators {
 		 * 使用ConsistentHash包装hashStrategy
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#setHashAlgorithm(cn.tianya.fw.core.vt.locate.HashAlgorithm)
 		 */
-		public void setHashAlgorithm(HashAlgorithm hashStrategy) {
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hashStrategy) {
 			this.ha = hashStrategy;
 		}
 
@@ -261,7 +272,8 @@ public final class NodeLocators {
 		 * 进行key的值范围检查
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#setNodes(java.util.Map)
 		 */
-		public void setNodes(Map<Long, T> ns) { 	
+		@Override
+        public void setNodes(Map<Long, T> ns) {
 						
 			TreeMap<Long, T> n = new TreeMap<Long, T>(ns);
 			if (!n.isEmpty()) {
@@ -509,11 +521,13 @@ public final class NodeLocators {
 				this.currentKey = current;
 			}
 
-			public boolean hasNext() {
+			@Override
+            public boolean hasNext() {
 				return (remaining > 0);
 			}
 
-			public T next() {
+			@Override
+            public T next() {
 				
 				remaining--;
 				T n = nodes.get(currentKey);
@@ -534,7 +548,8 @@ public final class NodeLocators {
 				return n;
 			}
 
-			public void remove() {				
+			@Override
+            public void remove() {
 				throw new UnsupportedOperationException("不支持此操作");
 			} 
 						
@@ -569,12 +584,14 @@ public final class NodeLocators {
 				this.remaining = remaining;
 			}
 
-			public boolean hasNext() {
+			@Override
+            public boolean hasNext() {
 				
 				return remaining > 0;
 			}
 
-			public T next() {
+			@Override
+            public T next() {
 				
 				remaining--;
 				T n = nodes.get(currentKey);
@@ -595,7 +612,8 @@ public final class NodeLocators {
 				return n;
 			}
 
-			public void remove() {
+			@Override
+            public void remove() {
 				throw new UnsupportedOperationException("不支持移除操作");
 			}	 	
 			
@@ -632,21 +650,25 @@ public final class NodeLocators {
 		
 		private Random random = new Random();
 
-		public T locate(String key, int strategyCode) {
+		@Override
+        public T locate(String key, int strategyCode) {
 			int index = random.nextInt(nodes.size());
 			return nodes.get(index);
 		}
 		
-		public T locate(long hashCode, int strategyCode) {
+		@Override
+        public T locate(long hashCode, int strategyCode) {
 			int index = random.nextInt(nodes.size());
 			return nodes.get(index);
 		}
 
-		public void setHashAlgorithm(HashAlgorithm hash) {
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hash) {
 			this.ha = hash;
 		}
 
-		public void setNodes(Map<Long, T> ns) {
+		@Override
+        public void setNodes(Map<Long, T> ns) {
 
 			nodes = new ArrayList<T>();
 			for (T item : ns.values()) {
@@ -654,7 +676,8 @@ public final class NodeLocators {
 			}
 		}
 
-		public Map<Long, T> getNodes() { 
+		@Override
+        public Map<Long, T> getNodes() {
 			
 			Map<Long, T> ns = new TreeMap<Long, T>();
 			for (int i = 0; i < nodes.size(); i++) {
@@ -663,7 +686,8 @@ public final class NodeLocators {
 			return ns;
 		}
 
-		public HashAlgorithm getHashAlgorithm() { 
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return ha;
 		}
 
@@ -702,7 +726,8 @@ public final class NodeLocators {
 		 * @param strategyCode -- 查找策略代码
 		 * @return -- 节点
 		 */
-		@SuppressWarnings("unchecked")
+		@Override
+        @SuppressWarnings("unchecked")
 		public T locate(String key, int strategyCode) {
 			 
 			NodeLocator<T> customLocator = locator;
@@ -718,7 +743,8 @@ public final class NodeLocators {
 		 * 查找节点, 当查找到的节点如果是节点定位器,进行嵌套查找
 		 * @see cn.tianya.fw.core.vt.locate.NodeLocator#locate(long, int)
 		 */
-		@SuppressWarnings("unchecked")
+		@Override
+        @SuppressWarnings("unchecked")
 		public T locate(long hashCode, int strategyCode) {
 			 
 			NodeLocator<T> customLocator = locator;
@@ -730,21 +756,25 @@ public final class NodeLocators {
 			return (T)node;
 		}
 
-		public void setHashAlgorithm(HashAlgorithm hash) { 
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hash) {
 			
 			locator.setHashAlgorithm(hash);
 		}
 
-		public void setNodes(Map<Long, T> ns) { 
+		@Override
+        public void setNodes(Map<Long, T> ns) {
 			
 			locator.setNodes(ns);
 		}
 
-		public Map<Long, T> getNodes() { 
+		@Override
+        public Map<Long, T> getNodes() {
 			return locator.getNodes();
 		}
 
-		public HashAlgorithm getHashAlgorithm() { 
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return locator.getHashAlgorithm();
 		}
 
@@ -788,7 +818,8 @@ public final class NodeLocators {
 		 * @param strategyCode -- 查找策略代码
 		 * @return -- 节点
 		 */
-		public T locate(String key, int strategyCode) {
+		@Override
+        public T locate(String key, int strategyCode) {
 			 
 			if ((strategyCode & UPDATE_LOOKUP) == UPDATE_LOOKUP) {
 				return master;
@@ -805,7 +836,8 @@ public final class NodeLocators {
 		 * @param strategyCode -- 查找策略代码
 		 * @return -- 节点
 		 */
-		public T locate(long hashCode, int strategyCode) {
+		@Override
+        public T locate(long hashCode, int strategyCode) {
 			 
 			if ((strategyCode & UPDATE_LOOKUP) == UPDATE_LOOKUP) {
 				return master;
@@ -816,21 +848,25 @@ public final class NodeLocators {
 			}
 		}
 
-		public void setHashAlgorithm(HashAlgorithm hash) { 
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hash) {
 			
 			slaveLocator.setHashAlgorithm(hash);
 		}
 
-		public void setNodes(Map<Long, T> slaves) { 
+		@Override
+        public void setNodes(Map<Long, T> slaves) {
 			
 			slaveLocator.setNodes(slaves);
 		}
 
-		public Map<Long, T> getNodes() { 
+		@Override
+        public Map<Long, T> getNodes() {
 			return slaveLocator.getNodes();
 		}
 
-		public HashAlgorithm getHashAlgorithm() { 
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return slaveLocator.getHashAlgorithm();
 		}
 
@@ -892,7 +928,8 @@ public final class NodeLocators {
 		/* (non-Javadoc)
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#setNodes(java.util.Map)
 		 */
-		public void setNodes(Map<Long, T> ns) {
+		@Override
+        public void setNodes(Map<Long, T> ns) {
 			for (T item : ns.values()) {
 				addNode(item);
 			}
@@ -901,28 +938,32 @@ public final class NodeLocators {
 		/* (non-Javadoc)
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#getNodes()
 		 */
-		public Map<Long, T> getNodes() {
+		@Override
+        public Map<Long, T> getNodes() {
 			return circle;
 		}
 
 		/* (non-Javadoc)
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#setHashAlgorithm(cn.tianya.fw.support.config.locate.HashAlgorithm)
 		 */
-		public void setHashAlgorithm(HashAlgorithm hash) {
+		@Override
+        public void setHashAlgorithm(HashAlgorithm hash) {
 			this.ha = hash;
 		}
 
 		/* (non-Javadoc)
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#getHashAlgorithm()
 		 */
-		public HashAlgorithm getHashAlgorithm() {
+		@Override
+        public HashAlgorithm getHashAlgorithm() {
 			return ha;
 		}
 
 		/* (non-Javadoc)
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#locate(java.lang.String, int)
 		 */
-		public T locate(String key, int strategyCode) {
+		@Override
+        public T locate(String key, int strategyCode) {
 			if (circle.isEmpty()) {
 				return null;
 			}
@@ -938,7 +979,8 @@ public final class NodeLocators {
 		/* (non-Javadoc) 
 		 * @see cn.tianya.fw.support.config.locate.NodeLocator#locate(long, int)
 		 */
-		public T locate(long hashCode, int strategyCode) {
+		@Override
+        public T locate(long hashCode, int strategyCode) {
 			if (circle.isEmpty()) {
 				return null;
 			}

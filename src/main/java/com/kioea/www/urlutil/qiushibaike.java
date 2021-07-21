@@ -51,7 +51,7 @@ public class qiushibaike {
 		return response;
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		getSheGongKu(1,true,true);
 	}
 

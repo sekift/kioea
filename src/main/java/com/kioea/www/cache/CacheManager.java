@@ -23,8 +23,9 @@ public class CacheManager {
     public static CacheManager getInstance() {
         if (instance == null) {
             synchronized (CacheManager.class) {
-                if (instance == null)
-                    instance = new CacheManager();
+                if (instance == null) {
+					instance = new CacheManager();
+				}
             }
         }
         return instance;
@@ -54,8 +55,9 @@ public class CacheManager {
 	public Cache getCacheInfo(String key) {
 		if (hasCache(key)) {
 			return getCache(key);
-		} else
+		} else {
 			return null;
+		}
 	}
 
 	// 获取缓存中的大小

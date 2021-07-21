@@ -46,7 +46,7 @@ public class ParamUtil
 	{
 		String temp = (String) request.getAttribute(name);
 		if (temp != null) {
-			if (temp.equals("") && !emptyStringsOK) {
+			if ("".equals(temp) && !emptyStringsOK) {
 				return null;
 			} else {
 				return temp;
@@ -68,7 +68,7 @@ public class ParamUtil
 			String name)
 	{
 		String temp = (String) request.getAttribute(name);
-		if (temp != null && temp.equals("true")) {
+		if (temp != null && "true".equals(temp)) {
 			return true;
 		} else {
 			return false;
@@ -123,7 +123,7 @@ public class ParamUtil
 			String name, double defaultNum)
 	{
 		String temp = request.getParameter(name);
-		if (temp != null && !temp.equals("")) {
+		if (temp != null && !"".equals(temp)) {
 			double num = defaultNum;
 			try {
 				num = Double.parseDouble(temp);
@@ -148,7 +148,7 @@ public class ParamUtil
 			int defaultNum)
 	{
 		String temp = (String) request.getAttribute(name);
-		if (temp != null && !temp.equals("")) {
+		if (temp != null && !"".equals(temp)) {
 			int num = defaultNum;
 			try {
 				num = Integer.parseInt(temp);
@@ -173,7 +173,7 @@ public class ParamUtil
 			int defaultNum)
 	{
 		String temp = request.getParameter(name);
-		if (temp != null && !temp.equals("")) {
+		if (temp != null && !"".equals(temp)) {
 			int num = defaultNum;
 			try {
 				num = Integer.parseInt(temp);
@@ -228,7 +228,7 @@ public class ParamUtil
 			String name, long defaultNum)
 	{
 		String temp = (String) request.getAttribute(name);
-		if (temp != null && !temp.equals("")) {
+		if (temp != null && !"".equals(temp)) {
 			long num = defaultNum;
 			try {
 				num = Long.parseLong(temp);
@@ -253,7 +253,7 @@ public class ParamUtil
 			String name, long defaultNum)
 	{
 		String temp = request.getParameter(name);
-		if (temp != null && !temp.equals("")) {
+		if (temp != null && !"".equals(temp)) {
 			long num = defaultNum;
 			try {
 				num = Long.parseLong(temp);
@@ -325,7 +325,7 @@ public class ParamUtil
 	{
 		String temp = request.getParameter(name);
 		if (temp != null) {
-			if (temp.equals("") && !emptyStringsOK) {
+			if ("".equals(temp) && !emptyStringsOK) {
 				return null;
 			} else {
 				return temp;

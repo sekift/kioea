@@ -36,6 +36,7 @@ public class CsvParser implements Iterator<List<String>>{
 		}
 	}
 	
+	@Override
 	public boolean hasNext(){
 		try {
 			if(reader.getLineNumber() == 0){//
@@ -48,10 +49,12 @@ public class CsvParser implements Iterator<List<String>>{
 		return row != null;
 	}
 	
+	@Override
 	public List<String> next(){
 		return row;
 	}
 	
+	@Override
 	public void remove(){
 		throw new UnsupportedOperationException("本CSV解析器是只读的."); 
 	}

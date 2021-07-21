@@ -49,9 +49,9 @@ public class Javac {
         File classDir = new File(rootDir.getAbsolutePath() + File.separatorChar + "classes");
         classDir.mkdir(); // "<rootDir>/classes"
 
-        String options[] = { "-d", classDir.getAbsolutePath() };
+        String[] options = {"-d", classDir.getAbsolutePath()};
 
-        String args[] = new String[options.length + srcCodes.size()];
+        String[] args = new String[options.length + srcCodes.size()];
         System.arraycopy(options, 0, args, 0, options.length);
         int i = options.length;
 
@@ -83,15 +83,16 @@ public class Javac {
 
     private static SourceInfo getSourceInfo(String srcCode) {
         Matcher m = publicClassNameRegexp.matcher(srcCode);
-        if (m.find())
+        if (m.find()) {
             return new SourceInfo(m.group(1), srcCode);
-        else {
+        } else {
             m = classNameRegexp.matcher(srcCode);
-            if (m.find())
+            if (m.find()) {
                 return new SourceInfo(m.group(1), srcCode);
-            else
+            } else {
                 throw new IllegalArgumentException(
                         "No class or interface definition found in src: \n'" + srcCode + "'");
+            }
         }
     }
 
@@ -149,8 +150,9 @@ public class Javac {
         int off = 0;
         while (len > 0) {
             int n = fis.read(buf, off, len);
-            if (n == -1)
+            if (n == -1) {
                 throw new IOException("Unexpected EOF reading " + f.getAbsolutePath());
+            }
             off += n;
             len -= n;
         }

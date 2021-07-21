@@ -7,7 +7,7 @@ package kilim;
 
 import org.objectweb.asm.Opcodes;
 
-public interface Constants extends Opcodes {
+public interface Constant extends Opcodes {
     
     String KILIM_VERSION    = "1.0";
     

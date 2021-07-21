@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 public class QueueUtil {
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.offer(1);
 		queue.offer(2);

@@ -21,9 +21,9 @@ public class HistogramEFilter extends AbstractBufferedImageOp{
         int width = src.getWidth();  
         int height = src.getHeight();  
   
-        if ( dest == null )  
-            dest = createCompatibleDestImage( src, null );  
-  
+        if ( dest == null ) {
+            dest = createCompatibleDestImage(src, null);
+        }
         int[] inPixels = new int[width*height];  
         int[] outPixels = new int[width*height];  
         getRGB( src, 0, 0, width, height, inPixels );  
@@ -97,7 +97,7 @@ public class HistogramEFilter extends AbstractBufferedImageOp{
         return (int)(sum * 255.0);  
     }  
   
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			//读入图像

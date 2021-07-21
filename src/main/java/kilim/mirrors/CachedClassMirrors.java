@@ -123,14 +123,19 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
     @Override
     public boolean isAssignableFrom(ClassMirror c) throws ClassMirrorNotFoundException {
         Detector d = Detector.getDetector();
-        if (this.equals(c)) return true;
+        if (this.equals(c)) {
+            return true;
+        }
         
         ClassMirror supcl = d.classForName(c.getSuperclass());
-        if (isAssignableFrom(supcl)) return true;
+        if (isAssignableFrom(supcl)) {
+            return true;
+        }
         for (String icl: c.getInterfaces()) {
             supcl = d.classForName(icl);
-            if (isAssignableFrom(supcl))
+            if (isAssignableFrom(supcl)) {
                 return true;
+            }
         }
         return false;
     }
@@ -172,15 +177,21 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
 
     // Dummy methods
     
+    @Override
     public void visitSource(String source, String debug) {}
+    @Override
     public void visitOuterClass(String owner, String name, String desc) {}
+    @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
         return DummyAnnotationVisitor.singleton;
     }
+    @Override
     public void visitAttribute(Attribute attr) {}
+    @Override
     public void visitInnerClass(String name, String outerName, String innerName, int access) {}
+    @Override
     public FieldVisitor visitField(int access, String name, String desc, String signature,
-            Object value) {
+                                   Object value) {
         return null;
     }
     static class DummyAnnotationVisitor extends AnnotationVisitor {
@@ -188,10 +199,15 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
             super(Opcodes.ASM4);
         }
         static DummyAnnotationVisitor singleton = new DummyAnnotationVisitor();
+        @Override
         public void visit(String name, Object value) {}
+        @Override
         public AnnotationVisitor visitAnnotation(String name, String desc) {return this;}
+        @Override
         public AnnotationVisitor visitArray(String name) {return DummyAnnotationVisitor.singleton;}
+        @Override
         public void visitEnd() {}
+        @Override
         public void visitEnum(String name, String desc, String value) {}
     }
 }
@@ -210,18 +226,22 @@ class CachedMethodMirror implements MethodMirror {
         isBridge = (access & Opcodes.ACC_BRIDGE) > 0;
     }
 
+    @Override
     public String getName() {
         return name;
     }
     
+    @Override
     public String[] getExceptionTypes() throws ClassMirrorNotFoundException {
         return exceptions;
     }
 
+    @Override
     public String getMethodDescriptor() {
         return desc;
     }
 
+    @Override
     public boolean isBridge() {
         return isBridge;
     }

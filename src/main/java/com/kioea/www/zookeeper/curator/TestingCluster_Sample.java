@@ -7,7 +7,7 @@ package com.kioea.www.zookeeper.curator;
  * @version:
  */
 public class TestingCluster_Sample {
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		TestingCluster cluster = new TestingCluster(3);
 		cluster.start();
 		Thread.sleep(2000);
@@ -18,7 +18,7 @@ public class TestingCluster_Sample {
 			System.out.print(zs.getQuorumPeer().getServerState() + "-");
 			System.out.println(zs.getInstanceSpec().getDataDirectory().getAbsolutePath());
 
-			if (zs.getQuorumPeer().getServerState().equals("leading")) {
+			if ("leading".equals(zs.getQuorumPeer().getServerState())) {
 				leader = zs;
 			}
 

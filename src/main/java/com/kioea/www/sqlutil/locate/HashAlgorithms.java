@@ -42,7 +42,8 @@ public final class HashAlgorithms {
 	 */
 	public static class JavaNativeHash implements HashAlgorithm {
 
-		public long hash(String key) { 
+		@Override
+        public long hash(String key) {
 			
 			return key.hashCode();
 		} 
@@ -66,7 +67,8 @@ public final class HashAlgorithms {
 			}
 		}
 
-		public long hash(String key) { 
+		@Override
+        public long hash(String key) {
 			
 			byte[] rtv = null;
 			synchronized (md5) { // md5 implement is un-thread-safty
@@ -98,7 +100,8 @@ public final class HashAlgorithms {
 	 */
 	public static class DJBHash implements HashAlgorithm {
 
-		public long hash(String key) {
+		@Override
+        public long hash(String key) {
 			
 			long hash = 5381;
 			for (int i = 0; i < key.length(); i++) {
@@ -126,7 +129,8 @@ public final class HashAlgorithms {
 		 * 经过hash后再逻辑右移(>>>)32bit,控制值范围[0, 2^32)=[0, 4294967295]
 		 * @see cn.tianya.fw.core.vt.locate.HashAlgorithm#hash(java.lang.String)
 		 */
-		public long hash(String key) {
+		@Override
+        public long hash(String key) {
 			return inner.hash(key) & 0xffffffff;
 		} 
 	}

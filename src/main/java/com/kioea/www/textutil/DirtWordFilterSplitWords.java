@@ -168,7 +168,7 @@ public class DirtWordFilterSplitWords {
 	 * @param rs
 	 * @param rs_pos
 	 */
-	final static public void combine(final Object a[], final int a_pos, final Object rs[], final int rs_pos) {
+	final static public void combine(final Object[] a, final int a_pos, final Object[] rs, final int rs_pos) {
 		if (rs_pos >= rs.length) {
 			StringBuilder substr = new StringBuilder();
 			for (int i = 0; i < rs.length; i++) {

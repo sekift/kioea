@@ -27,8 +27,9 @@ public class Utils {
     }
 
     public static String format(String s) {
-        if (indentStr.length() == 0)
+        if (indentStr.length() == 0) {
             return s;
+        }
         int i = s.indexOf('\n'); // i is always the index of newline
         if (i >= 0) {
             StringBuffer sb = new StringBuffer(100);
@@ -40,8 +41,9 @@ public class Utils {
                 // add indentation wherever \n occurs
                 sb.append(indentStr);
                 prev = i + 1;
-                if (prev >= s.length())
+                if (prev >= s.length()) {
                     break;
+                }
                 i = s.indexOf('\n', prev);
             } while (i != -1);
             // copy left over chars from the last segment

@@ -108,7 +108,9 @@ public abstract class Task implements EventSubscriber {
     }
     
     public void resumeOnScheduler(Scheduler s) throws Pausable {
-        if (scheduler == s) return; 
+        if (scheduler == s) {
+            return;
+        }
         scheduler = s;
         Task.yield();
     }
@@ -140,7 +142,7 @@ public abstract class Task implements EventSubscriber {
         int len = stes.length;
         for (int i = 0; i < len; i++) {
             StackTraceElement ste = stes[i];
-            if (ste.getMethodName().equals("_runExecute")){
+            if ("_runExecute".equals(ste.getMethodName())){
                 // discounting WorkerThread.run, Task._runExecute, and Scheduler.getStackDepth
                 return i - 1;
             }
@@ -157,14 +159,18 @@ public abstract class Task implements EventSubscriber {
      * @return True if it scheduled itself.
      */
     public boolean resume() {
-        if (scheduler == null) return false;
+        if (scheduler == null) {
+            return false;
+        }
         
         boolean doSchedule = false;
         // We don't check pauseReason while resuming (to verify whether
         // it is worth returning to a pause state. The code at the top of stack 
         // will be doing that anyway.
         synchronized(this) {
-            if (done || running) return false;
+            if (done || running) {
+                return false;
+            }
             running = doSchedule = true;
         }
         if (doSchedule) {
@@ -179,7 +185,9 @@ public abstract class Task implements EventSubscriber {
             return;
         }
         synchronized (this) {
-            if (exitMBs == null) exitMBs = new LinkedList<Mailbox<ExitMsg>>();
+            if (exitMBs == null) {
+                exitMBs = new LinkedList<Mailbox<ExitMsg>>();
+            }
             exitMBs.add(exit);
         }
     }
@@ -298,7 +306,7 @@ public abstract class Task implements EventSubscriber {
     // Given a method corresp. to "f(int)", return the equivalent woven method for "f(int, kilim.Fiber)" 
     private static Method getWovenMethod(Method m) {
       Class<?>[] ptypes = m.getParameterTypes();
-      if (!(ptypes.length > 0 && ptypes[ptypes.length-1].getName().equals("kilim.Fiber"))) {
+      if (!(ptypes.length > 0 && "kilim.Fiber".equals(ptypes[ptypes.length-1].getName()))) {
         // The last param is not "Fiber", so m is not woven.  
         // Get the woven method corresponding to m(..., Fiber)
         boolean found = false;
@@ -308,9 +316,13 @@ public abstract class Task implements EventSubscriber {
               // names match. Check if the wm has the exact parameter types as m, plus a fiber.
               Class<?>[] wptypes = wm.getParameterTypes();
               if (wptypes.length != ptypes.length + 1 || 
-                  !(wptypes[wptypes.length-1].getName().equals("kilim.Fiber"))) continue LOOP;
+                  !("kilim.Fiber".equals(wptypes[wptypes.length-1].getName()))) {
+                  continue LOOP;
+              }
               for (int i = 0; i < ptypes.length; i++) {
-                  if (ptypes[i] != wptypes[i]) continue LOOP;
+                  if (ptypes[i] != wptypes[i]) {
+                      continue LOOP;
+                  }
               }
               m = wm;
               found = true;

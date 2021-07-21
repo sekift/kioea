@@ -46,9 +46,9 @@ public class MeanShiftFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
-
+		}
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
 		getRGB(src, 0, 0, width, height, inPixels);
@@ -153,12 +153,13 @@ public class MeanShiftFilter extends AbstractBufferedImageOp {
 		return dest;
 	}
 
-	public String toString() {
+	@Override
+    public String toString() {
 		System.out.println("Mean Shift Filter...");
 		return "MeanShiftFilter";
 	}
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			//读入图像

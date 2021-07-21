@@ -10,7 +10,7 @@ import java.util.Set;
  * @version:
  */
 public class Main {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Master m = new Master(new PlusWorker(), 5);
 		for (int i = 0; i < 4; i++) {
 			m.submit(i);

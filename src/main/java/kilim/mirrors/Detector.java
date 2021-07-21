@@ -5,13 +5,13 @@
  */
 package kilim.mirrors;
 
-import static kilim.Constants.D_OBJECT;
+import static kilim.Constant.D_OBJECT;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import kilim.Constants;
+import kilim.Constant;
 import kilim.NotPausable;
 import kilim.Pausable;
 import kilim.analysis.AsmDetector;
@@ -74,7 +74,9 @@ public class Detector {
             MethodMirror m = findPausableMethod(className, methodName, desc);
             if (m != null) {
                 for (String ex : m.getExceptionTypes()) {
-                    if (isNonPausableClass(ex)) continue;
+                    if (isNonPausableClass(ex)) {
+                        continue;
+                    }
                     ClassMirror c = classForName(ex);
                     if (NOT_PAUSABLE.isAssignableFrom(c)) {
                         return METHOD_NOT_PAUSABLE;
@@ -113,11 +115,14 @@ public class Detector {
     private MethodMirror findPausableMethod(String className, String methodName, String desc)
             throws ClassMirrorNotFoundException {
         
-        if (isNonPausableClass(className) || isNonPausableMethod(methodName)) 
+        if (isNonPausableClass(className) || isNonPausableMethod(methodName)) {
             return null;
+        }
 
         ClassMirror cl = classForName(className);
-        if (cl == null) return null;
+        if (cl == null) {
+            return null;
+        }
         
         for (MethodMirror om : cl.getDeclaredMethods()) {
             if (om.getName().equals(methodName)) {
@@ -125,29 +130,36 @@ public class Detector {
                 String omDesc= om.getMethodDescriptor();
             
                 if (omDesc.substring(0,omDesc.indexOf(")")).equals(desc.substring(0,desc.indexOf(")")))) {
-                    if (om.isBridge())  continue;
+                    if (om.isBridge()) {
+                        continue;
+                    }
                     return om;
                 }
             }
         }
 
-        if (OBJECT.equals(cl))
+        if (OBJECT.equals(cl)) {
             return null;
+        }
 
         MethodMirror m = findPausableMethod(cl.getSuperclass(), methodName, desc);
-        if (m != null)
+        if (m != null) {
             return m;
+        }
         
         for (String ifname : cl.getInterfaces()) {
-            if (isNonPausableClass(ifname)) continue;
+            if (isNonPausableClass(ifname)) {
+                continue;
+            }
             m = findPausableMethod(ifname, methodName, desc);
-            if (m != null)
+            if (m != null) {
                 return m;
+            }
         }
         return null;
     }
 
-    public static String D_FIBER_ = Constants.D_FIBER + ")";
+    public static String D_FIBER_ = Constant.D_FIBER + ")";
 
     @SuppressWarnings("unused")
     private static String statusToStr(int st) {
@@ -167,8 +179,9 @@ public class Detector {
 
     public static Detector getDetector() {
         Detector d = DETECTOR.get();
-        if (d == null)
+        if (d == null) {
             return Detector.DEFAULT;
+        }
         return d;
     }
 
@@ -185,10 +198,12 @@ public class Detector {
         try {
             ClassMirror ca = classForName(a);
             ClassMirror cb = classForName(b);
-            if (ca.isAssignableFrom(cb))
+            if (ca.isAssignableFrom(cb)) {
                 return oa;
-            if (cb.isAssignableFrom(ca))
+            }
+            if (cb.isAssignableFrom(ca)) {
                 return ob;
+            }
             if (ca.isInterface() && cb.isInterface()) {
                 return "java/lang/Object"; // This is what the java bytecode verifier does
             }
@@ -240,10 +255,11 @@ public class Detector {
     }
 
     private static String toClassName(String s) {
-    	if (s.endsWith(";"))
-    		return s.replace('/', '.').substring(1, s.length() - 1);
-    	else
-    		return s.replace('/', '.');
+    	if (s.endsWith(";")) {
+            return s.replace('/', '.').substring(1, s.length() - 1);
+        } else {
+            return s.replace('/', '.');
+        }
     }
 
     static String JAVA_LANG_OBJECT = "java.lang.Object";

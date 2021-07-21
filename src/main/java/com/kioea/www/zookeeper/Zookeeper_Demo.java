@@ -18,7 +18,7 @@ import com.kioea.www.async.SleepUtil;
 public class Zookeeper_Demo implements Watcher {
 	private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		// 创建一个与服务器的连接
 		ZooKeeper zk = new ZooKeeper("localhost:2181", 5000, new Zookeeper_Demo());
 

@@ -66,13 +66,15 @@ public class SolverGUI extends JFrame {
 		}
 
 		class ComfListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				numberPanel.quickSolve();
 			}
 		}
 
 		class CleListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
+			@Override
+            public void actionPerformed(ActionEvent e) {
 				numberPanel.clear();
 			}
 		}

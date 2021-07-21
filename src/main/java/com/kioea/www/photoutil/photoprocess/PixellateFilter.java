@@ -30,9 +30,9 @@ public class PixellateFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
-
+		}
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
 		getRGB(src, 0, 0, width, height, inPixels);
@@ -78,7 +78,7 @@ public class PixellateFilter extends AbstractBufferedImageOp {
 		return dest;
 	}
 	
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			//读入图像

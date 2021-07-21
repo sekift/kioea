@@ -25,8 +25,9 @@ public class ShellSort extends SortStrategy {
 					array[j + d] = temp;
 				}
 			}
-			if (d == 1)
+			if (d == 1) {
 				break;
+			}
 		}
 		return array;
 	}

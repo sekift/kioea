@@ -11,7 +11,7 @@ import java.util.Enumeration;
  * @version:
  */
 public class InetAddressTest {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		// get the network interfaces and associated address for this host
 		try {
 			Enumeration<NetworkInterface> interfaceList = NetworkInterface.getNetworkInterfaces();

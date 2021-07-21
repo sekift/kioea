@@ -7,7 +7,7 @@ package com.kioea.www.async.futuredata;
  * @version:
  */
 public class Main {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Client client = new Client();
 		Data data = client.request("name");
 		System.out.println("请求完毕");

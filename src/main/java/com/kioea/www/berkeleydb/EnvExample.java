@@ -126,7 +126,7 @@ public class EnvExample {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		EnvExample ee = new EnvExample();
 		ee.testExample();
 	}

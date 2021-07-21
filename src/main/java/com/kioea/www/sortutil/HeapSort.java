@@ -12,8 +12,9 @@ public class HeapSort extends SortStrategy {
 	public int[] heapSort(int[] array) {
 		int n = array.length;
 		int temp = 0;
-		for (int i = n / 2; i > 0; i--)
+		for (int i = n / 2; i > 0; i--) {
 			Adjust(array, i - 1, n);
+		}
 		for (int i = n - 2; i >= 0; i--) {
 			temp = array[i + 1];
 			array[i + 1] = array[0];
@@ -30,10 +31,12 @@ public class HeapSort extends SortStrategy {
 		temp = a[i];
 		j = 2 * i + 1;
 		while (j <= n - 1) {
-			if (j < n - 1 && a[j] < a[j + 1])
+			if (j < n - 1 && a[j] < a[j + 1]) {
 				j++;
-			if (temp >= a[j])
+			}
+			if (temp >= a[j]) {
 				break;
+			}
 			a[(j - 1) / 2] = a[j];
 			j = 2 * j + 1;
 		}

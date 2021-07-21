@@ -91,8 +91,9 @@ public class RingQueue<T> {
         int c = 0;
         T[] elems = elements;
         while (c < size) {
-            if (obj == elems[i])
+            if (obj == elems[i]) {
                 return true;
+            }
             i = (i + 1) % elems.length;
             c++;
         }

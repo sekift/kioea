@@ -195,7 +195,7 @@ public class DESUtil {
 		return utfText;
 	}
     
-    public static void main(String args[]){
+    public static void main(String[] args){
 //    	for(int i=0;i<223;i++){
 //    	    System.out.println(i+" "+KEY_CODE[i]);
 //    	}

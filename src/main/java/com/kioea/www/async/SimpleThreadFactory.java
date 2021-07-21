@@ -22,10 +22,12 @@ public class SimpleThreadFactory implements ThreadFactory{
 	@Override
 	public Thread newThread(Runnable runnable) {
 		Thread localThread = new Thread(this.group, runnable, this.namePrefix + this.threadNumber.getAndIncrement(), 0L);
-		if (localThread.isDaemon())
+		if (localThread.isDaemon()) {
 			localThread.setDaemon(false);
-		if (localThread.getPriority() != Thread.NORM_PRIORITY)
+		}
+		if (localThread.getPriority() != Thread.NORM_PRIORITY) {
 			localThread.setPriority(Thread.NORM_PRIORITY);
+		}
 		return localThread;
 	}
 

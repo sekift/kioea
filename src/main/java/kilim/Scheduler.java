@@ -108,7 +108,9 @@ public class Scheduler {
             WorkerThread prefThread = null;
             ///////////////
             synchronized(this) {
-                if (shutdown) throw new ShutdownException();
+                if (shutdown) {
+                    throw new ShutdownException();
+                }
 
                 t = runnableTasks.get();
                 if (t == null) {

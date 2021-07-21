@@ -76,7 +76,7 @@ public class AsmDetector {
         LinkedList<String> otherMethods = new LinkedList<String>();
         LinkedList<String> superClasses = new LinkedList<String>();
         public void addSuper(String superName) {
-            if (superName.equals("java/lang/Object")) {
+            if ("java/lang/Object".equals(superName)) {
                 return;
             }
             if (!superClasses.contains(superName)) {superClasses.add(superName);}

@@ -17,7 +17,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 public class Zookeeper_Constructor_Usage implements Watcher {
 	private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		ZooKeeper zookeeper = new ZooKeeper("localhost:2182", 5000, new Zookeeper_Constructor_Usage());
 
 		System.out.println(zookeeper.getState());

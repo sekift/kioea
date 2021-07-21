@@ -21,7 +21,8 @@ public class TTest {
 class T1 implements Runnable{
 	
 	private int i=0;
-	public void run(){
+	@Override
+    public void run(){
 		i++;
 		System.out.println(i);
 	}

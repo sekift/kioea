@@ -4,32 +4,32 @@
  * specified in the file "License"
  */
 package kilim.analysis;
-import static kilim.Constants.ALOAD_0;
-import static kilim.Constants.ASTORE_0;
-import static kilim.Constants.DLOAD_0;
-import static kilim.Constants.DSTORE_0;
-import static kilim.Constants.D_BOOLEAN;
-import static kilim.Constants.D_BYTE;
-import static kilim.Constants.D_CHAR;
-import static kilim.Constants.D_DOUBLE;
-import static kilim.Constants.D_FIBER;
-import static kilim.Constants.D_FLOAT;
-import static kilim.Constants.D_INT;
-import static kilim.Constants.D_LONG;
-import static kilim.Constants.D_NULL;
-import static kilim.Constants.D_OBJECT;
-import static kilim.Constants.D_SHORT;
-import static kilim.Constants.D_STATE;
-import static kilim.Constants.D_VOID;
-import static kilim.Constants.D_UNDEFINED;
-import static kilim.Constants.FIBER_CLASS;
-import static kilim.Constants.FLOAD_0;
-import static kilim.Constants.FSTORE_0;
-import static kilim.Constants.ILOAD_0;
-import static kilim.Constants.ISTORE_0;
-import static kilim.Constants.LLOAD_0;
-import static kilim.Constants.LSTORE_0;
-import static kilim.Constants.STATE_CLASS;
+import static kilim.Constant.ALOAD_0;
+import static kilim.Constant.ASTORE_0;
+import static kilim.Constant.DLOAD_0;
+import static kilim.Constant.DSTORE_0;
+import static kilim.Constant.D_BOOLEAN;
+import static kilim.Constant.D_BYTE;
+import static kilim.Constant.D_CHAR;
+import static kilim.Constant.D_DOUBLE;
+import static kilim.Constant.D_FIBER;
+import static kilim.Constant.D_FLOAT;
+import static kilim.Constant.D_INT;
+import static kilim.Constant.D_LONG;
+import static kilim.Constant.D_NULL;
+import static kilim.Constant.D_OBJECT;
+import static kilim.Constant.D_SHORT;
+import static kilim.Constant.D_STATE;
+import static kilim.Constant.D_VOID;
+import static kilim.Constant.D_UNDEFINED;
+import static kilim.Constant.FIBER_CLASS;
+import static kilim.Constant.FLOAD_0;
+import static kilim.Constant.FSTORE_0;
+import static kilim.Constant.ILOAD_0;
+import static kilim.Constant.ISTORE_0;
+import static kilim.Constant.LLOAD_0;
+import static kilim.Constant.LSTORE_0;
+import static kilim.Constant.STATE_CLASS;
 import static kilim.analysis.VMType.TOBJECT;
 import static kilim.analysis.VMType.loadVar;
 import static kilim.analysis.VMType.storeVar;
@@ -176,8 +176,9 @@ public class CallWeaver {
         callLabel = bb.startLabel;
         varUsage = new BitSet(2 * bb.flow.maxLocals);
         resumeLabel = bb.flow.getLabelAt(bb.startPos + 1);
-        if (resumeLabel == null)
+        if (resumeLabel == null) {
             resumeLabel = new LabelNode();
+        }
         assignRegisters();
         stateClassName = createStateClass();
         methodWeaver.ensureMaxStack(getNumBottom() + 3); // 
@@ -563,8 +564,9 @@ public class CallWeaver {
         // Now load up registers into fields
         for (ValInfo vi : valInfoList) {
             // Ignore values on stack
-            if (vi.var == -1)
+            if (vi.var == -1) {
                 continue;
+            }
             // aload state var
             // xload <var>
             loadVar(mv, TOBJECT, stateVar);
@@ -714,8 +716,9 @@ public class CallWeaver {
         int len = f.getMaxLocals();
         int i = bb.flow.isStatic() ? 0 : 1;
         for (; i < len; i++) {
-            if (!u.isLiveIn(i))
+            if (!u.isLiveIn(i)) {
                 continue;
+            }
             Value v = f.getLocal(i);
             int vmt = VMType.toVmType(v.getTypeDesc());
             if (v.isConstant()) {
@@ -763,17 +766,24 @@ public class CallWeaver {
                 mv.visitTypeInsn(CHECKCAST, TypeDesc.getInternalName(valType));
                 break;
             case VMType.TINT:
-                if (valType == D_INT)
+                if (valType == D_INT) {
                     return;
+                }
                 int insn = 0;
-                if (valType == D_SHORT)
-                    insn = I2S;
-                else if (valType == D_BYTE)
-                    insn = I2B;
-                else if (valType == D_CHAR)
-                    insn = I2C;
-                else
-                    assert valType == D_BOOLEAN;
+                switch (valType) {
+                    case D_SHORT:
+                        insn = I2S;
+                        break;
+                    case D_BYTE:
+                        insn = I2B;
+                        break;
+                    case D_CHAR:
+                        insn = I2C;
+                        break;
+                    default:
+                        assert valType == D_BOOLEAN;
+                        break;
+                }
                 mv.visitInsn(insn);
                 break;
             default:
@@ -802,12 +812,13 @@ public class CallWeaver {
         } else if (c instanceof Float) {
             Float f = ((Float) c).floatValue();
             int insn = 0;
-            if (f == 0.0)
+            if (f == 0.0) {
                 insn = FCONST_0;
-            else if (f == 1.0)
+            } else if (f == 1.0) {
                 insn = FCONST_1;
-            else if (f == 2.0)
+            } else if (f == 2.0) {
                 insn = FCONST_2;
+            }
             if (insn != 0) {
                 mv.visitInsn(insn);
                 return;
@@ -815,10 +826,11 @@ public class CallWeaver {
         } else if (c instanceof Long) {
             Long l = ((Long) c).longValue();
             int insn = 0;
-            if (l == 0L)
+            if (l == 0L) {
                 insn = LCONST_0;
-            else if (l == 1L)
+            } else if (l == 1L) {
                 insn = LCONST_1;
+            }
             if (insn != 0) {
                 mv.visitInsn(insn);
                 return;
@@ -826,10 +838,11 @@ public class CallWeaver {
         } else if (c instanceof Double) {
             Double d = ((Double) c).doubleValue();
             int insn = 0;
-            if (d == 0.0)
+            if (d == 0.0) {
                 insn = DCONST_0;
-            else if (d == 1.0)
+            } else if (d == 1.0) {
                 insn = DCONST_1;
+            }
             if (insn != 0) {
                 mv.visitInsn(insn);
                 return;
@@ -866,8 +879,9 @@ public class CallWeaver {
     }
 
     private void releaseVar(int var, int size) {
-        if (var == -1)
+        if (var == -1) {
             return;
+        }
         varUsage.clear(var);
         if (size == 2) {
             varUsage.clear(var + 1);

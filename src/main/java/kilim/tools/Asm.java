@@ -6,7 +6,7 @@
 
 package kilim.tools;
 
-import static kilim.Constants.*;
+import static kilim.Constant.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -151,7 +151,7 @@ public class Asm {
             return 0;
         }
         s = s.trim();
-        if (s.equals("")) {
+        if ("".equals(s)) {
             return 0;
         }
         int acc = 0;
@@ -320,7 +320,7 @@ public class Asm {
             maxStack = parseInt(group(1));
         } else if (lineMatch(catchPattern)) {
             String exceptionType = group(1);
-            if (exceptionType.equals("all")) {
+            if ("all".equals(exceptionType)) {
                 exceptionType = null;
             }
             Label fromLabel = getLabel(group(2));
@@ -336,7 +336,7 @@ public class Asm {
 
     private void parseAnnotation() {
         String s = group(2);
-        boolean visible = s == null ? false : s.equals("visible");
+        boolean visible = s == null ? false : "visible".equals(s);
         String desc = group(3);
         mv.visitAnnotation(desc, visible);
         readLine();
@@ -344,8 +344,8 @@ public class Asm {
             err(".end annotation not present");
         }
     }
-    
-    static String                                 opcodeStrs[]   = { "nop",
+
+    static String[] opcodeStrs = {"nop",
             "aconst_null", "iconst_m1", "iconst_0", "iconst_1", "iconst_2",
             "iconst_3", "iconst_4", "iconst_5", "lconst_0", "lconst_1",
             "fconst_0", "fconst_1", "fconst_2", "dconst_0", "dconst_1",
@@ -378,7 +378,7 @@ public class Asm {
             "invokespecial", "invokestatic", "invokeinterface", "unused",
             "new", "newarray", "anewarray", "arraylength", "athrow",
             "checkcast", "instanceof", "monitorenter", "monitorexit", "wide",
-            "multianewarray", "ifnull", "ifnonnull", "goto_w", "jsr_w" };
+            "multianewarray", "ifnull", "ifnonnull", "goto_w", "jsr_w"};
     
     private static boolean computeFrames = true;
 
@@ -496,7 +496,7 @@ public class Asm {
                     if (lineMatch(casePattern)) {
                         Label lab = getLabel(group(2));
                         String keystr = group(1);
-                        if (keystr.equals("default")) {
+                        if ("default".equals(keystr)) {
                             defLabel = lab;
                             break;
                         } else {
@@ -545,7 +545,7 @@ public class Asm {
                 
             case MULTIANEWARRAY: {
                 opcheck("expected array type and dimensions", operand);
-                String words[] = split(wsPattern, operand);
+                String[] words = split(wsPattern, operand);
                 mv.visitMultiANewArrayInsn(words[0], parseInt(words[1]));
                 break;
             }
@@ -553,21 +553,21 @@ public class Asm {
             case INT: {
                 int op = -1;
                 if (opcode == NEWARRAY) {
-                    if (operand.equals("boolean")) {
+                    if ("boolean".equals(operand)) {
                         op = T_BOOLEAN;
-                    } else if (operand.equals("char")) {
+                    } else if ("char".equals(operand)) {
                         op = T_CHAR;
-                    } else if (operand.equals("float")) {
+                    } else if ("float".equals(operand)) {
                         op = T_FLOAT;
-                    } else if (operand.equals("double")) {
+                    } else if ("double".equals(operand)) {
                         op = T_DOUBLE;
-                    } else if (operand.equals("byte")) {
+                    } else if ("byte".equals(operand)) {
                         op = T_BYTE;
-                    } else if (operand.equals("short")) {
+                    } else if ("short".equals(operand)) {
                         op = T_SHORT;
-                    } else if (operand.equals("int")) {
+                    } else if ("int".equals(operand)) {
                         op = T_INT;
-                    } else if (operand.equals("long")) {
+                    } else if ("long".equals(operand)) {
                         op = T_LONG;
                     } else {
                         err("Unknown type for newarray: " + operand);
@@ -582,7 +582,7 @@ public class Asm {
             
             case IINC: {
                 opcheck("Expected iinc <var> <inc amount>", operand);
-                String words[] = split(wsPattern, operand);
+                String[] words = split(wsPattern, operand);
                 int var = parseInt(words[0]);
                 int increment = parseInt(words[1]);
                 mv.visitIincInsn(var, increment);
@@ -797,11 +797,11 @@ public class Asm {
         ArrayList<String> ret = new ArrayList<String>(args.length);
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
-            if (arg.equals("-d")) {
+            if ("-d".equals(arg)) {
                 outputDir = args[++i];
-            } else if (arg.equals("-q")) {
+            } else if ("-q".equals(arg)) {
                 quiet = true;
-            } else if (arg.equals("-nf")) {
+            } else if ("-nf".equals(arg)) {
                 computeFrames = false;
             } else {
                 ret.add(arg);
@@ -825,6 +825,7 @@ class Line {
         s = str;
     }
 
+    @Override
     public String toString() {
         return String.format("%4d: %s\n", n, s);
     }
@@ -836,6 +837,7 @@ class Line {
 
 @SuppressWarnings("serial")
 class StringList extends ArrayList<String> {
+    @Override
     public String[] toArray() {
         String[] ret = new String[size()];
         return this.toArray(ret);

@@ -34,7 +34,8 @@ public class SerializeObject {
 			MyClass.d = d;
 		}
 
-		public String toString() {
+		@Override
+        public String toString() {
 			return this.a + " " + this.b + " " + this.c + " " + MyClass.d;
 		}
 	}

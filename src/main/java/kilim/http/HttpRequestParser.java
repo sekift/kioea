@@ -41,7 +41,7 @@ private static byte[] init__http_parser_actions_0()
 	};
 }
 
-private static final byte _http_parser_actions[] = init__http_parser_actions_0();
+	private static final byte[] _http_parser_actions = init__http_parser_actions_0();
 
 
 private static short[] init__http_parser_key_offsets_0()
@@ -55,7 +55,7 @@ private static short[] init__http_parser_key_offsets_0()
 	};
 }
 
-private static final short _http_parser_key_offsets[] = init__http_parser_key_offsets_0();
+	private static final short[] _http_parser_key_offsets = init__http_parser_key_offsets_0();
 
 
 private static char[] init__http_parser_trans_keys_0()
@@ -82,7 +82,7 @@ private static char[] init__http_parser_trans_keys_0()
 	};
 }
 
-private static final char _http_parser_trans_keys[] = init__http_parser_trans_keys_0();
+	private static final char[] _http_parser_trans_keys = init__http_parser_trans_keys_0();
 
 
 private static byte[] init__http_parser_single_lengths_0()
@@ -96,7 +96,7 @@ private static byte[] init__http_parser_single_lengths_0()
 	};
 }
 
-private static final byte _http_parser_single_lengths[] = init__http_parser_single_lengths_0();
+	private static final byte[] _http_parser_single_lengths = init__http_parser_single_lengths_0();
 
 
 private static byte[] init__http_parser_range_lengths_0()
@@ -110,7 +110,7 @@ private static byte[] init__http_parser_range_lengths_0()
 	};
 }
 
-private static final byte _http_parser_range_lengths[] = init__http_parser_range_lengths_0();
+	private static final byte[] _http_parser_range_lengths = init__http_parser_range_lengths_0();
 
 
 private static short[] init__http_parser_index_offsets_0()
@@ -124,7 +124,7 @@ private static short[] init__http_parser_index_offsets_0()
 	};
 }
 
-private static final short _http_parser_index_offsets[] = init__http_parser_index_offsets_0();
+	private static final short[] _http_parser_index_offsets = init__http_parser_index_offsets_0();
 
 
 private static byte[] init__http_parser_indicies_0()
@@ -152,7 +152,7 @@ private static byte[] init__http_parser_indicies_0()
 	};
 }
 
-private static final byte _http_parser_indicies[] = init__http_parser_indicies_0();
+	private static final byte[] _http_parser_indicies = init__http_parser_indicies_0();
 
 
 private static byte[] init__http_parser_trans_targs_0()
@@ -168,7 +168,7 @@ private static byte[] init__http_parser_trans_targs_0()
 	};
 }
 
-private static final byte _http_parser_trans_targs[] = init__http_parser_trans_targs_0();
+	private static final byte[] _http_parser_trans_targs = init__http_parser_trans_targs_0();
 
 
 private static byte[] init__http_parser_trans_actions_0()
@@ -184,7 +184,7 @@ private static byte[] init__http_parser_trans_actions_0()
 	};
 }
 
-private static final byte _http_parser_trans_actions[] = init__http_parser_trans_actions_0();
+	private static final byte[] _http_parser_trans_actions = init__http_parser_trans_actions_0();
 
 
 static final int http_parser_start = 1;
@@ -252,15 +252,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + _klen - 1;
 		while (true) {
-			if ( _upper < _lower )
+			if ( _upper < _lower ) {
 				break;
+			}
 
 			_mid = _lower + ((_upper-_lower) >> 1);
-			if ( data[p] < _http_parser_trans_keys[_mid] )
+			if ( data[p] < _http_parser_trans_keys[_mid] ) {
 				_upper = _mid - 1;
-			else if ( data[p] > _http_parser_trans_keys[_mid] )
+			} else if ( data[p] > _http_parser_trans_keys[_mid] ) {
 				_lower = _mid + 1;
-			else {
+			} else {
 				_trans += (_mid - _keys);
 				break _match;
 			}
@@ -275,15 +276,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + (_klen<<1) - 2;
 		while (true) {
-			if ( _upper < _lower )
-				break;
+			if ( _upper < _lower ) {
+                break;
+            }
 
 			_mid = _lower + (((_upper-_lower) >> 1) & ~1);
-			if ( data[p] < _http_parser_trans_keys[_mid] )
-				_upper = _mid - 2;
-			else if ( data[p] > _http_parser_trans_keys[_mid+1] )
-				_lower = _mid + 2;
-			else {
+			if ( data[p] < _http_parser_trans_keys[_mid] ) {
+                _upper = _mid - 2;
+            } else if ( data[p] > _http_parser_trans_keys[_mid+1] ) {
+                _lower = _mid + 2;
+            } else {
 				_trans += ((_mid - _keys)>>1);
 				break _match;
 			}
@@ -441,7 +443,7 @@ private static byte[] init__http_keywords_actions_0()
 	};
 }
 
-private static final byte _http_keywords_actions[] = init__http_keywords_actions_0();
+	private static final byte[] _http_keywords_actions = init__http_keywords_actions_0();
 
 
 private static short[] init__http_keywords_key_offsets_0()
@@ -476,7 +478,7 @@ private static short[] init__http_keywords_key_offsets_0()
 	};
 }
 
-private static final short _http_keywords_key_offsets[] = init__http_keywords_key_offsets_0();
+	private static final short[] _http_keywords_key_offsets = init__http_keywords_key_offsets_0();
 
 
 private static char[] init__http_keywords_trans_keys_0()
@@ -543,7 +545,7 @@ private static char[] init__http_keywords_trans_keys_0()
 	};
 }
 
-private static final char _http_keywords_trans_keys[] = init__http_keywords_trans_keys_0();
+	private static final char[] _http_keywords_trans_keys = init__http_keywords_trans_keys_0();
 
 
 private static byte[] init__http_keywords_single_lengths_0()
@@ -578,7 +580,7 @@ private static byte[] init__http_keywords_single_lengths_0()
 	};
 }
 
-private static final byte _http_keywords_single_lengths[] = init__http_keywords_single_lengths_0();
+	private static final byte[] _http_keywords_single_lengths = init__http_keywords_single_lengths_0();
 
 
 private static byte[] init__http_keywords_range_lengths_0()
@@ -613,7 +615,7 @@ private static byte[] init__http_keywords_range_lengths_0()
 	};
 }
 
-private static final byte _http_keywords_range_lengths[] = init__http_keywords_range_lengths_0();
+	private static final byte[] _http_keywords_range_lengths = init__http_keywords_range_lengths_0();
 
 
 private static short[] init__http_keywords_index_offsets_0()
@@ -648,7 +650,7 @@ private static short[] init__http_keywords_index_offsets_0()
 	};
 }
 
-private static final short _http_keywords_index_offsets[] = init__http_keywords_index_offsets_0();
+	private static final short[] _http_keywords_index_offsets = init__http_keywords_index_offsets_0();
 
 
 private static short[] init__http_keywords_trans_targs_0()
@@ -743,7 +745,7 @@ private static short[] init__http_keywords_trans_targs_0()
 	};
 }
 
-private static final short _http_keywords_trans_targs[] = init__http_keywords_trans_targs_0();
+	private static final short[] _http_keywords_trans_targs = init__http_keywords_trans_targs_0();
 
 
 private static byte[] init__http_keywords_trans_actions_0()
@@ -838,7 +840,7 @@ private static byte[] init__http_keywords_trans_actions_0()
 	};
 }
 
-private static final byte _http_keywords_trans_actions[] = init__http_keywords_trans_actions_0();
+	private static final byte[] _http_keywords_trans_actions = init__http_keywords_trans_actions_0();
 
 
 private static byte[] init__http_keywords_to_state_actions_0()
@@ -873,7 +875,7 @@ private static byte[] init__http_keywords_to_state_actions_0()
 	};
 }
 
-private static final byte _http_keywords_to_state_actions[] = init__http_keywords_to_state_actions_0();
+	private static final byte[] _http_keywords_to_state_actions = init__http_keywords_to_state_actions_0();
 
 
 private static byte[] init__http_keywords_from_state_actions_0()
@@ -908,7 +910,7 @@ private static byte[] init__http_keywords_from_state_actions_0()
 	};
 }
 
-private static final byte _http_keywords_from_state_actions[] = init__http_keywords_from_state_actions_0();
+	private static final byte[] _http_keywords_from_state_actions = init__http_keywords_from_state_actions_0();
 
 
 private static short[] init__http_keywords_eof_trans_0()
@@ -943,7 +945,7 @@ private static short[] init__http_keywords_eof_trans_0()
 	};
 }
 
-private static final short _http_keywords_eof_trans[] = init__http_keywords_eof_trans_0();
+	private static final short[] _http_keywords_eof_trans = init__http_keywords_eof_trans_0();
 
 
 static final int http_keywords_start = 307;
@@ -1020,15 +1022,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + _klen - 1;
 		while (true) {
-			if ( _upper < _lower )
-				break;
+			if ( _upper < _lower ) {
+                break;
+            }
 
 			_mid = _lower + ((_upper-_lower) >> 1);
-			if ( data[p] < _http_keywords_trans_keys[_mid] )
-				_upper = _mid - 1;
-			else if ( data[p] > _http_keywords_trans_keys[_mid] )
-				_lower = _mid + 1;
-			else {
+			if ( data[p] < _http_keywords_trans_keys[_mid] ) {
+                _upper = _mid - 1;
+            } else if ( data[p] > _http_keywords_trans_keys[_mid] ) {
+                _lower = _mid + 1;
+            } else {
 				_trans += (_mid - _keys);
 				break _match;
 			}
@@ -1043,15 +1046,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + (_klen<<1) - 2;
 		while (true) {
-			if ( _upper < _lower )
-				break;
+			if ( _upper < _lower ) {
+                break;
+            }
 
 			_mid = _lower + (((_upper-_lower) >> 1) & ~1);
-			if ( data[p] < _http_keywords_trans_keys[_mid] )
-				_upper = _mid - 2;
-			else if ( data[p] > _http_keywords_trans_keys[_mid+1] )
-				_lower = _mid + 2;
-			else {
+			if ( data[p] < _http_keywords_trans_keys[_mid] ) {
+                _upper = _mid - 2;
+            } else if ( data[p] > _http_keywords_trans_keys[_mid+1] ) {
+                _lower = _mid + 2;
+            } else {
 				_trans += ((_mid - _keys)>>1);
 				break _match;
 			}
@@ -1323,7 +1327,7 @@ private static byte[] init__http_date_actions_0()
 	};
 }
 
-private static final byte _http_date_actions[] = init__http_date_actions_0();
+	private static final byte[] _http_date_actions = init__http_date_actions_0();
 
 
 private static short[] init__http_date_key_offsets_0()
@@ -1341,7 +1345,7 @@ private static short[] init__http_date_key_offsets_0()
 	};
 }
 
-private static final short _http_date_key_offsets[] = init__http_date_key_offsets_0();
+	private static final short[] _http_date_key_offsets = init__http_date_key_offsets_0();
 
 
 private static char[] init__http_date_trans_keys_0()
@@ -1365,7 +1369,7 @@ private static char[] init__http_date_trans_keys_0()
 	};
 }
 
-private static final char _http_date_trans_keys[] = init__http_date_trans_keys_0();
+	private static final char[] _http_date_trans_keys = init__http_date_trans_keys_0();
 
 
 private static byte[] init__http_date_single_lengths_0()
@@ -1383,7 +1387,7 @@ private static byte[] init__http_date_single_lengths_0()
 	};
 }
 
-private static final byte _http_date_single_lengths[] = init__http_date_single_lengths_0();
+	private static final byte[] _http_date_single_lengths = init__http_date_single_lengths_0();
 
 
 private static byte[] init__http_date_range_lengths_0()
@@ -1401,7 +1405,7 @@ private static byte[] init__http_date_range_lengths_0()
 	};
 }
 
-private static final byte _http_date_range_lengths[] = init__http_date_range_lengths_0();
+	private static final byte[] _http_date_range_lengths = init__http_date_range_lengths_0();
 
 
 private static short[] init__http_date_index_offsets_0()
@@ -1419,7 +1423,7 @@ private static short[] init__http_date_index_offsets_0()
 	};
 }
 
-private static final short _http_date_index_offsets[] = init__http_date_index_offsets_0();
+	private static final short[] _http_date_index_offsets = init__http_date_index_offsets_0();
 
 
 private static byte[] init__http_date_trans_targs_0()
@@ -1450,7 +1454,7 @@ private static byte[] init__http_date_trans_targs_0()
 	};
 }
 
-private static final byte _http_date_trans_targs[] = init__http_date_trans_targs_0();
+	private static final byte[] _http_date_trans_targs = init__http_date_trans_targs_0();
 
 
 private static byte[] init__http_date_trans_actions_0()
@@ -1481,7 +1485,7 @@ private static byte[] init__http_date_trans_actions_0()
 	};
 }
 
-private static final byte _http_date_trans_actions[] = init__http_date_trans_actions_0();
+	private static final byte[] _http_date_trans_actions = init__http_date_trans_actions_0();
 
 
 static final int http_date_start = 1;
@@ -1543,15 +1547,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + _klen - 1;
 		while (true) {
-			if ( _upper < _lower )
-				break;
+			if ( _upper < _lower ) {
+                break;
+            }
 
 			_mid = _lower + ((_upper-_lower) >> 1);
-			if ( data[p] < _http_date_trans_keys[_mid] )
-				_upper = _mid - 1;
-			else if ( data[p] > _http_date_trans_keys[_mid] )
-				_lower = _mid + 1;
-			else {
+			if ( data[p] < _http_date_trans_keys[_mid] ) {
+                _upper = _mid - 1;
+            } else if ( data[p] > _http_date_trans_keys[_mid] ) {
+                _lower = _mid + 1;
+            } else {
 				_trans += (_mid - _keys);
 				break _match;
 			}
@@ -1566,15 +1571,16 @@ case 1:
 		int _mid;
 		int _upper = _keys + (_klen<<1) - 2;
 		while (true) {
-			if ( _upper < _lower )
-				break;
+			if ( _upper < _lower ) {
+                break;
+            }
 
 			_mid = _lower + (((_upper-_lower) >> 1) & ~1);
-			if ( data[p] < _http_date_trans_keys[_mid] )
-				_upper = _mid - 2;
-			else if ( data[p] > _http_date_trans_keys[_mid+1] )
-				_lower = _mid + 2;
-			else {
+			if ( data[p] < _http_date_trans_keys[_mid] ) {
+                _upper = _mid - 2;
+            } else if ( data[p] > _http_date_trans_keys[_mid+1] ) {
+                _lower = _mid + 2;
+            } else {
 				_trans += ((_mid - _keys)>>1);
 				break _match;
 			}
@@ -1692,7 +1698,7 @@ case 5:
 
 
   public static String crlf = "\r\n";
-  public static void main(String args[]) throws Exception {
+  public static void main(String[] args) throws Exception {
     /// Testing
     String s = 
       "GET /favicon.ico#test HTTP/1.1\r\n" +

@@ -39,7 +39,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
 
     /**
      * Non-blocking, nonpausing get. 
-     * @param eo. If non-null (and if there is no message), registers this observer. The observer is notified with a 
+     * @param eo If non-null (and if there is no message), registers this observer. The observer is notified with a
      * MessageAvailable event when a put() is done.
      *  
      * @return buffered message if there's one, or null
@@ -67,7 +67,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
     
     /**
      * Non-blocking, nonpausing put. 
-     * @param eo. If non-null, registers this observer and calls it with an SpaceAvailable event 
+     * @param eo If non-null, registers this observer and calls it with an SpaceAvailable event
      * when there's space.
      * @return buffered message if there's one, or null 
      */
@@ -133,6 +133,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
         long begin = System.currentTimeMillis();
         while (msg == null) {
             TimerTask tt = new TimerTask() {
+                    @Override
                     public void run() {
                         Cell.this.removeMsgAvailableListener(t);
                         t.onEvent(Cell.this, timedOut);
@@ -191,6 +192,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
         long begin = System.currentTimeMillis();
         while (!put(msg, t)) {
             TimerTask tt = new TimerTask() {
+                    @Override
                     public void run() {
                         Cell.this.removeSpaceAvailableListener(t);
                         t.onEvent(Cell.this, timedOut);
@@ -212,6 +214,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
 
     public class BlockingSubscriber implements EventSubscriber {
         public volatile boolean eventRcvd = false;
+        @Override
         public void onEvent(EventPublisher ep, Event e) {
             synchronized (Cell.this) {
                 eventRcvd = true;
@@ -265,7 +268,7 @@ public class Cell<T> implements PauseReason, EventPublisher {
     /**
      * retrieve a msg, and block the Java thread for the time given.
      * 
-     * @param millis.
+     * @param timeoutMillis
      *            max wait time
      * @return null if timed out.
      */
@@ -286,11 +289,13 @@ public class Cell<T> implements PauseReason, EventPublisher {
         return msg;
     }
 
+    @Override
     public synchronized String toString() {
             return "id:" + System.identityHashCode(this) + " " + message;
         }
 
     // Implementation of PauseReason
+    @Override
     public boolean isValid(Task t) {
         synchronized(this) {
             return (t == sink) || srcs.contains(t);

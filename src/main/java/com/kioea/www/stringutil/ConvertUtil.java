@@ -2,7 +2,7 @@ package com.kioea.www.stringutil;
 
 import java.math.BigInteger;
 
-import com.kioea.www.Constants;
+import com.kioea.www.Constant;
 import com.kioea.www.regexutil.PatternUtil;
 
 /**
@@ -45,8 +45,8 @@ public class ConvertUtil {
 				if (StringUtil.isNullOrBlank(strValue)) {
 					return val;
 				}
-				if (!PatternUtil.patternAll(strValue, Constants.regex_ID.INTEGER)
-						&& !PatternUtil.patternAll(strValue, Constants.regex_ID.FLOAT)) {
+				if (!PatternUtil.patternAll(strValue, Constant.regex_ID.INTEGER)
+						&& !PatternUtil.patternAll(strValue, Constant.regex_ID.FLOAT)) {
 					return val;
 				}
 				val = Long.valueOf(strValue);
@@ -88,8 +88,8 @@ public class ConvertUtil {
 				if (StringUtil.isNullOrBlank(strValue)) {
 					return val;
 				}
-				if (!PatternUtil.patternAll(strValue, Constants.regex_ID.INTEGER)
-						&& !PatternUtil.patternAll(strValue, Constants.regex_ID.FLOAT)) {
+				if (!PatternUtil.patternAll(strValue, Constant.regex_ID.INTEGER)
+						&& !PatternUtil.patternAll(strValue, Constant.regex_ID.FLOAT)) {
 					return val;
 				}
 				val = Integer.valueOf(strValue);
@@ -131,8 +131,8 @@ public class ConvertUtil {
 				if (StringUtil.isNullOrBlank(strValue)) {
 					return val;
 				}
-				if (!PatternUtil.patternAll(strValue, Constants.regex_ID.INTEGER)
-						&& !PatternUtil.patternAll(strValue, Constants.regex_ID.FLOAT)) {
+				if (!PatternUtil.patternAll(strValue, Constant.regex_ID.INTEGER)
+						&& !PatternUtil.patternAll(strValue, Constant.regex_ID.FLOAT)) {
 					return val;
 				}
 				val = Float.valueOf(strValue);
@@ -174,8 +174,8 @@ public class ConvertUtil {
 				if (StringUtil.isNullOrBlank(strValue)) {
 					return val;
 				}
-				if (!PatternUtil.patternAll(strValue, Constants.regex_ID.INTEGER)
-						&& !PatternUtil.patternAll(strValue, Constants.regex_ID.FLOAT)) {
+				if (!PatternUtil.patternAll(strValue, Constant.regex_ID.INTEGER)
+						&& !PatternUtil.patternAll(strValue, Constant.regex_ID.FLOAT)) {
 					return val;
 				}
 				val = Short.valueOf(strValue);
@@ -217,8 +217,8 @@ public class ConvertUtil {
 				if (StringUtil.isNullOrBlank(strValue)) {
 					return val;
 				}
-				if (!PatternUtil.patternAll(strValue, Constants.regex_ID.INTEGER)
-						&& !PatternUtil.patternAll(strValue, Constants.regex_ID.FLOAT)) {
+				if (!PatternUtil.patternAll(strValue, Constant.regex_ID.INTEGER)
+						&& !PatternUtil.patternAll(strValue, Constant.regex_ID.FLOAT)) {
 					return val;
 				}
 				val = Double.valueOf(strValue);

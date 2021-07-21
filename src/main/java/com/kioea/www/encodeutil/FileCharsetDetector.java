@@ -157,7 +157,7 @@ public class FileCharsetDetector {
 		}
 
 		if (!found) {
-			String prob[] = det.getProbableCharsets();
+            String[] prob = det.getProbableCharsets();
 			if (prob.length > 0) {
 				// 在没有发现情况下，则取第一个可能的编码
 				encoding = prob[0];

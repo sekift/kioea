@@ -75,7 +75,7 @@ public class FetionSend10086cn {
 		return null;
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		FetionSend10086cn fs=new FetionSend10086cn();
 		fs.FetionSendMessage();
 	}

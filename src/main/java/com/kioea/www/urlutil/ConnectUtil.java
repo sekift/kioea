@@ -23,8 +23,9 @@ public class ConnectUtil {
 			URL url = new URL(urlStr);
 			url_con = (HttpURLConnection) url.openConnection();
 			url_con.setRequestProperty("Referer", "www.baidu.com");
-			if(domain!=null)
+			if(domain!=null) {
 				url_con.setRequestProperty("Host", domain);
+			}
 
 			// connection = (HttpURLConnection) url.openConnection();
 			// 模拟成ie
@@ -54,7 +55,7 @@ public class ConnectUtil {
 		return responseContent;
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		System.out.println(doGet("baidu.com","http://www.baidu.com","utf-8"));
 	}
 	
@@ -79,8 +80,9 @@ public class ConnectUtil {
 			URL url = new URL(reqUrl);
 			url_con = (HttpURLConnection) url.openConnection();
 			url_con.setRequestProperty("Referer", "www.baidu.com");
-			if(domain!=null)
+			if(domain!=null) {
 				url_con.setRequestProperty("Host", domain);
+			}
 			url_con.setRequestMethod("POST");
 			url_con.setConnectTimeout(5000);// （单位：毫秒）连接超时
 			url_con.setReadTimeout(5000);// （单位：毫秒）读操作超时

@@ -66,7 +66,9 @@ public class KeyValues {
     StringBuilder sb = new StringBuilder();
     sb.append('[');
     for (int i = 0; i < count; i++) {
-      if (i != 0) sb.append(", ");
+      if (i != 0) {
+        sb.append(", ");
+      }
       sb.append(keys[i]).append(':').append(values[i]);
     }
     sb.append(']');

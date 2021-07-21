@@ -42,6 +42,7 @@ public class TestingZooKeeperServer extends QuorumPeerMain implements Closeable 
 	private final AtomicReference<State> state = new AtomicReference<State>(State.LATENT);
 
 	private enum State {
+		// 说明
 		LATENT, STARTED, STOPPED, CLOSED
 	}
 

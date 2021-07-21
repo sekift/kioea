@@ -94,7 +94,7 @@ public class SheYunTool {
 		return doc;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		System.out.println(getQQGroupsRelationshipFilterByJsoup("675956", false));
 		System.out.println(getKFResultFilterByJsoup("卢宇"));
 		System.out.println(getMessage("574919797"));

@@ -5,9 +5,9 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.D_FIBER;
-import static kilim.Constants.STATE_CLASS;
-import static kilim.Constants.WOVEN_FIELD;
+import static kilim.Constant.D_FIBER;
+import static kilim.Constant.STATE_CLASS;
+import static kilim.Constant.WOVEN_FIELD;
 import static org.objectweb.asm.Opcodes.ACC_FINAL;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
@@ -40,16 +40,17 @@ import org.objectweb.asm.tree.InnerClassNode;
  */
 public class ClassWeaver {
     public ClassFlow classFlow;
-    List<ClassInfo> classInfoList = new LinkedList<ClassInfo>();
+    List<ClassInfo> classInfoList = new LinkedList<>();
     static ThreadLocal<HashMap<String, ClassInfo>> stateClasses_ = 
     		new ThreadLocal<HashMap<String, ClassInfo>>() {
-    	protected HashMap<String, ClassInfo> initialValue() {
-    		return new HashMap<String, ClassInfo>();
+    	@Override
+        protected HashMap<String, ClassInfo> initialValue() {
+    		return new HashMap<>(16);
     	}
     };
     
     public static void reset() {
-    	stateClasses_.set(new HashMap<String, ClassInfo>() );
+    	stateClasses_.set(new HashMap<>(8) );
     }
     
     private final ClassLoader classLoader;
@@ -181,11 +182,14 @@ public class ClassWeaver {
      */
     static String FIBER_SUFFIX = D_FIBER + ')';
     boolean needsWeaving(MethodFlow mf) {
-        if (!mf.isPausable() || mf.desc.endsWith(FIBER_SUFFIX)) 
+        if (!mf.isPausable() || mf.desc.endsWith(FIBER_SUFFIX)) {
             return false;
+        }
         String fdesc = mf.desc.replace(")", FIBER_SUFFIX);
         for (MethodFlow omf: classFlow.getMethodFlows()) {
-            if (omf == mf) continue;
+            if (omf == mf) {
+                continue;
+            }
             if (mf.name.equals(omf.name) && fdesc.equals(omf.desc)) {
                 return false;
             }
@@ -194,9 +198,13 @@ public class ClassWeaver {
     }
     
     boolean needsWeaving() {
-        if (classFlow.isWoven) return false;
+        if (classFlow.isWoven) {
+            return false;
+        }
         for (MethodFlow mf: classFlow.getMethodFlows()) {
-            if (needsWeaving(mf)) return true;
+            if (needsWeaving(mf)) {
+                return true;
+            }
         }
         return false;
     }
@@ -220,7 +228,7 @@ public class ClassWeaver {
      */
 
     String createStateClass(ValInfoList valInfoList) {
-        int numByType[] = { 0, 0, 0, 0, 0 };
+        int[] numByType = {0, 0, 0, 0, 0};
         for (ValInfo vi : valInfoList) {
             numByType[vi.vmt]++;
         }
@@ -249,8 +257,9 @@ public class ClassWeaver {
                 classInfo= new ClassInfo(className, cw.toByteArray());
                 stateClasses_.get().put(className, classInfo);
             }
-        if (!classInfoList.contains(classInfo))
-          addClassInfo(classInfo);
+        if (!classInfoList.contains(classInfo)) {
+            addClassInfo(classInfo);
+        }
         return className;
     }
 
@@ -259,8 +268,9 @@ public class ClassWeaver {
         sb.append("kilim/S_");
         for (int t = 0; t < 5; t++) {
             int c = numByType[t];
-            if (c == 0)
+            if (c == 0) {
                 continue;
+            }
             sb.append(VMType.abbrev[t]);
             if (c > 1) {
                 sb.append(c);

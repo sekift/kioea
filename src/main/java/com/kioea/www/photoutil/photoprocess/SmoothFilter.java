@@ -71,9 +71,9 @@ public class SmoothFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
-
+		}
 		int[] inPixels = new int[width * height];
 		int[] outPixels = new int[width * height];
 		getRGB(src, 0, 0, width, height, inPixels);
@@ -244,8 +244,9 @@ public class SmoothFilter extends AbstractBufferedImageOp {
 	private int findNewPixel(int[] matrix, int oldPixel) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for (int i = 0; i < matrix.length; i++) {
-			if (matrix[i] == oldPixel)
+			if (matrix[i] == oldPixel) {
 				continue;
+			}
 			list.add(matrix[i]);
 		}
 		int[] filterData = new int[list.size()];
@@ -255,13 +256,14 @@ public class SmoothFilter extends AbstractBufferedImageOp {
 		}
 		Arrays.sort(filterData);
 
-		if (filterData.length == 0)
+		if (filterData.length == 0) {
 			return oldPixel;
+		}
 		return (oldPixel > filterData[0]) ? filterData[0]
 				: (oldPixel < filterData[filterData.length - 1]) ? filterData[filterData.length - 1] : oldPixel;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			//读入图像

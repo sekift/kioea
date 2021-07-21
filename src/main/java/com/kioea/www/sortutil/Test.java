@@ -7,7 +7,7 @@ package com.kioea.www.sortutil;
  * @version:
  */
 public class Test {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		int[] array = { 1, 3, 4, 6, 7, 8, 9, 43, 4, 56, 4, 6, 7, 78, 23 };
 		BubbleSort bs = new BubbleSort();// 直接创建
 		for (int i : bs.sort(array)) {

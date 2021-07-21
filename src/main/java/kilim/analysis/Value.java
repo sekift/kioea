@@ -5,8 +5,8 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.D_UNDEFINED;
-import static kilim.Constants.D_NULL;
+import static kilim.Constant.D_UNDEFINED;
+import static kilim.Constant.D_NULL;
 
 import java.util.Arrays;
 
@@ -70,12 +70,14 @@ public class Value {
      * Produces a new value (if necessary), if the instructions are different or 
      * the types are different. The types are merged to form a least common
      * upper bound, and the instruction sets are unioned.
-     * @param vb
+     * @param other
      * @return this if the result of the merge is no different, or the new value
      */
     public Value merge(Value other) {
         int[] newSites = new int[this.numSites + other.numSites];
-        for (int i = 0; i < newSites.length; i++) newSites[i] = -1;
+        for (int i = 0; i < newSites.length; i++) {
+            newSites[i] = -1;
+        }
         int newNumSites = mergeSites(newSites, other);
         String newType;
         try {
@@ -110,7 +112,9 @@ public class Value {
                 newSites[i] = site;
                 return 1; // added an element 
             }
-            if (s == site) return 0; // added no elements
+            if (s == site) {
+                return 0; // added no elements
+            }
         }
         return 0;
     }
@@ -120,7 +124,9 @@ public class Value {
         // TODO FIXME : This is WRONG. Two values can be created at the same site when
         // entering a method (all incoming parameter values are given location 0). 
         // That would make two distinct params with the same type equal.
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         Value other = (Value)obj;
         if (this.typeDesc.equals(other.typeDesc) &&
                 this.constVal.equals(other.constVal) &&
@@ -163,11 +169,15 @@ public class Value {
     
     @Override
     public String toString() {
-        if (numSites == 0 && typeDesc == D_UNDEFINED) return "undef";
+        if (numSites == 0 && typeDesc == D_UNDEFINED) {
+            return "undef";
+        }
         StringBuffer sb = new StringBuffer(40);
         sb.append(typeDesc).append('[');
         for (int i = 0; i < numSites; i++) {
-            if (i > 0) sb.append(' ');
+            if (i > 0) {
+                sb.append(' ');
+            }
             sb.append(sites[i]);
         }
         sb.append(']');

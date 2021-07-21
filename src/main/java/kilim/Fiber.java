@@ -212,7 +212,9 @@ public final class Fiber {
         for (StackTraceElement ste: new Exception().getStackTrace()) {
             String cl = ste.getClassName();
             String meth = ste.getMethodName();
-            if (cl.startsWith("kilim.Worker") || meth.equals("go") || meth.equals("ds")) continue;
+            if (cl.startsWith("kilim.Worker") || "go".equals(meth) || "ds".equals(meth)) {
+                continue;
+            }
             String line = ste.getLineNumber() < 0 ? ""  : ":" + ste.getLineNumber();
             System.out.println('\t' + cl + '.' + ste.getMethodName() + 
                     '(' + ste.getFileName() + line + ')');
@@ -305,6 +307,7 @@ public final class Fiber {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(40);
         sb.append("iStack = ").append(iStack).append(", pc = ").append(pc);

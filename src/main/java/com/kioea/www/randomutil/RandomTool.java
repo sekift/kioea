@@ -3,7 +3,7 @@ package com.kioea.www.randomutil;
 import java.util.Random;
 import java.util.UUID;
 
-import com.kioea.www.Constants;
+import com.kioea.www.Constant;
 
 /**
  * 随机数生成类
@@ -46,7 +46,7 @@ public class RandomTool {
 		StringBuffer sb = new StringBuffer();
 		Random random = new Random();
 		for (int i = 0; i < length; i++) {
-			sb.append(Constants.string_ID.ALLCHAR.charAt(random.nextInt(Constants.string_ID.ALLCHAR.length())));
+			sb.append(Constant.string_ID.ALLCHAR.charAt(random.nextInt(Constant.string_ID.ALLCHAR.length())));
 		}
 		return sb.toString();
 	}
@@ -62,7 +62,7 @@ public class RandomTool {
 		StringBuffer sb = new StringBuffer();
 		Random random = new Random();
 		for (int i = 0; i < length; i++) {
-			sb.append(Constants.string_ID.ALLCHAR.charAt(random.nextInt(Constants.string_ID.CHAR.length())));
+			sb.append(Constant.string_ID.ALLCHAR.charAt(random.nextInt(Constant.string_ID.CHAR.length())));
 		}
 		return sb.toString();
 	}
@@ -166,7 +166,7 @@ public class RandomTool {
 		return buffer.toString();
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		System.out.println(getRandomWithNumberAndChar(8));
 	}
 }

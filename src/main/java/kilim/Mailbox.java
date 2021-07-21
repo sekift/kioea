@@ -58,9 +58,10 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
 
     @SuppressWarnings("unchecked")
     public Mailbox(int initialSize, int maxSize) {
-        if (initialSize > maxSize)
+        if (initialSize > maxSize) {
             throw new IllegalArgumentException("initialSize: " + initialSize
                     + " cannot exceed maxSize: " + maxSize);
+        }
         msgs = (T[]) new Object[initialSize];
         maxMsgs = maxSize;
     }
@@ -187,6 +188,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
         long end = System.currentTimeMillis() + timeoutMillis;
         while (msg == null) {
             TimerTask tt = new TimerTask() {
+                @Override
                 public void run() {
                     Mailbox.this.removeMsgAvailableListener(t);
                     t.onEvent(Mailbox.this, timedOut);
@@ -241,7 +243,8 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
 		long end = System.currentTimeMillis() + timeoutMillis;
 		while (has_msg == false) {
 			TimerTask tt = new TimerTask() {
-				public void run() {
+				@Override
+                public void run() {
                     Mailbox.this.removeMsgAvailableListener(t);
 	                t.onEvent(Mailbox.this, timedOut);
 				}
@@ -275,7 +278,8 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
 		boolean has_msg = hasMessages(num, t);
 		while (has_msg == false) {
 			TimerTask tt = new TimerTask() {
-				public void run() {
+				@Override
+                public void run() {
                     Mailbox.this.removeMsgAvailableListener(t);
 	                t.onEvent(Mailbox.this, timedOut);
 				}
@@ -459,6 +463,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
         long begin = System.currentTimeMillis();
         while (!put(msg, t)) {
             TimerTask tt = new TimerTask() {
+                @Override
                 public void run() {
                     Mailbox.this.removeSpaceAvailableListener(t);
                     t.onEvent(Mailbox.this, timedOut);
@@ -480,6 +485,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
 
     public class BlockingSubscriber implements EventSubscriber {
         public volatile boolean eventRcvd = false;
+        @Override
         public void onEvent(EventPublisher ep, Event e) {
             synchronized (Mailbox.this) {
                 eventRcvd = true;
@@ -542,7 +548,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
     /**
      * retrieve a msg, and block the Java thread for the time given.
      * 
-     * @param millis. max wait time
+     * @param timeoutMillis. max wait time
      * @return null if timed out.
      */
     public T getb(final long timeoutMillis) {
@@ -562,6 +568,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
         return msg;
     }
 
+    @Override
     public synchronized String toString() {
         return "id:" + System.identityHashCode(this) + " " +
         // DEBUG "nGet:" + nGet + " " +
@@ -572,6 +579,7 @@ public class Mailbox<T> implements PauseReason, EventPublisher {
     }
 
     // Implementation of PauseReason
+    @Override
     public boolean isValid(Task t) {
         synchronized(this) {
             return (t == sink) || srcs.contains(t);
@@ -588,16 +596,19 @@ class EmptySet_MsgAvListener implements PauseReason, EventSubscriber {
         mbxs = mbs;
     }
 
+    @Override
     public boolean isValid(Task t) {
         // The pauseReason is true (there is valid reason to continue
         // pausing) if none of the mboxes have any elements
         for (Mailbox<?> mb : mbxs) {
-            if (mb.hasMessage())
+            if (mb.hasMessage()) {
                 return false;
+            }
         }
         return true;
     }
 
+    @Override
     public void onEvent(EventPublisher ep, Event e) {
         for (Mailbox<?> m : mbxs) {
             if (m != ep) {

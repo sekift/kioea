@@ -64,9 +64,9 @@ public class HSLFilter extends AbstractBufferedImageOp {
         int height = src.getHeight();  
         double sat = 127.0d * saturation / 100.0d;  
         double lum = 127.0d * lightness / 100.0d;  
-        if ( dest == null )  
-            dest = createCompatibleDestImage( src, null );  
-  
+        if ( dest == null ) {
+            dest = createCompatibleDestImage(src, null);
+        }
         int[] inPixels = new int[width*height];  
         int[] outPixels = new int[width*height];  
         getRGB( src, 0, 0, width, height, inPixels );  
@@ -86,10 +86,12 @@ public class HSLFilter extends AbstractBufferedImageOp {
                   
                 // convert to HSL space  
                 min = tr;  
-                if (tg < min)   
-                    min = tg;  
-                if (tb < min)   
-                    min = tb;  
+                if (tg < min) {
+                    min = tg;
+                }
+                if (tb < min) {
+                    min = tb;
+                }
                 max = tr;  
                 f1 = 0.0;  
                 f2 = tg - tb;  
@@ -161,8 +163,9 @@ public class HSLFilter extends AbstractBufferedImageOp {
                    v1 = 2 * l - v2;  
                    v3 = v2 - v1;  
                    h1 = h + 120.0;  
-                   if (h1 >= 360.0)   
-                       h1 -= 360.0;  
+                   if (h1 >= 360.0) {
+                       h1 -= 360.0;
+                   }
                      
                    if (h1 < 60.0) {  
                       tr = (int)(v1 + v3 * h1 * c1o60);  
@@ -216,7 +219,7 @@ public class HSLFilter extends AbstractBufferedImageOp {
         return dest;  
     }  
     
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			// 读入图像

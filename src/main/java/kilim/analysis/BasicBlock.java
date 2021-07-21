@@ -4,27 +4,27 @@
  * specified in the file "License"
  */
 package kilim.analysis;
-import static kilim.Constants.D_ARRAY_BOOLEAN;
-import static kilim.Constants.D_ARRAY_BYTE;
-import static kilim.Constants.D_ARRAY_CHAR;
-import static kilim.Constants.D_ARRAY_DOUBLE;
-import static kilim.Constants.D_ARRAY_FLOAT;
-import static kilim.Constants.D_ARRAY_INT;
-import static kilim.Constants.D_ARRAY_LONG;
-import static kilim.Constants.D_ARRAY_SHORT;
-import static kilim.Constants.D_BOOLEAN;
-import static kilim.Constants.D_BYTE;
-import static kilim.Constants.D_CHAR;
-import static kilim.Constants.D_DOUBLE;
-import static kilim.Constants.D_FLOAT;
-import static kilim.Constants.D_INT;
-import static kilim.Constants.D_LONG;
-import static kilim.Constants.D_NULL;
-import static kilim.Constants.D_RETURN_ADDRESS;
-import static kilim.Constants.D_SHORT;
-import static kilim.Constants.D_VOID;
-import static kilim.Constants.TASK_CLASS;
-import static kilim.Constants.THROWABLE_CLASS;
+import static kilim.Constant.D_ARRAY_BOOLEAN;
+import static kilim.Constant.D_ARRAY_BYTE;
+import static kilim.Constant.D_ARRAY_CHAR;
+import static kilim.Constant.D_ARRAY_DOUBLE;
+import static kilim.Constant.D_ARRAY_FLOAT;
+import static kilim.Constant.D_ARRAY_INT;
+import static kilim.Constant.D_ARRAY_LONG;
+import static kilim.Constant.D_ARRAY_SHORT;
+import static kilim.Constant.D_BOOLEAN;
+import static kilim.Constant.D_BYTE;
+import static kilim.Constant.D_CHAR;
+import static kilim.Constant.D_DOUBLE;
+import static kilim.Constant.D_FLOAT;
+import static kilim.Constant.D_INT;
+import static kilim.Constant.D_LONG;
+import static kilim.Constant.D_NULL;
+import static kilim.Constant.D_RETURN_ADDRESS;
+import static kilim.Constant.D_SHORT;
+import static kilim.Constant.D_VOID;
+import static kilim.Constant.TASK_CLASS;
+import static kilim.Constant.THROWABLE_CLASS;
 import static org.objectweb.asm.Opcodes.*;
 
 import java.util.ArrayList;
@@ -1474,7 +1474,7 @@ public class BasicBlock implements Comparable<BasicBlock> {
         AbstractInsnNode ain = getInstruction(startPos);
         if (ain.getOpcode() == INVOKESTATIC) {
             MethodInsnNode min = (MethodInsnNode)ain;
-            return min.owner.equals(TASK_CLASS) && min.name.equals("getCurrentTask");
+            return min.owner.equals(TASK_CLASS) && "getCurrentTask".equals(min.name);
         }
         return false;
     }

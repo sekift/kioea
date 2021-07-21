@@ -25,7 +25,8 @@ public class ExecutorServiceTest {
 
 	public void setAsynQueue(final String str, final String type) {
 		threadpool.execute(new Runnable() {
-			public void run() {
+			@Override
+            public void run() {
 				listShow(str, type);
 			}
 		});
@@ -100,7 +101,8 @@ public class ExecutorServiceTest {
 		// SynchronousQueue<Runnable>();
 		ThreadFactory fac = new ThreadFactory() {
 			// 创建一个新的线程, 同时设置它的名称和daemon模式
-			public Thread newThread(Runnable r) {
+			@Override
+            public Thread newThread(Runnable r) {
 				Thread t = Executors.defaultThreadFactory().newThread(r);
 				t.setName(nameTemplate + "@[" + System.identityHashCode(t) + "]");
 				t.setDaemon(false);// 控制是否后台进程

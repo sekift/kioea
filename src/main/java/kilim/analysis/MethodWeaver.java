@@ -5,11 +5,11 @@
  */
 
 package kilim.analysis;
-import static kilim.Constants.D_FIBER;
-import static kilim.Constants.D_INT;
-import static kilim.Constants.D_VOID;
-import static kilim.Constants.FIBER_CLASS;
-import static kilim.Constants.TASK_CLASS;
+import static kilim.Constant.D_FIBER;
+import static kilim.Constant.D_INT;
+import static kilim.Constant.D_VOID;
+import static kilim.Constant.FIBER_CLASS;
+import static kilim.Constant.TASK_CLASS;
 import static kilim.analysis.VMType.TOBJECT;
 import static kilim.analysis.VMType.loadVar;
 import static org.objectweb.asm.Opcodes.ALOAD;
@@ -24,7 +24,7 @@ import static org.objectweb.asm.Opcodes.RETURN;
 import java.util.ArrayList;
 import java.util.List;
 
-import kilim.Constants;
+import kilim.Constant;
 
 import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.Attribute;
@@ -85,8 +85,9 @@ public class MethodWeaver {
         String sig = mf.signature;
         if (mf.isPausable()) {
             desc = desc.replace(")", D_FIBER + ')');
-            if (sig != null)
+            if (sig != null) {
                 sig = sig.replace(")", D_FIBER + ')');
+            }
         }
         MethodVisitor mv = cv.visitMethod(mf.access, mf.name, desc, sig, exceptions);
 
@@ -280,23 +281,31 @@ public class MethodWeaver {
     void genGetCurrentTask(MethodVisitor mv, BasicBlock bb) {
         bb.startLabel.accept(mv);
         loadVar(mv, TOBJECT, getFiberVar());
-        mv.visitFieldInsn(GETFIELD, FIBER_CLASS, "task", Constants.D_TASK);
+        mv.visitFieldInsn(GETFIELD, FIBER_CLASS, "task", Constant.D_TASK);
     }
 
     private boolean hasGetCurrentTask() {
         MethodFlow mf = methodFlow;
         for (BasicBlock bb : mf.getBasicBlocks()) {
-            if (!bb.isPausable() || bb.startFrame==null) continue;
-            if (bb.isGetCurrentTask()) return true;
+            if (!bb.isPausable() || bb.startFrame==null) {
+                continue;
+            }
+            if (bb.isGetCurrentTask()) {
+                return true;
+            }
         }
         return false;
     }
     private void createCallWeavers() {
         MethodFlow mf = methodFlow;
         for (BasicBlock bb : mf.getBasicBlocks()) {
-            if (!bb.isPausable() || bb.startFrame==null) continue;
+            if (!bb.isPausable() || bb.startFrame==null) {
+                continue;
+            }
             // No prelude needed for Task.getCurrentTask(). 
-            if (bb.isGetCurrentTask()) continue; 
+            if (bb.isGetCurrentTask()) {
+                continue;
+            }
             CallWeaver cw = new CallWeaver(this, bb);
             callWeavers.add(cw);
         }
@@ -490,8 +499,9 @@ public class MethodWeaver {
 
     int getPC(CallWeaver weaver) {
         for (int i = 0; i < callWeavers.size(); i++) {
-            if (callWeavers.get(i) == weaver)
+            if (callWeavers.get(i) == weaver) {
                 return i + 1;
+            }
         }
         assert false : " No weaver found";
         return 0;
@@ -509,7 +519,7 @@ public class MethodWeaver {
         } else {
             // Turn of abstract modifier
             int access = mf.access;
-            access &= ~Constants.ACC_ABSTRACT;
+            access &= ~Constant.ACC_ABSTRACT;
             MethodVisitor mv = cv.visitMethod(access, mf.name, mf.desc, 
                     mf.signature, ClassWeaver.toStringArray(mf.exceptions));
             mv.visitCode();
@@ -532,11 +542,13 @@ public class MethodWeaver {
             }
             
             int numlocals;
-            if ((mf.access & Constants.ACC_ABSTRACT) != 0) {
+            if ((mf.access & Constant.ACC_ABSTRACT) != 0) {
                 // The abstract method doesn't contain the number of locals required to hold the
                 // args, so we need to calculate it.
                 numlocals = getNumWordsInSig() + 1 /* fiber */;
-                if (!mf.isStatic()) numlocals++;
+                if (!mf.isStatic()) {
+                    numlocals++;
+                }
             } else {
                 numlocals = mf.maxLocals + 1;
             }

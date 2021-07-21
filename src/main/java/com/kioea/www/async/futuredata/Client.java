@@ -10,6 +10,7 @@ public class Client {
 	public Data request(final String queryStr) {
 		final FutureData future = new FutureData();
 		new Thread() {
+			@Override
 			public void run() {
 				RealData realdata = new RealData(queryStr);
 				future.setRealData(realdata);

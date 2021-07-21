@@ -334,19 +334,19 @@ public class DateUtilHelper {
 
     public static final int getWeekNum(String strWeek) {
         int returnValue = 0;
-        if (strWeek.equals("Mon")) {
+        if ("Mon".equals(strWeek)) {
             returnValue = 1;
-        } else if (strWeek.equals("Tue")) {
+        } else if ("Tue".equals(strWeek)) {
             returnValue = 2;
-        } else if (strWeek.equals("Wed")) {
+        } else if ("Wed".equals(strWeek)) {
             returnValue = 3;
-        } else if (strWeek.equals("Thu")) {
+        } else if ("Thu".equals(strWeek)) {
             returnValue = 4;
-        } else if (strWeek.equals("Fri")) {
+        } else if ("Fri".equals(strWeek)) {
             returnValue = 5;
-        } else if (strWeek.equals("Sat")) {
+        } else if ("Sat".equals(strWeek)) {
             returnValue = 6;
-        } else if (strWeek.equals("Sun")) {
+        } else if ("Sun".equals(strWeek)) {
             returnValue = 0;
         } else if (strWeek == null) {
             returnValue = 0;
@@ -384,10 +384,11 @@ public class DateUtilHelper {
         String strReturn = "";
         try {
             String p = null;
-            if (strDate.length() > 10)
+            if (strDate.length() > 10) {
                 p = "yyyy-MM-dd HH:mm:ss";
-            else
+            } else {
                 p = "yyyy-MM-dd";
+            }
             Date d = DateUtilHelper.str2Date(p, HtmlTool.replace(strDate, "T", " "));
             strReturn = DateUtilHelper.date2Str("EEE d-MMM", d);
 
@@ -407,10 +408,11 @@ public class DateUtilHelper {
         String strReturn = "";
         try {
             String p = null;
-            if (strDate.length() > 10)
+            if (strDate.length() > 10) {
                 p = "yyyy-MM-dd HH:mm:ss";
-            else
+            } else {
                 p = "yyyy-MM-dd";
+            }
             Date d = DateUtilHelper.str2Date(p, HtmlTool.replace(strDate, "T", " "));
             strReturn = DateUtilHelper.date2Str("EEE d-MMM hh:mm aaa", d);
 
@@ -469,8 +471,9 @@ public class DateUtilHelper {
      * @return 字符串
      */
     public static final String getDateFromNow(int timeType, int timenum, String format_string) {
-        if ((format_string == null) || (format_string.equals("")))
+        if ((format_string == null) || ("".equals(format_string))) {
             format_string = "yyyy-MM-dd HH:mm:ss";
+        }
         Calendar cld = Calendar.getInstance();
         Date date = null;
         DateFormat df = new SimpleDateFormat(format_string);
@@ -487,8 +490,9 @@ public class DateUtilHelper {
      * @return 字符串
      */
     public static final String getDateNow(String format_string) {
-        if ((format_string == null) || (format_string.equals("")))
+        if ((format_string == null) || ("".equals(format_string))) {
             format_string = "yyyy-MM-dd HH:mm:ss";
+        }
         Calendar cld = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat(format_string);
         return df.format(cld.getTime());

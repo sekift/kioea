@@ -31,7 +31,7 @@ public class ThreadPoolsUtil {
 		System.out.println(str);
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		ThreadPoolsUtil tpu = new ThreadPoolsUtil();
 		for (int i = 1; i < 500; i++) {
 			tpu.setString(String.valueOf(i));

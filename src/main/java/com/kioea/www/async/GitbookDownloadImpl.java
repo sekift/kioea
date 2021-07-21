@@ -58,7 +58,7 @@ public class GitbookDownloadImpl implements Runnable {
 			String html = "";
 			for (Element element : htmls) {
 				html = element.attr("href");
-				if (html != null && !html.equals("") && html.startsWith("https://www.gitbook.com/book/")) {
+				if (html != null && !"".equals(html) && html.startsWith("https://www.gitbook.com/book/")) {
 					getPage(html, type, url);
 				}
 			}

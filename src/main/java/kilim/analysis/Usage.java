@@ -127,13 +127,15 @@ public class Usage {
     private void printBits(StringBuffer sb, BitSet b) {
         int numDefined = 0;
         for (int i = 0; i < nLocals; i++) {
-            if (b.get(i))
+            if (b.get(i)) {
                 numDefined++;
+            }
         }
         sb.append('(').append(numDefined).append("): ");
         for (int i = 0; i < nLocals; i++) {
-            if (b.get(i))
+            if (b.get(i)) {
                 sb.append(i).append(' ');
+            }
         }
         sb.append('\n');
     }

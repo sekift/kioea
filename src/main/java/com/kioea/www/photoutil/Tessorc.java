@@ -58,7 +58,7 @@ public class Tessorc {
         }
  }
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 //		File imageFile = new File("D:\\IDE\\eclipse-helios\\eclipse\\workspace\\sekiftutil-1.1.4\\bin\\eurotext.tif");  
 		File imageFile = new File("D:\\orctest.jpg");  
 		loadDLL("liblept168.dll");//注意加载先后顺序

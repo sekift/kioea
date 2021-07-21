@@ -83,7 +83,7 @@ public class PixelsTest {
 		return image;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File("D:/orctest.jpg"));

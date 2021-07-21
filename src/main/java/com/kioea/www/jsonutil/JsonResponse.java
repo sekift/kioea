@@ -103,7 +103,7 @@ public class JsonResponse {
 	private void parseResult() {
 
 		// 判断是否为空
-		if (response == null || response.trim().equals("")) {
+		if (response == null || "".equals(response.trim())) {
 			return;
 		}
 

@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
 
-import kilim.Constants;
+import kilim.Constant;
 import kilim.Pausable;
 import kilim.nio.EndPoint;
 import kilim.nio.ExposedBaos;
@@ -110,7 +110,7 @@ public class HttpResponse extends HttpMsg {
     // Http response components
     public static final byte[]                      PROTOCOL                         = "HTTP/1.1 ".getBytes();
     public static final byte[]                      F_SERVER                         = ("Server: kilim "
-                                                                                             + Constants.KILIM_VERSION + "\r\n")
+                                                                                             + Constant.KILIM_VERSION + "\r\n")
                                                                                              .getBytes();
     public static final byte[]                      F_DATE                           = "Date: ".getBytes();
     public static final byte[]                      CRLF                             = "\r\n".getBytes();
@@ -174,7 +174,9 @@ public class HttpResponse extends HttpMsg {
     public String getHeaderValue(String key) {
         int nfields = keys.size();
         for (int i = 0; i < nfields; i++) {
-          if (key.equals(keys.get(i))) return values.get(i);
+          if (key.equals(keys.get(i))) {
+              return values.get(i);
+          }
         }
         return null;
     }
@@ -213,8 +215,9 @@ public class HttpResponse extends HttpMsg {
     }
 
     public OutputStream getOutputStream() {
-        if (bodyStream == null)
+        if (bodyStream == null) {
             bodyStream = new ExposedBaos(2048);
+        }
         return bodyStream;
     }
 

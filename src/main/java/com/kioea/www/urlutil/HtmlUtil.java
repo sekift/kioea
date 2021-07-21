@@ -18,11 +18,11 @@ public class HtmlUtil {
 	 * @return 转换后的字符串
 	 */
 	public static String encodeHtml(String str) {
-		if (str == null || str.equals("")) {
+		if (str == null || "".equals(str)) {
 			return "";
 		}
 		// 把要处理的字符串转换为字符数组
-		char content[] = new char[str.length()];
+		char[] content = new char[str.length()];
 		str.getChars(0, str.length(), content, 0);
 		// 循环处理字符数组
 		StringBuffer result = new StringBuffer(content.length + 50);
@@ -69,7 +69,7 @@ public class HtmlUtil {
 	 */
 	@Deprecated
 	public static String encodeHtmlTag(String str) {
-		if (str == null || str.equals("")) {
+		if (str == null || "".equals(str)) {
 			return "";
 		}
 		str=formatContent(str);
@@ -117,7 +117,7 @@ public class HtmlUtil {
 	 * @throws Exception
 	 */
 	public static String filterHtmlTag(String str,String character) {
-		if (str == null || str.equals("")) {
+		if (str == null || "".equals(str)) {
 			return "";
 		}
 		str = "<html>" + str + "</html>";
@@ -128,6 +128,7 @@ public class HtmlUtil {
 			NodeList nodes = parser.extractAllNodesThatMatch(new NodeFilter() {
 				private static final long serialVersionUID = 8122253914554860975L;
 
+				@Override
 				public boolean accept(Node node) {
 					return true;
 				}
@@ -261,7 +262,7 @@ public class HtmlUtil {
 	 * @return 转换后的字符串
 	 */
 	public static String decodeHtml(String str) {	
-		if (str == null || str.equals("")) {
+		if (str == null || "".equals(str)) {
 			return str;
 		}
 		str = str.replaceAll("<br>", "\r");

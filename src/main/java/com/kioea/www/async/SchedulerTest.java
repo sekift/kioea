@@ -23,7 +23,7 @@ public class SchedulerTest {
 		}, 60 * 60, SECONDS);*/
 	}
 	
-	public static void main(String args[]){
+	public static void main(String[] args){
 		SchedulerTest bc = new SchedulerTest();
 		bc.beepForAnHour();
 	}

@@ -40,8 +40,9 @@ public class ScaleFilter extends AbstractBufferedImageOp {
 		int width = src.getWidth();
 		int height = src.getHeight();
 
-		if (dest == null)
+		if (dest == null) {
 			dest = createCompatibleDestImage(src, null);
+		}
 
 		// initialization pixel data
 		int[] inPixels = new int[width * height];
@@ -62,8 +63,9 @@ public class ScaleFilter extends AbstractBufferedImageOp {
 
 	@Override
     public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
-		if (dstCM == null)
+		if (dstCM == null) {
 			dstCM = src.getColorModel();
+		}
 		int outwidth = (int) (hscale * (float) src.getWidth());
 		int outheight = (int) (vscale * (float) src.getHeight());
 		return new BufferedImage(dstCM, dstCM.createCompatibleWritableRaster(outwidth, outheight), dstCM
@@ -201,7 +203,7 @@ public class ScaleFilter extends AbstractBufferedImageOp {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BufferedImage biRead;
 		try {
 			// 读入图像

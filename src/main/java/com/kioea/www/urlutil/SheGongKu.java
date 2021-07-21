@@ -51,7 +51,7 @@ public class SheGongKu {
 				}
 			}
 			for (Element ele : eles) {
-				if (!ele.text().equals("下一页")) {
+				if (!"下一页".equals(ele.text())) {
 					sb.append(ele.text() + "\r\n");
 				}
 			}

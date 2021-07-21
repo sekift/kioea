@@ -54,7 +54,7 @@ public class WebCatch extends Thread {
 
 			for (Element element : htmls) {
 				html = element.attr("href");
-				if (html != null && !html.equals("")) {
+				if (html != null && !"".equals(html)) {
 					getPage(html);
 				}
 			}
@@ -90,7 +90,7 @@ public class WebCatch extends Thread {
 				String rar = element.attr("href");
 				if (rar.length() > 4) {
 					String extt = rar.substring(rar.length() - 3, rar.length());
-					if ((extt.equals("rar") || extt.equals("zip"))) {
+					if (("rar".equals(extt) || "zip".equals(extt))) {
 						System.out.println("资源压缩包：" + rar);
 						rar_path = rar;
 					}

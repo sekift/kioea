@@ -47,7 +47,7 @@ public class CompressFile {
 		File targetFile = new File(targetFileName);
 		try {
 			out = new ZipOutputStream(new FileOutputStream(targetFile));
-			if (fileName.equals("*")) {
+			if ("*".equals(fileName)) {
 				CompressFile.dirToZip(baseDirPath, baseDir, out);
 			} else {
 				File file = new File(baseDir, fileName);

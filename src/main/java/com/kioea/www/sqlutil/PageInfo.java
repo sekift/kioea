@@ -11,8 +11,9 @@ public class PageInfo {
 	}
 
 	public long getPageCount() {
-		if (totalCount < 1)
+		if (totalCount < 1) {
 			return 0;
+		}
 		return (totalCount + pageSize - 1) / pageSize;
 	}
 

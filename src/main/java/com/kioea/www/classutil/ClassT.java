@@ -57,7 +57,7 @@ public class ClassT {
 		return list;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		ClassT ct = new ClassT();
 		List<Param> list = ct.getListT("a", "z");
 		System.out.println(JsonUtils.toJson(list));

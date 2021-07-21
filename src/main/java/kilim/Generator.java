@@ -39,10 +39,12 @@ import java.util.NoSuchElementException;
 public class Generator<T> extends Task implements Iterator<T>, Iterable<T> {
     T nextVal;
 
+    @Override
     public boolean hasNext() {
         if (nextVal == null) {
-            if (isDone())
+            if (isDone()) {
                 return false;
+            }
             _runExecute(null);
             return nextVal != null;
         } else {
@@ -50,6 +52,7 @@ public class Generator<T> extends Task implements Iterator<T>, Iterable<T> {
         }
     }
 
+    @Override
     public T next() {
         T ret;
         if (nextVal != null) {
@@ -66,10 +69,12 @@ public class Generator<T> extends Task implements Iterator<T>, Iterable<T> {
         return ret;
     }
 
+    @Override
     public void remove() {
         throw new AssertionError("Not Supported");
     }
 
+    @Override
     public Iterator<T> iterator() {
         return this;
     }

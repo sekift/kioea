@@ -68,8 +68,9 @@ public class EndPoint extends Mailbox<SockEvent> { // Mailbox for receiving sock
     public void write(ByteBuffer buf) throws IOException, Pausable {
         SocketChannel ch = dataChannel();
         int remaining = buf.remaining();
-        if (remaining == 0)
+        if (remaining == 0) {
             return;
+        }
         int n = ch.write(buf);
         remaining -= n;
         int yieldCount = 0;
@@ -209,8 +210,9 @@ public class EndPoint extends Mailbox<SockEvent> { // Mailbox for receiving sock
     public void write(FileChannel fc, long start, long length) throws IOException, Pausable {
         SocketChannel ch = dataChannel();
         long remaining = length - start;
-        if (remaining == 0)
+        if (remaining == 0) {
             return;
+        }
 
         long n = fc.transferTo(start, remaining, ch);
         start += n;

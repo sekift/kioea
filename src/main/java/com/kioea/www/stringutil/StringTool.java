@@ -273,10 +273,11 @@ public class StringTool {
 		}
 		int preBeginIndex = sourceText.indexOf(beginText.trim());
 		// 前端字符串
-		if (preBeginIndex < 0)
+		if (preBeginIndex < 0) {
 			return new String[] { "", sourceText, "" };
-		else
+		} else {
 			textArr[0] = sourceText.substring(0, preBeginIndex) + beginText;
+		}
 		int preEndIndex = preBeginIndex + beginText.length();
 
 		int posBeginIndex = sourceText.indexOf(endText.trim());
@@ -285,8 +286,9 @@ public class StringTool {
 			textArr[1] = sourceText.substring(preEndIndex);
 			textArr[2] = "";
 			return textArr;
-		} else
+		} else {
 			textArr[1] = sourceText.substring(preEndIndex, posBeginIndex);
+		}
 
 		int posEndIndex = posBeginIndex + endText.length();
 		// 后端字符串
@@ -521,8 +523,10 @@ public class StringTool {
 	 *            手机号码
 	 * @return boolean
 	 */
+
+	private static Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+
 	public static boolean isMobileNO(String mobiles) {
-		Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
 		Matcher m = p.matcher(mobiles);
 		return m.matches();
 	}
@@ -592,7 +596,7 @@ public class StringTool {
 		}
 	}
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		// System.out.println(getsubstring1("14545643&^*(&*("));
 		// System.out.println(getsubstring1("*"));
 		// System.out.println(getsubstring1("14545643&^*(&*("));

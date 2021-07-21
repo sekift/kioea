@@ -100,7 +100,7 @@ public class StringUtil {
 	 */
 	public static boolean isBlank(String value) {
 		boolean ret = false;
-		if (value != null && value.equals("")) {
+		if (value != null && "".equals(value)) {
 			ret = true;
 		}
 		return ret;
