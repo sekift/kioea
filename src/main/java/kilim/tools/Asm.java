@@ -147,9 +147,13 @@ public class Asm {
     }
 
     private int parseModifiers(String s) {
-        if (s == null) return 0;
+        if (s == null) {
+            return 0;
+        }
         s = s.trim();
-        if (s.equals("")) return 0;
+        if (s.equals("")) {
+            return 0;
+        }
         int acc = 0;
         for (String modifier : split(wsPattern, s)) {
             if (!modifiers.containsKey(modifier)) {

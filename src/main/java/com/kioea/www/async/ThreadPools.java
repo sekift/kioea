@@ -31,7 +31,8 @@ public class ThreadPools {
 		BlockingQueue<Runnable> queue =  new SynchronousQueue<Runnable>();
 		ThreadFactory fac = new ThreadFactory() {
 			// 创建一个新的线程, 同时设置它的名称和daemon模式
-			public Thread newThread(Runnable r) { 
+			@Override
+			public Thread newThread(Runnable r) {
 				Thread t = Executors.defaultThreadFactory().newThread(r);
 				t.setName(nameTemplate + "@[" + System.identityHashCode(t) + "]");
 				t.setDaemon(true);
@@ -51,7 +52,8 @@ public class ThreadPools {
 		
 		ThreadFactory fac = new ThreadFactory() {
 			// 创建一个新的线程, 同时设置它的名称和daemon模式
-			public Thread newThread(Runnable r) { 
+			@Override
+			public Thread newThread(Runnable r) {
 				Thread t = Executors.defaultThreadFactory().newThread(r);
 				t.setName(nameTemplate + "@[" + System.identityHashCode(t) + "]");
 				t.setDaemon(true);

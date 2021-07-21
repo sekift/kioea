@@ -104,7 +104,7 @@ public abstract class ReloadableProperties {
 	 * @return 毫秒数
 	 */
 	protected long getScanInterval() {		
-		return 15000l;
+		return 15000L;
 	}
 	 	
 	/**

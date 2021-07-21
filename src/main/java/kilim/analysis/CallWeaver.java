@@ -912,17 +912,23 @@ class ValInfo implements Comparable<ValInfo> {
         return VMType.fieldDesc[vmt];
     }
 
+    @Override
     public int compareTo(ValInfo that) {
-        if (this == that)
+        if (this == that) {
             return 0;
-        if (this.vmt < that.vmt)
+        }
+        if (this.vmt < that.vmt) {
             return -1;
-        if (this.vmt > that.vmt)
+        }
+        if (this.vmt > that.vmt) {
             return 1;
-        if (this.var < that.var)
+        }
+        if (this.var < that.var) {
             return -1;
-        if (this.var > that.var)
+        }
+        if (this.var > that.var) {
             return 1;
+        }
         return 0;
     }
 }
@@ -938,8 +944,9 @@ class ValInfoList extends ArrayList<ValInfo> {
     public int indexOf(Value v) {
         int len = size();
         for (int i = 0; i < len; i++) {
-            if (get(i).val == v)
+            if (get(i).val == v) {
                 return i;
+            }
         }
         return -1;
     }

@@ -394,7 +394,9 @@ public class Base64 {
 				} break;
 				case 'x':{
 					extension = opts.getOptarg();
-					if (extension == null) extension = "";
+					if (extension == null) {
+						extension = "";
+					}
 				} break;
 				case 'f':{
 					force = true;
@@ -458,7 +460,9 @@ public class Base64 {
 							System.out.println(labels.getString("decodingarg"));
 						}
 						decode(new ByteArrayInputStream(args[i].getBytes()), System.out, !forceDecode);
-						if (decodeEndLine) System.out.println();
+						if (decodeEndLine) {
+							System.out.println();
+						}
 					}
 				} catch (Base64DecodingException x){
 					if(printErrors){
@@ -557,7 +561,9 @@ public class Base64 {
 						new BufferedOutputStream(System.out),
 						!forceDecode
 					);
-					if (decodeEndLine) System.out.println();
+					if (decodeEndLine) {
+						System.out.println();
+					}
 				}
 			} catch (Base64DecodingException x){
 				if(printErrors){
@@ -1205,7 +1211,9 @@ public class Base64 {
 				try {
 					in.close();
 				} catch (IOException ignore){
-					 if (throwExceptions) throw ignore;
+					 if (throwExceptions) {
+						 throw ignore;
+					 }
 				}
 				in = null;
 			}
@@ -1214,7 +1222,9 @@ public class Base64 {
 					out.flush();
 					out.close();
 				} catch (IOException ignore){
-					 if (throwExceptions) throw ignore;
+					 if (throwExceptions) {
+						 throw ignore;
+					 }
 				}
 				out = null;
 			}
@@ -1238,7 +1248,9 @@ public class Base64 {
 		int numPadding = 0;
 		do {
 			read = in.read();
-			if (read == END_OF_INPUT) return END_OF_INPUT;
+			if (read == END_OF_INPUT) {
+				return END_OF_INPUT;
+			}
 			read = reverseBase64Chars[(byte)read];
 			if (throwExceptions && (read == NON_BASE_64 || (numPadding > 0 && read > NON_BASE_64))){
 				throw new Base64DecodingException (
@@ -1542,9 +1554,10 @@ public class Base64 {
 				numBase64Chars++;
 			}
 		}
-		if (numBase64Chars == 0) return false;
-		if (numBase64Chars % 4 != 0) return false;
-		return true;
+		if (numBase64Chars == 0) {
+			return false;
+		}
+		return numBase64Chars % 4 == 0;
 	}
 }
 

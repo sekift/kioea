@@ -33,8 +33,9 @@ public class AsmDetector {
                 // check super classes
                 for (String superName: classCache.superClasses) {
                     status = detector.getPausableStatus(superName, methodName, desc);
-                    if (status != Detector.METHOD_NOT_FOUND_OR_PAUSABLE) 
+                    if (status != Detector.METHOD_NOT_FOUND_OR_PAUSABLE) {
                         break;
+                    }
                 }
             }
             return status;
@@ -75,7 +76,9 @@ public class AsmDetector {
         LinkedList<String> otherMethods = new LinkedList<String>();
         LinkedList<String> superClasses = new LinkedList<String>();
         public void addSuper(String superName) {
-            if (superName.equals("java/lang/Object")) return;
+            if (superName.equals("java/lang/Object")) {
+                return;
+            }
             if (!superClasses.contains(superName)) {superClasses.add(superName);}
         }
         public int getPausableStatus(String methodName, String desc) {

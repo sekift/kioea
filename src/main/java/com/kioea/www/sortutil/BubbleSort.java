@@ -11,6 +11,7 @@ public class BubbleSort extends SortStrategy {
 	/*
 	 * 策略方法
 	 */
+	@Override
 	public void sort() {
 
 	}
@@ -18,6 +19,7 @@ public class BubbleSort extends SortStrategy {
 	/*
 	 * 策略方法
 	 */
+	@Override
 	public int[] sort(int[] array) {
 		int i = 0;
 		int j, tmp;

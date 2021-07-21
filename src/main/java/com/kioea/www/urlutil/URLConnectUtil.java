@@ -17,7 +17,7 @@ public class URLConnectUtil {
 	public static HttpURLConnection connection;
 	public static int state = -1;
 	public static String succ;
-	public static long length = 0l;
+	public static long length = 0L;
 
 	/**
 	 * 返回

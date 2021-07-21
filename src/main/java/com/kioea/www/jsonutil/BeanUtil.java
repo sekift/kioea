@@ -162,6 +162,7 @@ public final class BeanUtil {
 	public static List<Map<String, Object>> sort(List<Map<String, Object>> list, final String[] sortKeys, final boolean[] ascOrders) {
 
 		Comparator<Map<String, Object>> cmp = new Comparator<Map<String, Object>>() {
+			@Override
 			@SuppressWarnings("unchecked")
 			public int compare(Map m1, Map m2) { 
 				
@@ -193,7 +194,8 @@ public final class BeanUtil {
 	@SuppressWarnings("unchecked")
 	public static List<Map<String, Object>> sort(List<Map<String, Object>> list, final String sortKey) {
 		Comparator cmp = new Comparator<Map>() {
-			public int compare(Map m1, Map m2) { 
+			@Override
+			public int compare(Map m1, Map m2) {
 				
 				Object o1 = m1.get(sortKey);
 				Object o2 = m2.get(sortKey);

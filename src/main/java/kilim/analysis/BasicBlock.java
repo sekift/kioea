@@ -362,13 +362,16 @@ public class BasicBlock implements Comparable<BasicBlock> {
                     break;
 
                 default:
-                	if (opcode >= 26 && opcode <= 45)
-                    	throw new IllegalStateException("instruction variants not expected here");
+                	if (opcode >= 26 && opcode <= 45) {
+                        throw new IllegalStateException("instruction variants not expected here");
+                    }
                 	
                     break;
             }
 
-            if (endOfBB) break;
+            if (endOfBB) {
+                break;
+            }
         }
         endPos = pos;
         if (hasFollower && (pos + 1) < flow.instructions.size()) {
@@ -455,6 +458,7 @@ public class BasicBlock implements Comparable<BasicBlock> {
         return (flags & bitFlag) != 0;
     }
 
+    @Override
     public int compareTo(BasicBlock o) {
         if (this.id == o.id) {
             assert this == o; // Just in case we have mistakenly assigned the
@@ -1060,8 +1064,9 @@ public class BasicBlock implements Comparable<BasicBlock> {
                         componentType = TypeDesc.getInterned(minode.desc);
                         StringBuffer sb = new StringBuffer(componentType.length()
                                 + dims);
-                        for (int j = 0; j < dims; j++)
+                        for (int j = 0; j < dims; j++) {
                             sb.append('[');
+                        }
                         sb.append(componentType);
                         v = Value.make(i, TypeDesc.getInterned(sb.toString()));
                         frame.push(v);
@@ -1330,8 +1335,9 @@ public class BasicBlock implements Comparable<BasicBlock> {
      */
     public ArrayList<BasicBlock> getSubBlocks() throws KilimException {
         if (subBlocks == null) {
-            if (!hasFlag(IS_SUBROUTINE))
+            if (!hasFlag(IS_SUBROUTINE)) {
                 return null;
+            }
             subBlocks = new ArrayList<BasicBlock>(10);
             Stack<BasicBlock> stack = new Stack<BasicBlock>();
             this.setFlag(SUB_BLOCK);
@@ -1365,7 +1371,9 @@ public class BasicBlock implements Comparable<BasicBlock> {
     }
 
     BasicBlock getFollowingBlock() {
-        if (follower != null) return follower;
+        if (follower != null) {
+            return follower;
+        }
         // otherwise we'll return the next block anyway. This is used
         // to get the block following a JSR instruction, even though 
         // it is not a follower in the control flow sense.
@@ -1380,18 +1388,18 @@ public class BasicBlock implements Comparable<BasicBlock> {
         sb.append("\n========== BB #").append(id).append("[").append(System.identityHashCode(this)).append("]\n");
         sb.append("method: ").append(this.flow.name).append(this.flow.desc).append("\n");
         sb.append("start = ").append(startPos).append(",end = ").append(endPos).append('\n').append("Successors:");
-        if (successors.isEmpty())
+        if (successors.isEmpty()) {
             sb.append(" None");
-        else {
+        } else {
             for (int i = 0; i < successors.size(); i++) {
                 BasicBlock succ = successors.get(i);
                 sb.append(" ").append(succ.id).append("[").append(System.identityHashCode(succ)).append("]");
             }
         }
         sb.append("\nHandlers:");
-        if (handlers.isEmpty())
+        if (handlers.isEmpty()) {
             sb.append(" None");
-        else {
+        } else {
             for (int i = 0; i < handlers.size(); i++) {
                 sb.append(" ").append(handlers.get(i).catchBB.id);
             }
@@ -1437,7 +1445,9 @@ public class BasicBlock implements Comparable<BasicBlock> {
         int lastInsn = getInstruction(endPos).getOpcode(); 
         if (lastInsn == JSR) {
             BasicBlock targetBB = successors.get(0);
-            if (!targetBB.hasFlag(PAUSABLE_SUB)) return;
+            if (!targetBB.hasFlag(PAUSABLE_SUB)) {
+                return;
+            }
             changeLastInsnToGOTO(targetBB.startLabel);
             successors.clear();
             successors.add(targetBB);
@@ -1475,6 +1485,7 @@ public class BasicBlock implements Comparable<BasicBlock> {
 }
 
 class BBComparator implements Comparator<BasicBlock> {
+    @Override
     public int compare(BasicBlock o1, BasicBlock o2) {
         if (o1.id == o2.id) {
             return 0;

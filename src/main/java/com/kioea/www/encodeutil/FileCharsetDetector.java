@@ -14,6 +14,8 @@ import org.mozilla.intl.chardet.nsICharsetDetectionObserver;
  * 
  * @author icer PS: JCharDet 是mozilla自动字符集探测算法代码的java移植，其官方主页为：
  *         http://jchardet.sourceforge.net/
+ *
+ * 改为了jcchardet 2021/07/21
  * @date 2008/11/13
  */
 public class FileCharsetDetector {
@@ -122,6 +124,7 @@ public class FileCharsetDetector {
 		// Set an observer...
 		// The Notify() will be called when a matching charset is found.
 		det.Init(new nsICharsetDetectionObserver() {
+			@Override
 			public void Notify(String charset) {
 				found = true;
 				encoding = charset;
@@ -137,12 +140,14 @@ public class FileCharsetDetector {
 
 		while ((len = imp.read(buf, 0, buf.length)) != -1) {
 			// Check if the stream is only ascii.
-			if (isAscii)
+			if (isAscii) {
 				isAscii = det.isAscii(buf, len);
+			}
 
 			// DoIt if non-ascii and not done yet.
-			if (!isAscii && !done)
+			if (!isAscii && !done) {
 				done = det.DoIt(buf, len, false);
+			}
 		}
 		det.DataEnd();
 

@@ -12,6 +12,7 @@ public class TaskGroup extends Task {
     
     public List<ExitMsg> results = Collections.synchronizedList(new ArrayList<ExitMsg>());
 
+    @Override
     public void execute() throws Pausable {
         while (!tasks.isEmpty() || addedTasksMB.hasMessage()) {
             switch (Mailbox.select(addedTasksMB, exitmb)) {

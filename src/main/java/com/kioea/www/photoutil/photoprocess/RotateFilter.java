@@ -39,7 +39,8 @@ public class RotateFilter extends AbstractBufferedImageOp {
 		this.background = background;
 	}
 
-	public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
+	@Override
+    public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
 		if (dstCM == null)
 			dstCM = src.getColorModel();
 		return new BufferedImage(dstCM, dstCM.createCompatibleWritableRaster(outw, outh), dstCM.isAlphaPremultiplied(),

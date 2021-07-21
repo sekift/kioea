@@ -20,6 +20,7 @@ public class ThreadPoolsUtil {
 	 */
 	public void setString(final String str) {
 		threadpool.execute(new Runnable() {
+			@Override
 			public void run() {
 				getString(str);
 			}

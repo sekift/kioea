@@ -35,10 +35,12 @@ public class XmlProperties extends ReloadableProperties implements Config {
 		}
 	}
 
+	@Override
 	public <T> T getItem(String name) {
 		return (T) props.get(name);
 	}
 
+	@Override
 	public <T> T getItem(String name, T defaultValue) {
 
 		T rtv = (T) props.get(name);

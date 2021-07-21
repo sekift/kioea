@@ -60,7 +60,8 @@ public class ScaleFilter extends AbstractBufferedImageOp {
 		return dest;
 	}
 
-	public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
+	@Override
+    public BufferedImage createCompatibleDestImage(BufferedImage src, ColorModel dstCM) {
 		if (dstCM == null)
 			dstCM = src.getColorModel();
 		int outwidth = (int) (hscale * (float) src.getWidth());

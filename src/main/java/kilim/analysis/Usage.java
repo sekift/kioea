@@ -112,6 +112,7 @@ public class Usage {
         this.def.or(succ.def);
     }
 
+    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("use");

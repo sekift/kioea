@@ -137,8 +137,9 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
     
     
     // ClassVisitor implementation
+    @Override
     public void visit(int version, int access, String name, String signature, String superName,
-            String[] interfaces) {
+                      String[] interfaces) {
         this.name = name;
         this.superName = superName;
         this.interfaceNames = interfaces == null ? CachedClassMirrors.EMPTY_SET : interfaces;
@@ -147,8 +148,9 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
 
     
     
+    @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature,
-            String[] exceptions) {
+                                     String[] exceptions) {
         if (tmpMethodList == null) {
             tmpMethodList = new ArrayList<CachedMethodMirror>();
         }
@@ -156,6 +158,7 @@ class CachedClassMirror extends ClassVisitor implements ClassMirror  {
         return null; // null MethodVisitor to avoid examining the instructions.
     }
     
+    @Override
     public void visitEnd() {
         if (tmpMethodList != null) {
             declaredMethods = new MethodMirror[tmpMethodList.size()];

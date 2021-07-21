@@ -148,6 +148,7 @@ public abstract class Task implements EventSubscriber {
         throw new AssertionError("Expected task to be run by WorkerThread");
     }
     
+    @Override
     public void onEvent(EventPublisher ep, Event e) {
         resume();
     }
@@ -331,6 +332,7 @@ public abstract class Task implements EventSubscriber {
         // create a temp mailbox, and wait on it.
         final Mailbox<Integer> sleepmb = new Mailbox<Integer>(1); // TODO: will need a better mechanism for monitoring later on.
         timer.schedule(new TimerTask() {
+            @Override
             public void run() {
                 sleepmb.putnb(0);
             }
@@ -385,6 +387,7 @@ public abstract class Task implements EventSubscriber {
         errNotWoven(this);
     }
 
+    @Override
     public String toString() {
         return "" + id + "(running=" + running + ",pr=" + pauseReason+")";
     }

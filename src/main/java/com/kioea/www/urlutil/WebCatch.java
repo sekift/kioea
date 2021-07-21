@@ -40,6 +40,7 @@ public class WebCatch extends Thread {
 		}
 	}
 
+	@Override
 	public void run() {
 		// System.out.println(this.getCatch_url());
 		getListPage(this.getCatch_url());

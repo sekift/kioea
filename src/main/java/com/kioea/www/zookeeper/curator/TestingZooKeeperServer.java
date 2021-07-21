@@ -55,6 +55,7 @@ public class TestingZooKeeperServer extends QuorumPeerMain implements Closeable 
 		main = (configBuilder.size() > 1) ? new TestingQuorumPeerMain() : new TestingZooKeeperMain();
 	}
 
+	@Override
 	public QuorumPeer getQuorumPeer() {
 		return main.getQuorumPeer();
 	}
@@ -122,6 +123,7 @@ public class TestingZooKeeperServer extends QuorumPeerMain implements Closeable 
 		}
 
 		new Thread(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					QuorumPeerConfig config = configBuilder.buildConfig(thisInstanceIndex);
