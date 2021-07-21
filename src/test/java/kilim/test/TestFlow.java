@@ -6,7 +6,7 @@
 
 package kilim.test;
 
-import static kilim.Constants.D_BYTE;
+import static kilim.Constant.D_BYTE;
 import kilim.analysis.BasicBlock;
 import kilim.analysis.Frame;
 import kilim.analysis.IncompatibleTypesException;
@@ -41,7 +41,7 @@ public class TestFlow extends Base {
         assertEquals("Lkilim/test/ex/ExA;", f.getStack(2).getTypeDesc());
     }
 
-    public void testConstants() throws IncompatibleTypesException {
+    public void testConstant() throws IncompatibleTypesException {
         MethodFlow flow = getFlow("loop");
         if (flow == null)
             return;

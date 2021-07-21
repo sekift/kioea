@@ -199,7 +199,6 @@ public final class NodeLocators {
 	/**
 	 * 一致性hash 节点定位器
 	 * <br>备注:一致性hash的值范围[0, 2^32)=[0, 4294967295]
-	 * @author yuyoo (yuyoo4j@163.com)
 	 * @date 2009-12-11 上午09:46:18
 	 */
 	public static class ConsistentHashLocator<T> implements NodeLocator<T> {
@@ -568,7 +567,6 @@ public final class NodeLocators {
 		
 		/**
 		 * 逆时针节点迭代器
-		 * @author zhandl(zhandl@hainan.net)
 		 * @time 2009-12-21 上午10:20:28
 		 */
 		public static class CounterclockwiseNodeIterator<T> implements Iterator<T> {
@@ -633,7 +631,6 @@ public final class NodeLocators {
 	 	
 	/**
 	 * 随机算法 节点定位器
-	 * @author yuyoo (yuyoo4j@163.com)
 	 * @date 2009-12-11 上午09:46:51
 	 */
 	public static class RandomNodeLocator<T> implements NodeLocator<T> {
@@ -705,7 +702,6 @@ public final class NodeLocators {
 
 	/**
 	 * 嵌套查找 节点定位器
-	 * @author yuyoo (yuyoo4j@163.com)
 	 * @date 2009-12-11 上午09:48:39
 	 */
 	public static class NestedLookupNodeLocator<T> implements NodeLocator<T> {
@@ -791,7 +787,6 @@ public final class NodeLocators {
 	
 	/**
 	 * 主从 节点定位器
-	 * @author yuyoo (yuyoo4j@163.com)
 	 * @date 2009-12-11 上午09:56:22
 	 */
 	public static class MasterSlaveNodeLocator<T> implements NodeLocator<T> {

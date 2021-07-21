@@ -19,7 +19,7 @@ public class StringCharge {
 
 	/**
 	 * ascii2string
-	 * @param str
+	 * @param number
 	 * @return
 	 */
 	public static String ascii2string(int number){

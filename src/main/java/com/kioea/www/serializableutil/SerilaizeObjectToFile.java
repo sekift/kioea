@@ -10,9 +10,11 @@ import com.kioea.www.CloseUtil;
 public class SerilaizeObjectToFile {
 
 	/**
-	 * @param args
+	 *
+	 * @param object
+	 * @param fileName
+	 * @return
 	 */
-
 	public static String saveObject(Object object, String fileName) {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;

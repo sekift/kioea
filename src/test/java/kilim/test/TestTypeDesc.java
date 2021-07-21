@@ -9,15 +9,15 @@ package kilim.test;
 import kilim.analysis.IncompatibleTypesException;
 import kilim.analysis.TypeDesc;
 import junit.framework.TestCase;
-import static kilim.Constants.*;
+import static kilim.Constant.*;
 import java.lang.reflect.*;
 import java.util.Arrays;
 
 public class TestTypeDesc extends TestCase {
     public void testInterning() throws Exception {
-        // Verify all strings in Constants that start with "D_"
+        // Verify all strings in Constant that start with "D_"
         // are indeed interned.
-        Class<?> c = Class.forName("kilim.Constants");
+        Class<?> c = Class.forName("kilim.Constant");
         Field[] fields = c.getFields();
         for (Field f:fields) {
             if (f.getName().startsWith("D_")) {

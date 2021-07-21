@@ -6,16 +6,16 @@
 
 package kilim.test;
 
-import static kilim.Constants.D_ARRAY_BOOLEAN;
-import static kilim.Constants.D_BOOLEAN;
-import static kilim.Constants.D_DOUBLE;
-import static kilim.Constants.D_INT;
-import static kilim.Constants.D_LONG;
-import static kilim.Constants.D_OBJECT;
-import static kilim.Constants.D_RETURN_ADDRESS;
-import static kilim.Constants.D_STRING;
-import static kilim.Constants.D_THROWABLE;
-import static kilim.Constants.D_UNDEFINED;
+import static kilim.Constant.D_ARRAY_BOOLEAN;
+import static kilim.Constant.D_BOOLEAN;
+import static kilim.Constant.D_DOUBLE;
+import static kilim.Constant.D_INT;
+import static kilim.Constant.D_LONG;
+import static kilim.Constant.D_OBJECT;
+import static kilim.Constant.D_RETURN_ADDRESS;
+import static kilim.Constant.D_STRING;
+import static kilim.Constant.D_THROWABLE;
+import static kilim.Constant.D_UNDEFINED;
 import kilim.analysis.BasicBlock;
 import kilim.analysis.Frame;
 import kilim.analysis.MethodFlow;

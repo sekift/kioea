@@ -135,8 +135,9 @@ public class DirtWordFilterSplitWords {
 			return mask3;
 		case 4:
 			return mask4;
+		default:
+			return "";
 		}
-		return "";
 	}
 
 	// set

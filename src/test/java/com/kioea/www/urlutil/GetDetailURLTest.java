@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kioea.www.Constants;
+import com.kioea.www.Constant;
 
 /**
  * 
@@ -39,7 +39,7 @@ public class GetDetailURLTest {
 //		String url = "http://www.ganji.com";
 //		System.out.println(URLAPITool.get(url.replace("http://", "")));
 //		System.out.println(GetURLContent.getPageTitle(url));
-//		String type = Constants.regex_ID.IPHONE;
+//		String type = Constant.regex_ID.IPHONE;
 //
 //		Set<String> set = new TreeSet<String>(GetDetailURL.getRegex(url, type));
 //
@@ -50,7 +50,7 @@ public class GetDetailURLTest {
 //		System.out.println(set.size());
 		
 		String url = "http://tieba.baidu.com/p/3992089517?pn=3";
-		String type = Constants.regex_ID.EMAIL;
+		String type = Constant.regex_ID.EMAIL;
 
 		Set<String> set = new TreeSet<String>(GetDetailFromPage.getDetailFromPage(url, type));
 

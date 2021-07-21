@@ -15,17 +15,15 @@ import com.kioea.www.stringutil.StringUtil;
  */
 public class ConvertPinYin {
 
-	private static LinkedHashMap<String,Integer> spellMap = null;
+	private static LinkedHashMap<String,Integer> spellMap;
 
 	static {
-		if (spellMap == null) {
-			spellMap = new LinkedHashMap<String,Integer>(400);
-		}
+		spellMap = new LinkedHashMap<String,Integer>(400);
 		initialize();
 	}
 
 	private static void spellPut(String spell, int ascii) {
-		spellMap.put(spell, new Integer(ascii));
+		spellMap.put(spell, ascii);
 	}
 
 	private static void initialize() {
@@ -449,13 +447,10 @@ public class ConvertPinYin {
 			return bytes[0];
 		}
 
-		if (bytes.length == 2) {// 中文
-			int hightByte = 256 + bytes[0];
-			int lowByte = 256 + bytes[1];
-			int ascii = (256 * hightByte + lowByte) - 256 * 256;
-			return ascii;
-		}
-		return 0;
+		// 中文
+		int hightByte = 256 + bytes[0];
+		int lowByte = 256 + bytes[1];
+		return (256 * hightByte + lowByte) - 256 * 256;
 	}
 
 	/**
@@ -479,11 +474,12 @@ public class ConvertPinYin {
 		int asciiRang0 = -20319;
 		int asciiRang;
 		while (it.hasNext()) {
-			spell = (String) it.next();
+			spell = it.next();
 			Object valObj = spellMap.get(spell);
 			if (valObj instanceof Integer) {
 				asciiRang = ((Integer) valObj).intValue();
-				if (ascii >= asciiRang0 && ascii < asciiRang) {// 区间找到
+				// 区间找到
+				if (ascii >= asciiRang0 && ascii < asciiRang) {
 					return (spell0 == null) ? spell : spell0;
 				} else {
 					spell0 = spell;
@@ -499,17 +495,17 @@ public class ConvertPinYin {
 			return null;
 		}
 		char[] chars = cnStr.toCharArray();
-		StringBuffer retuBuf = new StringBuffer();
-		for (int i = 0, Len = chars.length; i < Len; i++) {
-			int ascii = getCnAscii(chars[i]);// 得到单个中文的Ascii码
+		StringBuilder retuBuf = new StringBuilder();
+		for (char aChar : chars) {
+			int ascii = getCnAscii(aChar);// 得到单个中文的Ascii码
 //			System.out.println(chars[i] + " : " + ascii);
 			if (ascii == 0) { // 取ascii时出错
-				retuBuf.append(chars[i]);
+				retuBuf.append(aChar);
 			} else {
 				String spell = getSpellByAscii(ascii);
 //				System.out.println(spell);
 				if (spell == null) {
-					retuBuf.append(chars[i]);
+					retuBuf.append(aChar);
 				} else {
 					retuBuf.append(spell);
 				} // end of if spell == null

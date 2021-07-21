@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kioea.www.Constants;
+import com.kioea.www.Constant;
 
 /**
  * 
@@ -36,7 +36,7 @@ public class PatternUtilTest {
 	@Test
 	public void testPatternAll() {
 		System.out.println(PatternUtil.patternAll(1223324, "^1(2+3+|3+2+)(2|3)*4$"));
-		System.out.println(PatternUtil.patternAll("中文2343", Constants.regex_ID.CHINESE));
+		System.out.println(PatternUtil.patternAll("中文2343", Constant.regex_ID.CHINESE));
 	}
 
 	/**

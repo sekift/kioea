@@ -15,13 +15,13 @@ public class EncryptMD5 {
 
 	public static String encryptMD5(String content, String charset) {
 		StringBuilder result = new StringBuilder();
-		MessageDigest md = null;
+		MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("MD5");
 			md.update(content.getBytes(charset));
 			byte[] byteDigest = md.digest();
-			for (int i = 0; i < byteDigest.length; i++) {
-				String tmpStr = Integer.toHexString(0xFF & byteDigest[i]);
+			for (byte b : byteDigest) {
+				String tmpStr = Integer.toHexString(0xFF & b);
 				if (tmpStr.length() == 1) {
 					result.append("0").append(tmpStr);
 				} else {

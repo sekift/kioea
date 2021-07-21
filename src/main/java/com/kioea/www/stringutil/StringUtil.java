@@ -55,7 +55,6 @@ public class StringUtil {
 	 * 字符串编码函数。
 	 * 
 	 * @param str
-	 * @param srcCode
 	 * @param targetCode
 	 * @return
 	 */

@@ -8,8 +8,8 @@ import com.kioea.www.regexutil.PatternUtil;
 /**
  * 将value转换类型,将String的再包装后转换
  * 
- * @author:sekift
- * @time:2015-3-4 上午10:44:14，3-25
+ * @author: sekift
+ * @time: 2015-3-4 上午10:44:14，3-25
  * @version:
  */
 public class ConvertUtil {
@@ -25,8 +25,7 @@ public class ConvertUtil {
 
 		long val = 0;
 		if (Long.class.isInstance(value)) {
-			Long l = (Long) value;
-			val = l.longValue();
+			val = (Long) value;
 		} else if (Integer.class.isInstance(value)) {
 			Integer i = (Integer) value;
 			val = i.longValue();

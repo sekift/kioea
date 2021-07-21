@@ -97,8 +97,7 @@ public class ExecutorServiceTest {
 		 * 边界），则系统可能为超过您许可的更多线程安排时间。使用小型队列通常要求较大的池大小，CPU
 		 * 使用率较高，但是可能遇到不可接受的调度开销，这样也会降低吞吐量。
 		 */
-		BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(100);// new
-		// SynchronousQueue<Runnable>();
+		BlockingQueue<Runnable> queue = new LinkedBlockingQueue<>(100);
 		ThreadFactory fac = new ThreadFactory() {
 			// 创建一个新的线程, 同时设置它的名称和daemon模式
 			@Override

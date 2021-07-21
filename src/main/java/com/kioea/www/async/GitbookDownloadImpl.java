@@ -53,7 +53,8 @@ public class GitbookDownloadImpl implements Runnable {
 
 	private static void getListPage(String url, String type) {
 		try {
-			Document document = Jsoup.connect(url).userAgent("Mozilla").timeout(connectTime).get(); // 处理首页
+			// 处理首页
+			Document document = Jsoup.connect(url).userAgent("Mozilla").timeout(connectTime).get();
 			Elements htmls = document.select("div.Book .book-infos a");
 			String html = "";
 			for (Element element : htmls) {
@@ -68,13 +69,13 @@ public class GitbookDownloadImpl implements Runnable {
 			if (e.getMessage().contains("Connection timed out")) {
 				System.out.println(url + " 正在重新连接……");
 				times++;
-				if (times < 5) { // 最多重新连接5次
+				// 最多重新连接5次
+				if (times < 5) {
 					getListPage(url, type);
 				} else {
 					System.out.println(url + " 重试次数大于5，已放弃。");
 				}
 			}
-			times = 0; // 虽然没有必要
 		}
 	}
 
@@ -98,13 +99,13 @@ public class GitbookDownloadImpl implements Runnable {
 			if (e.getMessage().contains("Connection timed out")) {
 				System.out.println(originUrl + " : " + url + " 正在重新连接……");
 				times++;
-				if (times < 5) { // 最多重新连接5次
+				// 最多重新连接5次
+				if (times < 5) {
 					getPage(url, type, originUrl);
 				} else {
 					System.out.println(originUrl + " : " + url + " 重试次数大于5，已放弃。");
 				}
 			}
-			times = 0;
 		}
 	}
 
@@ -180,13 +181,13 @@ public class GitbookDownloadImpl implements Runnable {
 			if (e.getMessage().contains("Premature EOF")) {
 				System.out.println(originUrl + " : " + dir + " 正在重新下载……");
 				times++;
-				if (times < 3) { // 最多重新连接3次
+				// 最多重新连接3次
+				if (times < 3) {
 					downloadFile(dir, file, type, originUrl);
 				} else {
 					System.out.println(originUrl + " : " + dir + " 重试次数大于3，已放弃。");
 				}
 			}
-			times = 0;
 		} finally {
 			try {
 				if (out != null) {

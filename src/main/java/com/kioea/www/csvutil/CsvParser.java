@@ -29,9 +29,7 @@ public class CsvParser implements Iterator<List<String>>{
 		super();
 		try {
 			reader = new CsvListReader(new InputStreamReader(new FileInputStream(csvFile), encoding), CsvPreference.EXCEL_PREFERENCE);
-		} catch (UnsupportedEncodingException e) {
-			log.error(e.getMessage(), e);
-		} catch (FileNotFoundException e) {
+		} catch (UnsupportedEncodingException | FileNotFoundException e) {
 			log.error(e.getMessage(), e);
 		}
 	}
@@ -39,7 +37,7 @@ public class CsvParser implements Iterator<List<String>>{
 	@Override
 	public boolean hasNext(){
 		try {
-			if(reader.getLineNumber() == 0){//
+			if(reader.getLineNumber() == 0){
 				row = reader.read();
 			}
 			row = reader.read();

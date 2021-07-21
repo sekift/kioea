@@ -63,4 +63,62 @@ public class BaseConvert {
 		}
 	}
 
+	/**
+	 * 使用数字，22个大写英文字母(不包含 ILOU 字符)
+	 * https://tools.ietf.org/html/rfc4648
+	 */
+	private static final char[] DIGITS_32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
+			.toCharArray();
+
+	private static final int DIGITS32_LENGTH = DIGITS_32.length;
+
+	/**
+	 * long类型转为32进制，指定了使用的字符，参考Long.toUnsignedString0
+	 *
+	 * @param val
+	 * @return
+	 */
+	private static String digits32(long val) {
+		// 32=2^5=二进制100000
+		int shift = 5;
+		// numberOfLeadingZeros 获取long值从高位连续为0的个数，比如val=0，则返回64
+		// 此处mag=long值二进制减去高位0之后的长度
+		int mag = Long.SIZE - Long.numberOfLeadingZeros(val);
+		int len = Math.max(((mag + (shift - 1)) / shift), 1);
+		char[] buf = new char[len];
+		do {
+			// &31相当于%32
+			buf[--len] = DIGITS_32[((int) val) & 31];
+			val >>>= shift;
+		} while (val != 0 && len > 0);
+		return new String(buf);
+	}
+
+	/**
+	 * 32进制转换为long类型
+	 *
+	 * @param val
+	 * @return
+	 */
+	private static Long convert32(String val) {
+		char[] num = val.toCharArray();
+		int numLen = num.length;
+		long res = 0L;
+		int flag, i, j;
+		for (i = 0; i < numLen; i++) {
+			flag = 1;
+			for (j = 0; j < DIGITS32_LENGTH; j++) {
+				if (DIGITS_32[j] == num[i]) {
+					Double powD = Math.pow(DIGITS32_LENGTH, numLen - 1 - i);
+					res += j * powD.longValue();
+					flag = 0;
+				}
+			}
+			if (flag == 1) {
+				break;
+			}
+		}
+		return res;
+	}
+
 }

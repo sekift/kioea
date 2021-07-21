@@ -4,12 +4,13 @@ package com.kioea.www.randomutil;
  * 
  * @author:luyz
  * @time:2016-9-28 下午03:58:22
- * @version:
+ * @description: 按概率生成数据
  */
 public class RandomForRange {
 
 	public static void rangeForRank(int total) {
-		double[] list = {0.6, 0.32, 0.07, 0.01};//只需调整/增加这个list即可
+		//只需调整/增加这个list即可
+		double[] list = {0.6, 0.32, 0.07, 0.01};
 		double[] doubleList = new double[list.length + 1];
 		doubleList[0] = 0.0;
 		for (int i = 0; i < list.length; i++) {

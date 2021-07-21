@@ -16,9 +16,6 @@ package com.kioea.www.randomutil;
  *                 http://www.keithschwarz.com/darts-dice-coins/
  */
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 

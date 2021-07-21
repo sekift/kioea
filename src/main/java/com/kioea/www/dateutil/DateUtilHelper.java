@@ -5,9 +5,11 @@ package com.kioea.www.dateutil;
  * <p>Description: DateUtil类包含了标准的时间和日期格式，以及这些格式在字符串及日期之间转换的方法</p>
  * <p>Copyright: Copyright (c) 2007 advance,Inc. All Rights Reserved</p>
  * <p>Company: advance,Inc.</p>
+ *
  * @author advance
  * @version 1.0
  */
+
 import com.kioea.www.stringutil.HtmlTool;
 
 import java.text.DateFormat;

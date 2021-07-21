@@ -8,7 +8,7 @@ package kilim.test;
 
 import kilim.analysis.Value;
 import junit.framework.TestCase;
-import static kilim.Constants.*;
+import static kilim.Constant.*;
 
 public class TestValue extends TestCase {
     public void testSameSiteMerge() {

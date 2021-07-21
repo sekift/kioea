@@ -1,13 +1,7 @@
 package com.kioea.www.grouputil;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +16,7 @@ import com.kioea.www.stringutil.StringUtil;
  * 节点：point
  * 区：zone
  * 机器：machine
- * 
+ *
  * @author:sekift
  * @time:2016-9-12 下午02:59:17
  * @version:
@@ -42,18 +36,18 @@ public class BuildCluster {
 	// 机器排布，zone之间使用分号;分隔，机器之间使用,分隔
 	private String machineZone = "";
 	// 机器排布，处理后的list
-	private List<List<String>> machineList = new ArrayList<List<String>>();
+	private List<List<String>> machineList;
 	// 大小集群机器分配:集群名称，占用数量（百分比）
-	private Map<String, BigDecimal> clusterNameAndSize = new TreeMap<String, BigDecimal>();
+	private Map<String, BigDecimal> clusterNameAndSize;
 	// 保存每个step与分配结果的map
-	private Map<Integer, String> stepAndCluster = new HashMap<Integer, String>();
+	private Map<Integer, String> stepAndCluster = new HashMap<>();
 	// 保存step与分配结果的集群list
-	private Map<Integer, Map<String, List<String>>> stepAndClusterList = new HashMap<Integer, Map<String, List<String>>>();
+	private Map<Integer, Map<String, List<String>>> stepAndClusterList = new HashMap<>();
 	// 返回最终集群分配结果：集群内组使用;分隔，组内节点使用,分隔
 	private Map<String, String> resultCluster = new HashMap<String, String>();
 	// step与各集群得分
-	Map<Integer, Integer> stepAndScore = new HashMap<Integer, Integer>();
-	
+	Map<Integer, Integer> stepAndScore = new HashMap<>();
+
 	public Map<String, String> getResultCluster() {
 		return resultCluster;
 	}
@@ -89,7 +83,7 @@ public class BuildCluster {
 		this.machineList = buildMachineList(machineZone);
 		this.resultCluster = buildCluster();
 	}
-	
+
 	// 处理machineZone到machineList,machineScoreList
 	private List<List<String>> buildMachineList(String machineZone) {
 		List<List<String>> machineListLocal = new ArrayList<List<String>>();
@@ -100,7 +94,7 @@ public class BuildCluster {
 		int capacity = 0;
 		String[] zoneStr = machineZone.trim().split(";");
 		for (String zone : zoneStr) {
-			List<String> list = new ArrayList<String>();
+			List<String> list = new ArrayList<>();
 			String[] zoneElement = zone.trim().split(",");
 			for (String ele : zoneElement) {
 				list.add(ele);
@@ -111,7 +105,7 @@ public class BuildCluster {
 		this.capacity = capacity;
 		return machineListLocal;
 	}
-	
+
 	// 参数判断
 	private boolean check() {
 		boolean result = false;
@@ -170,9 +164,9 @@ public class BuildCluster {
 
 		// 小集群直接构造
 		if (capacity <= 2) {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < capacity; i++) {
-				sb.append(machineListGroup.get(i) + " ");
+				sb.append(machineListGroup.get(i)).append(" ");
 				stepAndCluster.put(step, sb.toString().trim());
 			}
 		} else {
@@ -181,14 +175,14 @@ public class BuildCluster {
 			for (int step = 3; step < capacity; step += 2) {
 				if (gcd(step, capacity)) {
 					this.step = step;
-					StringBuffer sb = new StringBuffer();
+					StringBuilder sb = new StringBuilder();
 					for (int i = 0; i < capacity; i++) {
 						number = 1 + i * step;
 						number = Math.abs(number) % capacity;
 						if (number == 0) {
 							number = capacity;
 						}
-						sb.append(machineListGroup.get(number - 1) + " ");
+						sb.append(machineListGroup.get(number - 1)).append(" ");
 						stepAndCluster.put(step, sb.toString().trim());
 					}
 				}
@@ -198,7 +192,7 @@ public class BuildCluster {
 	}
 
 	/**
-	 * 评价函数： 
+	 * 评价函数：
 	 * 1 对比组内：集群组内节点在同一区域评分为0，不同评分8
 	 * 2 对比多个集群：集群之间的组按不同区域的不同给1/2/3/4分
 	 * 3 最后：选分值最大而且step最小的
@@ -209,9 +203,11 @@ public class BuildCluster {
 		//System.out.println("clusterSize:" + clusterSize);
 		System.out.println("clusterNameAndSize:" + clusterNameAndSize);
 
-		if (capacity == 1) {// 只有一台不用评
+		if (capacity == 1) {
+			// 只有一台不用评
 			resultCluster.put(clusterNameAndSize.keySet().iterator().next(), stepAndCluster.get(step));
-		} else if (capacity == 2) {// 只有两台也不同评
+		} else if (capacity == 2) {
+			// 只有两台也不同评
 			if (clusterSize == 1) {
 				resultCluster.put(clusterNameAndSize.keySet().iterator().next(),
 						stepAndCluster.get(step).replace(" ", ","));
@@ -226,21 +222,18 @@ public class BuildCluster {
 		} else if (capacity > 3) {
 			for (int localStep : stepAndCluster.keySet()) {
 				// 分集群
-				List<List<String>> localClusterList = new ArrayList<List<String>>();
+				List<List<String>> localClusterList = new ArrayList<>();
 				String localCluster = stepAndCluster.get(localStep);
 				// System.out.println("localCluster:"+localCluster);
 
 				String[] localClusterStr = localCluster.split(" ");
-				Map<String, List<String>> nameAndClusterMap = new HashMap<String, List<String>>();
+				Map<String, List<String>> nameAndClusterMap = new HashMap<>();
 
 				int sum = 0;
 				for (String key : clusterNameAndSize.keySet()) {
 					BigDecimal partLength = clusterNameAndSize.get(key);
-					List<String> list = new ArrayList<String>();
 					int length = partLength.multiply(BigDecimal.valueOf(capacity)).intValue();
-					for (int i = sum; i < sum+length; i++) {
-						list.add(localClusterStr[i]);
-					}
+					List<String> list = new ArrayList<>(Arrays.asList(localClusterStr).subList(sum, sum + length));
 					sum += length;
 					localClusterList.add(list);
 					nameAndClusterMap.put(key, list);
@@ -254,7 +247,7 @@ public class BuildCluster {
 		System.out.println("stepAndScore:" + stepAndScore);
 		return getClusterByStep();
 	}
-	
+
 	// 选取选分值最大而且step最小集群
 	private Map<String, String> getClusterByStep() {
 		// 先取分值最大，再取step最小
@@ -273,24 +266,21 @@ public class BuildCluster {
 		System.out.println("minStep:" + minStep);
 		return packageCluster(stepAndClusterList.get(minStep));
 	}
-	
+
 	// 选取最大值
-	public static int getMaxValueScore(Map<Integer, Integer> stepAndScore) {
+	private static int getMaxValueScore(Map<Integer, Integer> stepAndScore) {
 		int resutl = 0;
-		resutl = Collections.max(stepAndScore.values(), new Comparator<Integer>() {
-			@Override
-			public int compare(Integer v1, Integer v2) {
-				if (v1 > v2) {
-					return 1;
-				} else if (v1 < v2) {
-					return -1;
-				}
-				return 0;
+		resutl = Collections.max(stepAndScore.values(), (v1, v2) -> {
+			if (v1 > v2) {
+				return 1;
+			} else if (v1 < v2) {
+				return -1;
 			}
+			return 0;
 		});
 		return resutl;
 	}
-	
+
 	// 评价总得分
 	private int clusterScore(List<List<String>> localClusterList) {
 		int score = 0;
@@ -298,7 +288,7 @@ public class BuildCluster {
 		score += groupInZone(localClusterList);
 		return score;
 	}
-	
+
 	// 评价集群的组内节点是否在同一区域
 	private int pointInZone(List<List<String>> localClusterList) {
 		int score = 0;
@@ -311,7 +301,7 @@ public class BuildCluster {
 		}
 		return score;
 	}
-	
+
 	// 是否在同一区域
 	private boolean isPointInZone(String v1, String v2) {
 		// System.out.println("v1,v2:"+v1+" "+v2);
@@ -324,7 +314,7 @@ public class BuildCluster {
 		}
 		return result;
 	}
-	
+
 	// 评价集群组的区域是否相同
 	private int groupInZone(List<List<String>> localClusterList) {
 		int score = 0;
@@ -354,7 +344,7 @@ public class BuildCluster {
 		}
 		return score;
 	}
-	
+
 	/**
 	 * 同一集群组的区域是否相同
 	 * 1 4个不同，记4分
@@ -368,7 +358,7 @@ public class BuildCluster {
 	private int isGroupInZone(List<String> list1, List<String> list2) {
 		int score = 0;
 		// 所在的
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<>();
 		for (int i = 0; i < machineList.size(); i++) {
 			if (machineList.get(i).contains(list1.get(0))) {
 				// System.out.println("1i:"+machineList.get(i));
@@ -398,17 +388,17 @@ public class BuildCluster {
 	private Map<String, String> packageCluster(Map<String, List<String>> resultClusterList) {
 		//System.out.println(resultClusterList);
 		for (String key : resultClusterList.keySet()) {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			List<String> list = resultClusterList.get(key);
 			for (int i = 0; i < list.size(); i++) {
 				if (i % 2 == 0) {
-					sb.append(list.get(i) + ",");
-				} else if (i % 2 != 0) {
-					sb.append(list.get(i) + ";");
+					sb.append(list.get(i)).append(",");
+				} else {
+					sb.append(list.get(i)).append(";");
 				}
 			}
 			// System.out.println("sb="+sb.substring(0, sb.length()-1).toString());
-			resultCluster.put(key, sb.substring(0, sb.length() - 1).toString());
+			resultCluster.put(key, sb.substring(0, sb.length() - 1));
 		}
 
 		return resultCluster;
@@ -421,10 +411,7 @@ public class BuildCluster {
 			n = m;
 			m = c;
 		}
-		if (n == 1) {
-			return true;
-		}
-		return false;
+		return n == 1;
 	}
 
 	public static void main(String[] args) {
@@ -434,7 +421,7 @@ public class BuildCluster {
 				"h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,h17,h18,h19,h20,h21,h22,h23,h24,h25,h26,h27,h28,h29,h30,h31,h32,h33,h34,h35,h36,h37,h38,h39,h40,h41,h42,h43,h44,h45,h46,h47,h48,h49,h50,h51,h52,h53,h54,h55,h56,h57,h58,h59,h60,h61,h62,h63,h64,h65,h66,h67,h68,h69,h70,h71,h72,h73,h74,h75,h76,h77,h78,h79,h80,h81,h82,h83,h84,h85,h86,h87,h88,h89,h90,h91,h92,h93,h94,h95,h96,h97,h98,h99,h100";//
 //		String machineZone = "g1,g2,g3,g4;b1,b2,b3,b4;s1,s2,s3,s4;x1,x2,x3,x4;h1,h2,h3,h4";//
 //		String machineZone = "g1,g2";//
-		Map<String, BigDecimal> map = new TreeMap<String, BigDecimal>();
+		Map<String, BigDecimal> map = new TreeMap<>();
 		map.put("group1", BigDecimal.valueOf(100.0/400));
 		map.put("group2", BigDecimal.valueOf(50.0/400));
 		map.put("group3", BigDecimal.valueOf(50.0/400));

@@ -17,7 +17,7 @@ import com.enterprisedt.net.ftp.FTPTransferType;
 
 public class FtpUtil {
 
-	static Logger log = Logger.getLogger(FtpUtil.class);
+	private static Logger log = Logger.getLogger(FtpUtil.class);
 	
 	/**
 	 * 连接ftp servier

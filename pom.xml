@@ -4,7 +4,7 @@
 	<groupId>com.sekift.www</groupId>
 	<artifactId>kioea</artifactId>
 	<version>${project.version}</version>
-	<name>kioea-util</name>
+	<name>kioea</name>
 	<description>JAVA工具集合</description>
 
 	<properties>
@@ -56,13 +56,6 @@
 			<systemPath>${project.basedir}/src/main/lib/ac_arithmetic.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.mozilla.intl/chardet -->
-<!--		<dependency>-->
-<!--			<groupId>org.mozilla.intl</groupId>-->
-<!--			<artifactId>chardet</artifactId>-->
-<!--			<version>${chardet.version}</version>-->
-<!--		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/jchardet/jchardet -->
 		<dependency>

@@ -37,7 +37,7 @@ public class ClassT {
 	}
 
 	public List<Param> getListT(String key, String value) {
-		List<Param> list = new ArrayList<ClassT.Param>();
+		List<Param> list = new ArrayList<>();
 		Param p = new Param();
 		p.setKey(key);
 		p.setValue(value);
@@ -46,10 +46,11 @@ public class ClassT {
 	}
 
 	public List<Param> getListT() {
-		List<Param> list = new ArrayList<ClassT.Param>();
+		List<Param> list = new ArrayList<>();
 		Param p = null;
 		for (int i = 0; i < 10; i++) {
-			p = new Param(); // 对象创建需要放在里面，才可以
+			// 对象创建需要放在里面，才可以
+			p = new Param();
 			p.setKey(i + "");
 			p.setValue("a" + i);
 			list.add(p);
