@@ -31,10 +31,8 @@ public class ByteBuffer_Allocate {
 			System.out.println();
 			System.out.print(buffer);
 			fis.close();
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
 		}
 	}
 }
