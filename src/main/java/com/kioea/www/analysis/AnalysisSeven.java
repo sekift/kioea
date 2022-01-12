@@ -14,14 +14,14 @@ import java.util.List;
  * @version:
  */
 public class AnalysisSeven {
+    private static final String MONTH = "10";
+    static File inputFile = new File("F:\\" + MONTH + "yue.txt");
+    static File outputFile1 = new File("F:\\" + MONTH + "yue-1.txt");
+    static File outputFile2 = new File("F:\\" + MONTH + "yue-2.txt");
+    static File outputFile3 = new File("F:\\" + MONTH + "yue-3.txt");
+    static File outputFile4 = new File("F:\\" + MONTH + "yue-4.txt");
+    static File outputFile5 = new File("F:\\" + MONTH + "yue-5.txt");
     private static List<String> analysisList = new ArrayList<>(1000);
-    static File inputFile = new File("F:\\7yue.txt");
-    static File outputFile1 = new File("F:\\7yue-1.txt");
-    static File outputFile2 = new File("F:\\7yue-2.txt");
-    static File outputFile3 = new File("F:\\7yue-3.txt");
-    static File outputFile4 = new File("F:\\7yue-4.txt");
-    static File outputFile5 = new File("F:\\7yue-5.txt");
-
 
     static {
         LineIterator it;
@@ -33,6 +33,15 @@ public class AnalysisSeven {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        AnalysisSeven ipa = new AnalysisSeven();
+        ipa.analysisList1();
+        ipa.analysisList2();
+        ipa.analysisList3();
+        ipa.analysisList4();
+        ipa.analysisList5();
     }
 
     private void analysisList1() {
@@ -164,6 +173,12 @@ public class AnalysisSeven {
                             count2 = 8 * 60 + item - 200;
                         } else if (item >= 300 && item < 360) {
                             count2 = 9 * 60 + item - 300;
+                        } else if (item >= 400 && item < 460) {
+                            count2 = 10 * 60 + item - 400;
+                        } else if (item >= 500 && item < 560) {
+                            count2 = 11 * 60 + item - 500;
+                        } else if (item >= 600 && item < 660) {
+                            count2 = 12 * 60 + item - 600;
                         } else {
                             System.out.println("名称= " + name + "；下午；异常：" + item);
                         }
@@ -231,11 +246,6 @@ public class AnalysisSeven {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        AnalysisSeven ipa = new AnalysisSeven();
-        ipa.analysisList5();
     }
 
 }

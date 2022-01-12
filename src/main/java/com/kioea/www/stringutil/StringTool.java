@@ -7,8 +7,20 @@ import java.util.regex.Pattern;
 
 public class StringTool {
 	/**
+	 * 判断是否合法的手机号码. 手机号码为11位数字。 国家号码段分配如下： 　　 *
+	 * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188 　　 *
+	 * 联通：130、131、132、152、155、156、185、186 　　 * 电信：133、153、180、189、（1349卫通）
+	 *
+	 * @param mobiles
+	 * 手机号码
+	 * @return boolean
+	 */
+
+	private static Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+
+	/**
 	 * 判断是否汉字
-	 * 
+	 *
 	 * @param c
 	 *            char 要判断的字符
 	 * @return boolean
@@ -20,7 +32,7 @@ public class StringTool {
 
 	/**
 	 * 判断整个字符串是否都是汉字
-	 * 
+	 *
 	 * @param str
 	 *            String
 	 * @return boolean
@@ -31,7 +43,7 @@ public class StringTool {
 
 	/**
 	 * 判断字符串是否包含汉字
-	 * 
+	 *
 	 * @param str
 	 *            String
 	 * @return boolean
@@ -51,7 +63,7 @@ public class StringTool {
 
 	/**
 	 * 判断是否是超链接
-	 * 
+	 *
 	 * @param a
 	 *            String
 	 * @return boolean
@@ -65,7 +77,7 @@ public class StringTool {
 
 	/**
 	 * 判断是否URL
-	 * 
+	 *
 	 * @param url
 	 *            String
 	 * @return boolean
@@ -79,7 +91,7 @@ public class StringTool {
 
 	/**
 	 * 判断是否Email字符串
-	 * 
+	 *
 	 * @param email
 	 *            String
 	 * @return boolean
@@ -93,7 +105,7 @@ public class StringTool {
 
 	/**
 	 * 获得字符的低八位的值
-	 * 
+	 *
 	 * @param c
 	 *            char
 	 * @return int
@@ -113,7 +125,7 @@ public class StringTool {
 
 	/**
 	 * 获得字符的高八位的值
-	 * 
+	 *
 	 * @param c
 	 *            char
 	 * @return int
@@ -133,7 +145,7 @@ public class StringTool {
 
 	/**
 	 * 判断是否是一个整数串
-	 * 
+	 *
 	 * @param value
 	 *            String
 	 * @return boolean
@@ -147,7 +159,7 @@ public class StringTool {
 
 	/**
 	 * 判断是否是一个数字串
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */
@@ -168,7 +180,7 @@ public class StringTool {
 
 	/**
 	 * 删除文本中的HTML标记
-	 * 
+	 *
 	 * @param htmlText
 	 *            String HTML文本
 	 * @return String
@@ -180,7 +192,7 @@ public class StringTool {
 
 	/**
 	 * 根据正则表达式替换字符串
-	 * 
+	 *
 	 * @param regex
 	 *            String 正则表达式
 	 * @param input
@@ -229,7 +241,7 @@ public class StringTool {
 
 	/**
 	 * 根据正则表达式查找第count次匹配的开始索引
-	 * 
+	 *
 	 * @param regex
 	 *            正则表达式
 	 * @param input
@@ -253,7 +265,7 @@ public class StringTool {
 
 	/**
 	 * 截取两段文本中间的文本
-	 * 
+	 *
 	 * @param sourceText
 	 *            String 源文本
 	 * @param beginText
@@ -423,7 +435,7 @@ public class StringTool {
 
 	/**
 	 * 当 text 不为 null 且长度不为 0
-	 * 
+	 *
 	 * @param text
 	 *            String
 	 * @return boolean
@@ -434,7 +446,7 @@ public class StringTool {
 
 	/**
 	 * text 不能为 null 且必须至少包含一个非空格的字符
-	 * 
+	 *
 	 * @param text
 	 *            String
 	 * @return boolean
@@ -445,7 +457,7 @@ public class StringTool {
 
 	/**
 	 * 根据URL截取不带后缀的文件名
-	 * 
+	 *
 	 * @param url
 	 *            String
 	 * @return String
@@ -514,18 +526,6 @@ public class StringTool {
 		return sw.toString();
 	}
 
-	/**
-	 * 判断是否合法的手机号码. 手机号码为11位数字。 国家号码段分配如下： 　　 *
-	 * 移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188 　　 *
-	 * 联通：130、131、132、152、155、156、185、186 　　 * 电信：133、153、180、189、（1349卫通）
-	 * 
-	 * @param mobiles
-	 *            手机号码
-	 * @return boolean
-	 */
-
-	private static Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
-
 	public static boolean isMobileNO(String mobiles) {
 		Matcher m = p.matcher(mobiles);
 		return m.matches();
@@ -590,8 +590,14 @@ public class StringTool {
 		} else if (name.length() == 2) {
 			result = name.substring(0, 1) + "*";
 			return result;
+		} else if (name.length() == 3) {
+			result = name.substring(0, 1) + "**";
+			return result;
+		} else if (name.length() == 4) {
+			result = name.substring(0, 1) + "**" + name.substring(3);
+			return result;
 		} else {
-			result = name.substring(0, 1) + "*" + name.substring(2);
+			result = name.substring(0, 1) + "**" + name.substring(name.length() - 2);
 			return result;
 		}
 	}
@@ -601,17 +607,33 @@ public class StringTool {
 		// System.out.println(getsubstring1("*"));
 		// System.out.println(getsubstring1("14545643&^*(&*("));
 		System.out.println(hideTureName("陈国"));
-		System.out.println(hideIdentityNumber("11010519710923582X"));
-		System.out.println(hideIdentityNumber("11010519710923582X"));
-		System.out.println(hideIdentityNumber("1101051971092358"));
-		System.out.println(hideIdentityNumber("1"));
-		System.out.println(hideIdentityNumber("11"));
-		System.out.println(hideIdentityNumber("111"));
-		System.out.println(hideIdentityNumber("11111"));
-		System.out.println(hideIdentityNumber("111111"));
-		System.out.println(hideIdentityNumber("11111111"));
-		System.out.println(hideIdentityNumber("1111111111"));
-		System.out.println(hideIdentityNumber("11111111111"));
+		System.out.println(hideTureName("陈国权"));
+		System.out.println(hideTureName("陈国权啊"));
+		System.out.println(hideTureName("陈国权啊啊"));
+		System.out.println(hideTureName("陈国权啊啊啊"));
+		System.out.println(hideTureName("陈国权啊啊啊啊"));
+
+
+		System.out.println(hideTureName("1"));
+		System.out.println(hideTureName("12"));
+		System.out.println(hideTureName("123"));
+		System.out.println(hideTureName("1234"));
+		System.out.println(hideTureName("12345"));
+		System.out.println(hideTureName("123456"));
+		System.out.println(hideTureName("1234567"));
+
+
+//		System.out.println(hideIdentityNumber("11010519710923582X"));
+//		System.out.println(hideIdentityNumber("11010519710923582X"));
+//		System.out.println(hideIdentityNumber("1101051971092358"));
+//		System.out.println(hideIdentityNumber("1"));
+//		System.out.println(hideIdentityNumber("11"));
+//		System.out.println(hideIdentityNumber("111"));
+//		System.out.println(hideIdentityNumber("11111"));
+//		System.out.println(hideIdentityNumber("111111"));
+//		System.out.println(hideIdentityNumber("11111111"));
+//		System.out.println(hideIdentityNumber("1111111111"));
+//		System.out.println(hideIdentityNumber("11111111111"));
 		// System.out.println(getHideIdentityNumber("130503670401001"));
 		// System.out.println(getHideIdentityNumber("1305036704010"));
 		// String s1 = "http://www.baidu.com/index?url=http://www.baidu.com";

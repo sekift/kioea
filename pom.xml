@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sekift.www</groupId>
@@ -14,7 +14,7 @@
 		<project.version>0.0.1-SNAPSHOT</project.version>
 		<commons.io.version>2.6</commons.io.version>
 		<commons.lang.version>3.8</commons.lang.version>
-		<jsoup.version>1.12.1</jsoup.version>
+		<jsoup.version>1.14.2</jsoup.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.1.11</logback.version>
@@ -45,9 +45,17 @@
 		<ansj_seg.version>5.1.6</ansj_seg.version>
 		<junit.version>4.13</junit.version>
 		<thumbnailator.version>0.4.14</thumbnailator.version>
+		<spock.version>1.3-groovy-2.4</spock.version>
 	</properties>
 
 	<dependencies>
+		<!-- spock单元测试 -->
+		<dependency>
+			<groupId>org.spockframework</groupId>
+			<artifactId>spock-core</artifactId>
+			<version>${spock.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- 引用本地JAR -->
 		<dependency>

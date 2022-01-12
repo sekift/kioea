@@ -150,11 +150,12 @@ public class GradientFilter extends AbstractBufferedImageOp {
 		BufferedImage biRead;
 		try {
 			// 读入图像
-			biRead = ImageIO.read(new File("D:/orctest.jpg"));
+			biRead = ImageIO.read(new File("C:\\Users\\yinzhang.lu\\Pictures\\e5.png"));
 			// 对象
 			GradientFilter sf = new GradientFilter();
 			// 输出图像(处理后的图像，格式，路径)
-			ImageIO.write(sf.filter(biRead, null), "JPEG", new File("D:/orctestfiltergradien.jpg"));
+			ImageIO.write(sf.filter(biRead, null), "PNG",
+					new File("C:\\Users\\yinzhang.lu\\Pictures\\e5g.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -117,11 +117,12 @@ public class OtsuBinaryFilter extends AbstractBufferedImageOp {
 		BufferedImage biRead;
 		try {
 			// 读入图像
-			biRead = ImageIO.read(new File("D:/orctestfiltermeanshift.jpg"));
+			biRead = ImageIO.read(new File("C:\\Users\\yinzhang.lu\\Pictures\\e5.png"));
 			// 对象
 			OtsuBinaryFilter sf = new OtsuBinaryFilter();
 			// 输出图像(处理后的图像，格式，路径)
-			ImageIO.write(sf.filter(biRead, null), "JPEG", new File("D:/orctestfilterotsu.jpg"));
+			ImageIO.write(sf.filter(biRead, null), "PNG",
+					new File("C:\\Users\\yinzhang.lu\\Pictures\\e5o.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

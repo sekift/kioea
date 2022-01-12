@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author:sekift
  * @time:2015-10-26 上午10:34:43
- * @version:
+ * @version: 1
  */
 public class AnalysisWork {
     private static List<String> travelList = new ArrayList<>(300);
@@ -28,6 +28,16 @@ public class AnalysisWork {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        AnalysisWork ipa = new AnalysisWork();
+        long startTime = System.currentTimeMillis();
+        ipa.travelIpA();
+
+        //ipa.travelIpA(); //测量这个的时候记得将travelList、初始化等等的去掉
+        long endTime = System.currentTimeMillis();
+        System.out.println("处理时间= " + (endTime - startTime));
     }
 
     private void travelIpA() {
@@ -81,16 +91,6 @@ public class AnalysisWork {
             }
             System.out.println("名称\t" + name + " \t早卡\t" + sum1 + " \t晚卡\t" + sum2+ "\t合计\t" + (sum1+sum2));
         }
-    }
-
-    public static void main(String[] args) {
-        AnalysisWork ipa = new AnalysisWork();
-        long startTime = System.currentTimeMillis();
-        ipa.travelIpA();
-
-        //ipa.travelIpA(); //测量这个的时候记得将travelList、初始化等等的去掉
-        long endTime = System.currentTimeMillis();
-        System.out.println("处理时间= " + (endTime - startTime));
     }
 
 }

@@ -11,9 +11,8 @@ import java.io.*;
  */
 public class CompressImg {
 
-    private static Logger logger = Logger.getLogger(CompressImg.class);
-
     private static final String IMG_URL = "C:\\Users\\yinzhang.lu\\Pictures\\";
+    private static final Logger logger = Logger.getLogger(CompressImg.class);
 
     public static void main(String[] args) throws Exception {
         String oriPath = "e5.png";
@@ -127,15 +126,15 @@ public class CompressImg {
 
     private static double getAccuracy(long size) {
         if (size > 3072) {
-            return 0.03;
+            return 0.01;
         } else if (size > 1024) {
-            return  0.06;
+            return 0.02;
         } else if (size > 800) {
-            return  0.08;
+            return 0.03;
         } else if (size > 100) {
-            return  0.1;
+            return 0.06;
         } else {
-            return 1;
+            return 0.8;
         }
     }
 

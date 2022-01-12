@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author:sekift
  * @time:2015-10-26 上午10:34:43
- * @version:
+ * @version:1
  */
 public class AnalysisBing {
     private static List<String> travelList = new ArrayList<>(300);
@@ -30,6 +30,17 @@ public class AnalysisBing {
         }
     }
 
+    public static void main(String[] args) {
+        AnalysisBing ipa = new AnalysisBing();
+        long startTime = System.currentTimeMillis();
+        ipa.travelIpA();
+
+
+        //ipa.travelIpA(); //测量这个的时候记得将travelList、初始化等等的去掉
+        long endTime = System.currentTimeMillis();
+        System.out.println("处理时间= " + (endTime - startTime));
+    }
+
     private void travelIpA() {
         try {
             for (int i = 0; i < travelList.size(); i++) {
@@ -42,16 +53,6 @@ public class AnalysisBing {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        AnalysisBing ipa = new AnalysisBing();
-        long startTime = System.currentTimeMillis();
-        ipa.travelIpA();
-
-        //ipa.travelIpA(); //测量这个的时候记得将travelList、初始化等等的去掉
-        long endTime = System.currentTimeMillis();
-        System.out.println("处理时间= " + (endTime - startTime));
     }
 
 }

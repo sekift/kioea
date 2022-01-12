@@ -21,8 +21,8 @@ public class AList<T> implements ListInterface<T> {
 		if (!isFull()) {
 			entry[length] = newEntry;
 			length++;
+			result = true;
 		}
-
 		return result;
 	}
 
