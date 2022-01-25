@@ -8,23 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kioea.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kioea.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/adt/listtype/AList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/adt/listtype/AList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/Analysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/Analysis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisBing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisBing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisSeven.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisSeven.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisWork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/CompressImg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/CompressImg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/CompressPicture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/BinarizateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/BinarizateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/CannyEdgeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/CannyEdgeFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/GradientFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/GradientFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/HistogramEFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/HistogramEFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/OtsuBinaryFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/OtsuBinaryFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/PixellateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/PixellateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/RotateFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/RotateFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/ScaleFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/ScaleFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/SmoothFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/photoutil/photoprocess/SmoothFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/StringTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/StringTool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,6 +285,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/groovy/com/kioea/www" />
@@ -316,11 +300,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kioea.www.jsouputil" />
       <recent name="com.kioea.www.analysis" />
       <recent name="com.kioea.www.photoutil" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AIOClient">
+  <component name="RunManager" selected="Application.GetYesApi">
     <configuration name="AIOClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kioea.www.async.AIOClient" />
       <module name="kioea" />
@@ -347,12 +332,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CountDownLatchDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.async.CountDownLatchDemo" />
+    <configuration name="GetYesApi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.jsouputil.GetYesApi" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.async.*" />
+          <option name="PATTERN" value="com.kioea.www.jsouputil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -388,11 +373,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GetYesApi" />
+        <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.AIOClient" />
         <item itemvalue="Application.AIOServer" />
-        <item itemvalue="Application.Test (1)" />
         <item itemvalue="Application.SemaphoreTest" />
-        <item itemvalue="Application.CountDownLatchDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -454,7 +439,11 @@
       <workItem from="1636940200087" duration="3286000" />
       <workItem from="1638348397855" duration="3155000" />
       <workItem from="1640763062596" duration="3553000" />
-      <workItem from="1641959781602" duration="2040000" />
+      <workItem from="1641959781602" duration="2758000" />
+      <workItem from="1642578300897" duration="1845000" />
+      <workItem from="1642987558525" duration="1459000" />
+      <workItem from="1642989054948" duration="2150000" />
+      <workItem from="1643073959485" duration="3539000" />
     </task>
     <servers />
   </component>
