@@ -21,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TestMe with Groovy, Spock &amp; Mockito" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -48,10 +49,10 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/HtmlTool.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/LanguageUtil.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/analysis/AnalysisTest.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/StepCharacterUtil.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/LanguageUtil.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/kioea/www/stringutil/HtmlTool.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -85,6 +86,11 @@
     </option>
   </component>
   <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$PROJECT_DIR$/../../apache-maven-3.5.4" />
+      </MavenGeneralSettings>
+    </option>
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="jdkForImporter" value="1.8" />
@@ -296,22 +302,24 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kioea.www.timeutil" />
+      <recent name="com.kioea.www.async.bossworker" />
       <recent name="com.kioea.www.jsouputil" />
       <recent name="com.kioea.www.analysis" />
       <recent name="com.kioea.www.photoutil" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GetYesApi">
-    <configuration name="AIOClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.async.AIOClient" />
+  <component name="RunManager" selected="Application.StUtils">
+    <configuration name="StUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.textutil.StUtils" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.async.*" />
+          <option name="PATTERN" value="com.kioea.www.textutil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -319,12 +327,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AIOServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.async.AIOServer" />
+    <configuration name="StopWatchTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.timeutil.StopWatchTest" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.async.*" />
+          <option name="PATTERN" value="com.kioea.www.timeutil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -332,12 +340,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GetYesApi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.jsouputil.GetYesApi" />
+    <configuration name="TimeDiffTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.timeutil.TimeDiffTest" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.jsouputil.*" />
+          <option name="PATTERN" value="com.kioea.www.timeutil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -345,12 +353,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SemaphoreTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.async.SemaphoreTest" />
+    <configuration name="TraceHolderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.timeutil.TraceHolderTest" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.async.*" />
+          <option name="PATTERN" value="com.kioea.www.timeutil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -358,12 +366,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kioea.www.Test" />
+    <configuration name="TraceWatchTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kioea.www.timeutil.TraceWatchTest" />
       <module name="kioea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kioea.www.*" />
+          <option name="PATTERN" value="com.kioea.www.timeutil.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -373,11 +381,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GetYesApi" />
-        <item itemvalue="Application.Test (1)" />
-        <item itemvalue="Application.AIOClient" />
-        <item itemvalue="Application.AIOServer" />
-        <item itemvalue="Application.SemaphoreTest" />
+        <item itemvalue="Application.StUtils" />
+        <item itemvalue="Application.StopWatchTest" />
+        <item itemvalue="Application.TraceWatchTest" />
+        <item itemvalue="Application.TraceHolderTest" />
+        <item itemvalue="Application.TimeDiffTest" />
       </list>
     </recent_temporary>
   </component>
@@ -443,7 +451,24 @@
       <workItem from="1642578300897" duration="1845000" />
       <workItem from="1642987558525" duration="1459000" />
       <workItem from="1642989054948" duration="2150000" />
-      <workItem from="1643073959485" duration="3539000" />
+      <workItem from="1643073959485" duration="4373000" />
+      <workItem from="1648778861705" duration="3952000" />
+      <workItem from="1648805928980" duration="1338000" />
+      <workItem from="1648862622947" duration="1081000" />
+      <workItem from="1649207851238" duration="3426000" />
+      <workItem from="1649821646903" duration="3380000" />
+      <workItem from="1649902638389" duration="2170000" />
+      <workItem from="1650875454381" duration="43000" />
+      <workItem from="1651117708234" duration="4637000" />
+      <workItem from="1652944651128" duration="134000" />
+      <workItem from="1653384848997" duration="1074000" />
+      <workItem from="1653385974784" duration="638000" />
+      <workItem from="1653440532652" duration="869000" />
+      <workItem from="1653444275079" duration="973000" />
+      <workItem from="1653445334260" duration="8106000" />
+      <workItem from="1653470941984" duration="590000" />
+      <workItem from="1653473292385" duration="447000" />
+      <workItem from="1653528044745" duration="1195000" />
     </task>
     <servers />
   </component>
@@ -496,6 +521,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.stg" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

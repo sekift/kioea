@@ -1,0 +1,54 @@
+test(str1) ::= <<
+{
+  "config": {
+    "wide_screen_mode": true
+  },
+  "header": {
+    "template": "orange",
+    "title": {
+      "content": "🎉🎉新的订单已经出现🎉🎉",
+      "tag": "plain_text"
+    }
+  },
+  "elements": [
+    {
+      "tag": "hr"
+    },
+    {
+      "extra": {
+        "tag": "button",
+        "text": {
+          "content": "🙋 立刻领取",
+          "tag": "lark_md"
+        },
+        "type": "primary",
+        "url": "https://feishu.cn"
+      },
+      "tag": "div",
+      "text": {
+        "content": "<str1>",
+        "tag": "lark_md"
+      }
+    },
+    {
+      "tag": "hr"
+    },
+    {
+      "extra": {
+        "tag": "button",
+        "text": {
+          "content": "👀 查看祝福",
+          "tag": "lark_md"
+        },
+        "type": "primary",
+        "url": "https://open.feishu.cn/?lang=zh-CN"
+      },
+      "tag": "div",
+      "text": {
+        "content": "**😘 收到的生日祝福**\n王凡、刘子涵、陈怡君......给你送祝福啦",
+        "tag": "lark_md"
+      }
+    }
+  ]
+}
+>>
