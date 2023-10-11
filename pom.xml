@@ -35,7 +35,7 @@
 		<zxing.version>3.4.0</zxing.version>
 		<jedis.version>2.10.0</jedis.version>
 		<dbutil.version>1.7</dbutil.version>
-		<zookeeper.version>3.5.5</zookeeper.version>
+		<zookeeper.version>3.7.2</zookeeper.version>
 		<curator.version>4.2.0</curator.version>
 		<asm.version>4.1</asm.version>
 		<mail.version>1.4.7</mail.version>
