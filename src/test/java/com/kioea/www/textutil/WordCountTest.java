@@ -1,17 +1,16 @@
 package com.kioea.www.textutil;
 
-import java.util.ArrayList;
-import java.util.Map;
-
+import com.kioea.www.constructeutil.MapSortUtil;
+import com.kioea.www.fileutil.ReadFromFile;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kioea.www.constructeutil.MapSortUtil;
-import com.kioea.www.fileutil.ReadFromFile;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * 
  * @author:sekift
  * @time:2014-8-11 下午02:43:53
  * @version:
@@ -19,6 +18,8 @@ import com.kioea.www.fileutil.ReadFromFile;
 public class WordCountTest {
 
 	String str = ReadFromFile.readFileByLines("D:/t_info.txt");
+	Map<String, Integer> mapResult = WordCount.countWordsMap(str);
+	String result = WordCount.countWordsJson(str);
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,15 +29,11 @@ public class WordCountTest {
 	public void tearDown() throws Exception {
 	}
 
-	Map<String, Integer> mapResult = WordCount.countWordsMap(str);
-
 	@Test
 	public void testCountWordsMap() {
 		System.out.println(WordCount.countWordsMap(str));
 
 	}
-
-	String result = WordCount.countWordsJson(str);
 
 	@Test
 	public void testCountWordsJson() {
@@ -77,6 +74,20 @@ public class WordCountTest {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Test
+	public void testSortMap() {
+		try {
+			Map<String, Object> map = new HashMap<>(16);
+			map.put("fa", 1);
+			map.put("eb", 2L);
+			map.put("fec", 3);
+			map.put("ac", "fa");
+			System.out.println(new HashMap<>(map));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

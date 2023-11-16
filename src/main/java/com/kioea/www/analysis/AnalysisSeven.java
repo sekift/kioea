@@ -14,13 +14,13 @@ import java.util.List;
  * @version:
  */
 public class AnalysisSeven {
-    private static final String MONTH = "10";
-    static File inputFile = new File("F:\\" + MONTH + "yue.txt");
-    static File outputFile1 = new File("F:\\" + MONTH + "yue-1.txt");
-    static File outputFile2 = new File("F:\\" + MONTH + "yue-2.txt");
-    static File outputFile3 = new File("F:\\" + MONTH + "yue-3.txt");
-    static File outputFile4 = new File("F:\\" + MONTH + "yue-4.txt");
-    static File outputFile5 = new File("F:\\" + MONTH + "yue-5.txt");
+    private static final String PRE = "202212";
+    static File inputFile = new File("F:\\" + PRE + "yue.txt");
+    static File outputFile1 = new File("F:\\" + PRE + "yue-1.txt");
+    static File outputFile2 = new File("F:\\" + PRE + "yue-2.txt");
+    static File outputFile3 = new File("F:\\" + PRE + "yue-3.txt");
+    static File outputFile4 = new File("F:\\" + PRE + "yue-4.txt");
+    static File outputFile5 = new File("F:\\" + PRE + "yue-5.txt");
     private static List<String> analysisList = new ArrayList<>(1000);
 
     static {
@@ -46,8 +46,7 @@ public class AnalysisSeven {
 
     private void analysisList1() {
         try {
-            for (int i = 0; i < analysisList.size(); i++) {
-                String hang = analysisList.get(i);
+            for (String hang : analysisList) {
                 if (hang.contains("上午")) {
                     String[] itemStr = hang.split("\t");
                     for (int j = 0; j < itemStr.length; j++) {
@@ -129,7 +128,7 @@ public class AnalysisSeven {
                 int sum1 = 0, sum2 = 0;
                 if (hang.contains("上午")) {
                     for (int i = 2; i < itemStr.length; i++) {
-                        int item = Integer.valueOf(itemStr[i]);
+                        int item = Integer.parseInt(itemStr[i]);
                         int count1 = 0, count2 = 0;
                         if (item >= 600 && item < 700) {
                             count1 = 2 * 60 + 660 - item;
@@ -149,7 +148,7 @@ public class AnalysisSeven {
                     }
                 } else if (hang.contains("下午")) {
                     for (int i = 2; i < itemStr.length; i++) {
-                        int item = Integer.valueOf(itemStr[i]);
+                        int item = Integer.parseInt(itemStr[i]);
                         int count1 = 0, count2 = 0;
                         if (item >= 1200 && item < 1800) {
                             count2 = 0;
@@ -234,9 +233,9 @@ public class AnalysisSeven {
                 String hang = it.nextLine();
                 String[] itemStr = hang.split("\t");
                 // 天数
-                int day = Integer.valueOf(itemStr[3].trim());
-                int am = Integer.valueOf(itemStr[5].trim());
-                int pm = Integer.valueOf(itemStr[7].trim());
+                int day = Integer.parseInt(itemStr[3].trim());
+                int am = Integer.parseInt(itemStr[5].trim());
+                int pm = Integer.parseInt(itemStr[7].trim());
 
                 int total = am + pm;
                 String avg = String.format("%.2f", (double) total / day / 60);

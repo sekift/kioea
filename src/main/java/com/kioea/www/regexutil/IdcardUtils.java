@@ -17,14 +17,14 @@ package com.kioea.www.regexutil;
  * @(#) IdcardUtils.java Date: 2010-06-17
  */
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 身份证工具类
@@ -645,7 +645,7 @@ public class IdcardUtils extends StringUtils {
 
 	public static void main(String[] args) {
 
-		String idCard = "440111197101248813";
+		String idCard = "445222199603243818";
 		System.out.println("是否合法身份证：" + IdcardUtils.validateCard(idCard));
 
 		System.out.println("年龄：" + IdcardUtils.getAgeByIdCard(idCard));

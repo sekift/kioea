@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class AnalysisWork {
     private static List<String> travelList = new ArrayList<>(300);
-    private static File inputFile = new File("F:\\6yueshuju-out.txt");
-    private static File outputFile = new File("F:\\6yueshuju-out1.txt");
+    private static File inputFile = new File("F:\\1yueshuju.txt");
+    private static File outputFile = new File("F:\\1yueshuju-out.txt");
 
     static {
         LineIterator it;
